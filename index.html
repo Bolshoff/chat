@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="chat-screen ">
+        <div class="managing-chat">
+            <button class="managing-chat__button-settings">Настройки</button>
+            <button class="managing-chat__button-quit">Выйти</button>
+        </div>
+        <div class="message-screen">
+            <div class="output-message">
+                <div class="output-message__text">Я: Добрый день!</div>
+                <div class="message__time">18:45</div>
+            </div>
+            <div class="input-message-short">
+                <div class="input-message__text">Собеседник мой: Добрый день!</div>
+                <div class="message__time">18:45</div>
+            </div>
+            <div class="input-message">
+                <div class="input-message__text">Собеседник мой: А это второе и, кажется, оно очень длинное, чтобы поместиться на одной строке</div>
+                <div class="message__time">18:45</div>
+            </div>
+            <div class="output-message_unread">
+                <div class="output-message__text">Я: Добрый день!</div>
+                <div class="message__time">18:45</div>
+            </div>
+        </div>
+        <div class="input-chat">
+            <form class="input-chat__form">
+                <label>
+                    <input type="text" class="input-chat__input" placeholder="сообщение..">
+                </label>
+                    <input type="submit" class="input-chat__submit-button" value="->">
+            </form>
+        </div>
+    </div>
+    <div class="chat-settings hide ">
+        <div class="chat-settings__window">
+            <div class="chat-settings__header">Настройки<span class="chat-settings__close-button">x</span></div>
+            <div class="chat-settings__user-name">
+                <form class="chat-settings__user-name-form">
+                    <lable> Имя в чате <br>
+                        <input class="chat-settings__user-name-input" type="text" placeholder="Стив">
+                    </lable>
+                        <input class="chat-settings__user-name-submit-button" type="submit" value="->">
+                </form>
+            </div>
+        </div>
+    </div>
+<script src="./script/index.js" type="module"></script>
+</body>
+</html>
