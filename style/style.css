@@ -108,24 +108,16 @@ body{
     background: #F7F7F7;
 }
 .input-message{
-    position: absolute;
-    background: #E5E5E5;
-    top: 250px;
-    margin: 10px;
-}
 
-.input-message-short{
-    position: absolute;
-    display: block;
+    max-width: 260px;
+    align-self: flex-start;
+    margin: 5px;
     background: #E5E5E5;
-    margin: 10px;
-    top: 199px;
+
 }
 
 .chat-settings{
     position: absolute;
-    /*display: flex;*/
-    /*flex-direction: column;*/
     width: 320px;
     height: 533px;
     background: #535353;
@@ -133,7 +125,6 @@ body{
 .chat-settings__window{
     width: 273px;
     height: 319px;
-
     background: #FFFFFF;
     position: absolute;
     top: 0;

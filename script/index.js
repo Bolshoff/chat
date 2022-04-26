@@ -11,6 +11,11 @@ SETTINGS_ELEMENTS.SETTING_CLOSE.addEventListener('click',()=>{
   CHAT_SCREEN_ELEMENTS.CHAT_SCREEN.classList.remove('hide');
 })
 
+SETTINGS_ELEMENTS.SETTING_WINDOW.addEventListener('click',()=>{
+  SETTINGS_ELEMENTS.SETTING_WINDOW.classList.add('hide');
+  CHAT_SCREEN_ELEMENTS.CHAT_SCREEN.classList.remove('hide');
+})
+
 
 CHAT_SCREEN_ELEMENTS.INPUT_FORM.addEventListener('submit', (e)=>{
   e.preventDefault();
