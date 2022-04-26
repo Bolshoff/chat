@@ -16,8 +16,13 @@ export const CHAT_SCREEN_ELEMENTS = {
 
 export  function showOutputMessage(){
     const message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
+    let minutes = new Date().getMinutes();
+    let hours = new Date().getHours();
+    if (hours < 10 ){hours = `0${new Date().getHours()}`};
+    if(minutes < 10){minutes = `0${new Date().getMinutes()}`};
     message.querySelector('.output-message__text').innerHTML = `Я: ${CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value}`;
-    message.querySelector('.message__time').innerHTML = new Date().getHours() + ":" + new Date().getMinutes();
+    message.querySelector('.message__time').innerHTML = `${hours}:${minutes}`;
+
     if(CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value) {
       CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
     }
