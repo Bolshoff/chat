@@ -15,11 +15,11 @@ export const CHAT_SCREEN_ELEMENTS = {
 
 
 export  function showOutputMessage(){
-const message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
-
+    const message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
     message.querySelector('.output-message__text').innerHTML = `Я: ${CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value}`;
-
     message.querySelector('.message__time').innerHTML = new Date().getHours() + ":" + new Date().getMinutes();
-    CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
+    if(CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value) {
+      CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
+    }
     CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value = '';
 }
