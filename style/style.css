@@ -81,11 +81,12 @@ body{
     margin-left: 3px;
 }
 .output-message{
-    /*position: relative;*/
+
+    display: inline-block;
     background: #E5E5E5;
     right: 5px;
-    /*top: 150px;*/
-    text-align: right;
+    align-self: flex-end;
+    margin: 5px;
 }
 .message__time{
     text-align: right;
@@ -106,9 +107,7 @@ body{
     right: 5px;
 }
 .unread{
-    /*position: absolute;*/
-    /*right: 5px;*/
-    /*bottom: 10px;*/
+
     background: #F7F7F7;
 }
 .input-message{
