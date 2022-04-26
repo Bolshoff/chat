@@ -41,12 +41,17 @@ body{
 }
 .message-screen{
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     width: 304px;
     height: 437px;
     background: #FFFFFF;
     border: 1px solid #000000;
     box-sizing: border-box;
     margin: auto;
+    overflow: scroll;
+    word-break: break-all;
 
 }
 .message-screen::-webkit-scrollbar {
@@ -76,14 +81,15 @@ body{
     margin-left: 3px;
 }
 .output-message{
-    position: absolute;
+    /*position: relative;*/
     background: #E5E5E5;
     right: 5px;
-    top: 150px;
+    /*top: 150px;*/
+    text-align: right;
 }
 .message__time{
     text-align: right;
-    margin-right: 5px;
+    margin-right: 6px;
     font-family: 'Roboto';
     font-style: italic;
     font-weight: 300;
@@ -97,11 +103,12 @@ body{
 }
 .output-message__text{
     margin: 5px 5px 0 5px;
-}
-.output-message_unread{
-    position: absolute;
     right: 5px;
-    bottom: 10px;
+}
+.unread{
+    /*position: absolute;*/
+    /*right: 5px;*/
+    /*bottom: 10px;*/
     background: #F7F7F7;
 }
 .input-message{
