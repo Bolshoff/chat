@@ -30,20 +30,45 @@
                     <input type="submit" class="input-chat__submit-button" value="->">
             </form>
         </div>
-    </div>
-    <div class="chat-settings hide ">
-        <div class="chat-settings__window">
+        <div class="chat-settings__window hide">
             <div class="chat-settings__header">Настройки<span class="chat-settings__close-button">x</span></div>
             <div class="chat-settings__user-name">
                 <form class="chat-settings__user-name-form">
                     <lable> Имя в чате <br>
                         <input class="chat-settings__user-name-input" type="text" placeholder="Стив">
                     </lable>
-                        <input class="chat-settings__user-name-submit-button" type="submit" value="->">
+                    <input class="chat-settings__user-name-submit-button" type="submit" value="->">
                 </form>
             </div>
         </div>
+        <div class="authorization ">
+            <div class="authorization__header">Авторизация<span class="authorization__close-button">x</span></div>
+            <div class="authorization__mail">
+                <form class="authorization__mail-form">
+                    <lable> Почта <br>
+                        <input class="authorization__mail-input" type="email" >
+                    </lable>
+                    <input class="authorization__submit-button" type="submit" value="Получить код">
+                </form>
+            </div>
+
+        </div>
+        <div class="submit hide">
+            <div class="submit__header">Подтверждение<span class="submit__close-button">x</span></div>
+            <div class="submit__code">
+                <form class="submit__code-form">
+                    <lable> Код<br>
+                        <input class="submit__code-input" type="text" >
+                    </lable>
+                    <input class="submit__submit-button" type="submit" value="Войти">
+                </form>
+            </div>
+
+        </div>
     </div>
+    <div class="modal-background"></div>
+
+
 <script src="./script/index.js" type="module"></script>
 </body>
 </html>
