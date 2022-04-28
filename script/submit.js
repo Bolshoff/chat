@@ -5,3 +5,5 @@ export const SUBMIT_ELEMENTS = {
   CODE_SUBMIT : document.querySelector('.submit__submit-button'),
   SUBMIT_WINDOW : document.querySelector('.submit'),
 }
+
+

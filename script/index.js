@@ -1,7 +1,8 @@
 import {CHAT_SCREEN_ELEMENTS, showOutputMessage} from './chat_window_elements.js';
 import {SETTINGS_ELEMENTS} from './settings_elements.js';
 import {AUTH_ELEMENTS, getAuthCodeForMail} from './authorization_elements.js';
-import {SUBMIT_ELEMENTS} from './submit.js';
+import {SUBMIT_ELEMENTS, } from './submit.js';
+import Cookies from 'js-cookie';
 
 CHAT_SCREEN_ELEMENTS.SETTING_BUTTON.addEventListener('click',()=>{
 
@@ -39,6 +40,7 @@ SUBMIT_ELEMENTS.CLOSE.addEventListener('click', ()=>{
 })
 
 SUBMIT_ELEMENTS.CODE_FORM.addEventListener('submit',(e)=>{
+  e.preventDefault();
 
 })
 
@@ -46,5 +48,9 @@ AUTH_ELEMENTS.MAIL_FORM.addEventListener('submit', (e)=>{
   e.preventDefault();
   getAuthCodeForMail();
 })
+ function setCookiesToken(){
+  const token = SUBMIT_ELEMENTS.CODE.value;
 
 
+
+}
