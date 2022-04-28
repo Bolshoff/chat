@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+    <link rel="stylesheet" href="/index.78cc32dd.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="chat-screen ">
+        <div class="managing-chat">
+            <button class="managing-chat__button-settings">Настройки</button>
+            <button class="managing-chat__button-quit">Выйти</button>
+        </div>
+        <div class="message-screen">
+            <template id="output-template">
+                <div class="output-message unread">
+                    <div class="output-message__text"></div>
+                    <div class="message__time"></div>
+                </div>
+            </template>
+        </div>
+        <div class="input-chat">
+            <form class="input-chat__form">
+                <label>
+                    <input type="text" class="input-chat__input" placeholder="сообщение..">
+                </label>
+                    <input type="submit" class="input-chat__submit-button" value="->">
+            </form>
+        </div>
+        <div class="chat-settings__window hide">
+            <div class="chat-settings__header">Настройки<span class="chat-settings__close-button">x</span></div>
+            <div class="chat-settings__user-name">
+                <form class="chat-settings__user-name-form">
+                    <lable> Имя в чате <br>
+                        <input class="chat-settings__user-name-input" type="text" placeholder="Стив">
+                    </lable>
+                    <input class="chat-settings__user-name-submit-button" type="submit" value="->">
+                </form>
+            </div>
+        </div>
+        <div class="authorization hide">
+            <div class="authorization__header">Авторизация<span class="authorization__close-button">x</span></div>
+            <div class="authorization__mail">
+                <form class="authorization__mail-form">
+                    <lable> Почта <br>
+                        <input class="authorization__mail-input" type="email">
+                    </lable>
+                    <input class="authorization__submit-button" type="submit" value="Получить код">
+                </form>
+            </div>
+
+        </div>
+        <div class="submit ">
+            <div class="submit__header">Подтверждение<span class="submit__close-button">x</span></div>
+            <div class="submit__code">
+                <form class="submit__code-form">
+                    <lable> Код<br>
+                        <input class="submit__code-input" type="text">
+                    </lable>
+                    <input class="submit__submit-button" type="submit" value="Войти">
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-background"></div>
+
+
+<script src="/index.6690e0da.js" defer=""></script>
+</body>
+</html>
