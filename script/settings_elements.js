@@ -13,7 +13,7 @@ export async function setUserName(){
   const url = "https://mighty-cove-31255.herokuapp.com/api/user";
   const token = Cookies.get('token');
   const userName = SETTINGS_ELEMENTS.SETTING_NAME_INPUT.value;
-
+try {
   let response = await fetch(url,{
     method: 'PATCH',
     headers: {
@@ -22,6 +22,8 @@ export async function setUserName(){
     },
     body: JSON.stringify({name:`${userName}`})
   });
-
+}catch (e) {
+  alert(e);
+}
 
 }

@@ -9,18 +9,21 @@ export const AUTH_ELEMENTS = {
 
 
 export async function getAuthCodeForMail(){
-  const url = 'https://mighty-cove-31255.herokuapp.com/api/user';
+  const url = 'https://mighty-cove-31255.herokuapp.com/api/user2';
   let mail = {
-    email : AUTH_ELEMENTS.MAIL.value
+    email : `${AUTH_ELEMENTS.MAIL.value}`,
+  }
+  try{
+    let response =  await fetch( url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify(mail)
+    });
+  }catch (e){
+    alert(e);
   }
 
-
-  let response =  await fetch( url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8'
-    },
-    body: JSON.stringify({mail:"abolshoff@yandex.ru"})
-});
 
 }

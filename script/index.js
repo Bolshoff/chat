@@ -66,3 +66,28 @@ SETTINGS_ELEMENTS.SETTING_NAME_FORM.addEventListener('submit',(e)=>{
   e.preventDefault();
   setUserName();
 })
+
+document.querySelector('.test-button').addEventListener('click',(e)=>{
+  e.preventDefault();
+  testUserName();
+})
+async function testUserName(){
+  const token = Cookies.get('token');
+  try {
+    let user = await fetch('https://mighty-cove-31255.herokuapp.com/api/user/me',{
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}` ,
+
+      },
+
+    });
+    let userName = await user.json();
+    console.log(userName);
+
+  }catch (e) {
+    alert(e);
+  }
+
+
+}

@@ -581,6 +581,25 @@ _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_NAME_FORM.addEventListener('submit
     e.preventDefault();
     _settingsElementsJs.setUserName();
 });
+document.querySelector('.test-button').addEventListener('click', (e)=>{
+    e.preventDefault();
+    testUserName();
+});
+async function testUserName() {
+    const token = _jsCookieDefault.default.get('token');
+    try {
+        let user = await fetch('https://mighty-cove-31255.herokuapp.com/api/user/me', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        let userName = await user.json();
+        console.log(userName);
+    } catch (e) {
+        alert(e);
+    }
+}
 
 },{"./chat_window_elements.js":"kWvmn","./settings_elements.js":"hjjhO","./authorization_elements.js":"aBJMP","./submit.js":"9jUCy","js-cookie":"c8bBu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kWvmn":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -664,16 +683,20 @@ async function setUserName() {
     const url = "https://mighty-cove-31255.herokuapp.com/api/user";
     const token = _jsCookieDefault.default.get('token');
     const userName = SETTINGS_ELEMENTS.SETTING_NAME_INPUT.value;
-    let response = await fetch(url, {
-        method: 'PATCH',
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify({
-            name: `${userName}`
-        })
-    });
+    try {
+        let response = await fetch(url, {
+            method: 'PATCH',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({
+                name: `${userName}`
+            })
+        });
+    } catch (e) {
+        alert(e);
+    }
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","js-cookie":"c8bBu"}],"c8bBu":[function(require,module,exports) {
@@ -781,19 +804,21 @@ const AUTH_ELEMENTS = {
     AUTH_WINDOW: document.querySelector('.authorization')
 };
 async function getAuthCodeForMail() {
-    const url = 'https://mighty-cove-31255.herokuapp.com/api/user';
+    const url = 'https://mighty-cove-31255.herokuapp.com/api/user2';
     let mail = {
-        email: AUTH_ELEMENTS.MAIL.value
+        email: `${AUTH_ELEMENTS.MAIL.value}`
     };
-    let response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify({
-            mail: "abolshoff@yandex.ru"
-        })
-    });
+    try {
+        let response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(mail)
+        });
+    } catch (e) {
+        alert(e);
+    }
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9jUCy":[function(require,module,exports) {
