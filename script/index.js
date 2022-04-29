@@ -1,4 +1,8 @@
-import {CHAT_SCREEN_ELEMENTS, showOutputMessage} from './chat_window_elements.js';
+import {
+  CHAT_SCREEN_ELEMENTS,
+  getMessageStory,
+  showOutputMessage,
+} from './chat_window_elements.js';
 import {SETTINGS_ELEMENTS, setUserName} from './settings_elements.js';
 import {AUTH_ELEMENTS, getAuthCodeForMail} from './authorization_elements.js';
 import {SUBMIT_ELEMENTS, } from './submit.js';
@@ -67,10 +71,10 @@ SETTINGS_ELEMENTS.SETTING_NAME_FORM.addEventListener('submit',(e)=>{
   setUserName();
 })
 
-document.querySelector('.test-button').addEventListener('click',(e)=>{
-  e.preventDefault();
-  testUserName();
-})
+// document.querySelector('.test-button').addEventListener('click',(e)=>{
+//   e.preventDefault();
+//   testUserName();
+// })
 async function testUserName(){
   const token = Cookies.get('token');
   try {
@@ -91,3 +95,4 @@ async function testUserName(){
 
 
 }
+getMessageStory();
