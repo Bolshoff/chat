@@ -10,7 +10,8 @@ body{
 }
 
 .chat-screen{
-    position: absolute;
+    position: relative;
+    flex: 1;
     display: flex;
     flex-direction: column;
     width: 320px;
@@ -39,25 +40,42 @@ body{
     border: 1px solid #000000;
     box-sizing: border-box;
 }
+.container {
+    overflow-y: scroll;
+    /*box-shadow: 0 0 0 1px red;*/
+    display: flex;
+    width: 304px;
+    height: 437px;
+    border: 1px solid #000000;
+    margin: auto;
+}
+.wrap-inner{
+    overflow: hidden;
+}
+.message-screen>div{
+    flex-shrink: 0;
+}
 .message-screen{
     position: relative;
     display: flex;
+    /*flex: 1;*/
     flex-direction: column;
     justify-content: flex-end;
     width: 304px;
-    height: 437px;
+    /*height: 437px;*/
     background: #FFFFFF;
-    border: 1px solid #000000;
+    /*border: 1px solid #000000;*/
     box-sizing: border-box;
     margin: auto;
-    overflow: scroll;
     word-break: break-all;
+    /*overflow-y: scroll;*/
 
 }
-.message-screen::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-}
+/*.message-screen::-webkit-scrollbar {*/
+/*    width: 0;*/
+/*    height: 0;*/
+/*}*/
+
 
 .input-chat{
     position: relative;
@@ -83,7 +101,7 @@ body{
 .output-message{
     background: #E5E5E5;
     max-width: 260px;
-    align-self: flex-end;
+    align-self: end;
     margin: 5px;
 }
 .message__time{

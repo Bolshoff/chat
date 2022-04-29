@@ -14,20 +14,26 @@
             <button class="managing-chat__button-settings">Настройки</button>
             <button class="managing-chat__button-quit">Выйти</button>
         </div>
-        <div class="message-screen">
-            <template id="output-template">
-                <div class="output-message unread">
-                    <div class="output-message__text"></div>
-                    <div class="message__time"></div>
+        <div class="wrap-inner">
+            <div class="container">
+                <div class="message-screen">
+                    <template id="output-template">
+                        <div class="output-message unread">
+                            <div class="output-message__text"></div>
+                            <div class="message__time"></div>
+                        </div>
+                    </template>
+                    <template id="input-template">
+                        <div class="input-message ">
+                            <div class="input-message__text"></div>
+                            <div class="message__time"></div>
+                        </div>
+                    </template>
                 </div>
-            </template>
-            <template id="input-template">
-                <div class="input-message ">
-                    <div class="input-message__text"></div>
-                    <div class="message__time"></div>
-                </div>
-            </template>
+            </div>
         </div>
+
+
         <div class="input-chat">
             <form class="input-chat__form">
                 <label>

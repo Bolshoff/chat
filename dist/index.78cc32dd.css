@@ -13,8 +13,9 @@ body {
   height: 533px;
   background: #fff;
   flex-direction: column;
+  flex: 1;
   display: flex;
-  position: absolute;
+  position: relative;
 }
 
 .managing-chat {
@@ -42,24 +43,33 @@ body {
   border: 1px solid #000;
 }
 
-.message-screen {
+.container {
   width: 304px;
   height: 437px;
+  border: 1px solid #000;
+  margin: auto;
+  display: flex;
+  overflow-y: scroll;
+}
+
+.wrap-inner {
+  overflow: hidden;
+}
+
+.message-screen > div {
+  flex-shrink: 0;
+}
+
+.message-screen {
+  width: 304px;
   box-sizing: border-box;
   word-break: break-all;
   background: #fff;
-  border: 1px solid #000;
   flex-direction: column;
   justify-content: flex-end;
   margin: auto;
   display: flex;
   position: relative;
-  overflow: scroll;
-}
-
-.message-screen::-webkit-scrollbar {
-  width: 0;
-  height: 0;
 }
 
 .input-chat {
@@ -89,7 +99,7 @@ body {
 .output-message {
   max-width: 260px;
   background: #e5e5e5;
-  align-self: flex-end;
+  align-self: end;
   margin: 5px;
 }
 
