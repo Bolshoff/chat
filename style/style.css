@@ -42,11 +42,10 @@ body{
 }
 .container {
     overflow-y: scroll;
-    /*box-shadow: 0 0 0 1px red;*/
     display: flex;
     width: 304px;
     height: 437px;
-    border: 1px solid #000000;
+       border: 1px solid #000000;
     margin: auto;
 }
 .wrap-inner{
@@ -62,19 +61,16 @@ body{
     flex-direction: column;
     justify-content: flex-end;
     width: 304px;
-    /*height: 437px;*/
+    /*height: 100%;*/
+
     background: #FFFFFF;
-    /*border: 1px solid #000000;*/
     box-sizing: border-box;
     margin: auto;
     word-break: break-all;
-    /*overflow-y: scroll;*/
+
 
 }
-/*.message-screen::-webkit-scrollbar {*/
-/*    width: 0;*/
-/*    height: 0;*/
-/*}*/
+
 
 
 .input-chat{
@@ -253,6 +249,28 @@ body{
 .submit__close-button{
     margin-left: 110px;
     cursor: pointer;
+}
+*,
+html * /* override x.xhtml.ru style */
+{
+    scrollbar-width: thin;
+    scrollbar-color: #99999a #faf9f8;
+}
+
+*::-webkit-scrollbar,
+html *::-webkit-scrollbar {
+    height: 12px;
+    width: 12px;
+}
+*::-webkit-scrollbar-track,
+html *::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+*::-webkit-scrollbar-thumb,
+html *::-webkit-scrollbar-thumb {
+    background-color: #c2bfbf;
+    border-radius: 5px;
+    border: 3px solid #ffffff;
 }
 
 .hide{

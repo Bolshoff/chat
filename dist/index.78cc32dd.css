@@ -261,6 +261,26 @@ body {
   margin-left: 110px;
 }
 
+*, html * {
+  scrollbar-width: thin;
+  scrollbar-color: #99999a #faf9f8;
+}
+
+::-webkit-scrollbar, html ::-webkit-scrollbar {
+  height: 12px;
+  width: 12px;
+}
+
+::-webkit-scrollbar-track, html ::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+::-webkit-scrollbar-thumb, html ::-webkit-scrollbar-thumb {
+  background-color: #c2bfbf;
+  border: 3px solid #fff;
+  border-radius: 5px;
+}
+
 .hide {
   display: none;
 }
