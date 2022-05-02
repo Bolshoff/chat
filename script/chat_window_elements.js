@@ -17,29 +17,12 @@ export const CHAT_SCREEN_ELEMENTS = {
 
 
 
-export  function showOutputMessage(){
-    const message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
-    let minutes = new Date().getMinutes();
-    let hours = new Date().getHours();
-    if (hours < 10 ){
-      hours = `0${new Date().getHours()}`;
-    }
-    if(minutes < 10){
-      minutes = `0${new Date().getMinutes()}`;
-    }
-    message.querySelector('.output-message__text').innerHTML = `Я: ${CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value}`;
-    message.querySelector('.message__time').innerHTML = `${hours}:${minutes}`;
 
-    if(CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value) {
-      CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
-    }
-    CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value = '';
-}
 
 export async function getMessageStory(){
   const storyURL = 'https://mighty-cove-31255.herokuapp.com/api/messages';
   const token = Cookies.get('token');
-  const storyLength = 2;
+ // const storyLength = 2;
   let response = await fetch(storyURL,{
     method: 'GET',
     headers: {
@@ -47,12 +30,21 @@ export async function getMessageStory(){
     }
   })
   let messageStory = await response.json();
-  for(let i =0; i < storyLength; i++) {
-    const message = CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
-    message.querySelector('.input-message__text').innerHTML = `${messageStory.messages[i].user.name}: ${messageStory.messages[i].text}`;
-    message.querySelector('.message__time').innerHTML = `${format(new Date(messageStory.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`
-    CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
+  for(let i =0; i < messageStory.messages.length; i++) {
+    if (messageStory.messages[i].user.email === 'abolshoff@yandex.ru'){
+      let message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
+      message.querySelector('.output-message__text').innerHTML = `Я: ${messageStory.messages[i].text}`;
+      message.querySelector('.message__time').innerHTML = `${format(new Date(messageStory.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`
+      CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
+    }else{
+      let message = CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
+      message.querySelector('.input-message__text').innerHTML = `${messageStory.messages[i].user.name}: ${messageStory.messages[i].text}`;
+      message.querySelector('.message__time').innerHTML = `${format(new Date(messageStory.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`
+      CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
+    }
+
+
   }
 
-
 }
+
