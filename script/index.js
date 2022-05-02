@@ -7,6 +7,11 @@ import {SETTINGS_ELEMENTS, setUserName} from './settings_elements.js';
 import {AUTH_ELEMENTS, getAuthCodeForMail} from './authorization_elements.js';
 import {SUBMIT_ELEMENTS, } from './submit.js';
 import Cookies from 'js-cookie';
+import {connectOnServer, sendMessage} from './webSocketOperations';
+
+//const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTEwNjU0NjYsImV4cCI6MTY1MTUxMTg2Nn0.rvzDxTVM1RCqaBlTHuPx3RzJOA-teu-OQNtaTA64kMo';
+
+connectOnServer();
 
 CHAT_SCREEN_ELEMENTS.SETTING_BUTTON.addEventListener('click',()=>{
 
@@ -30,7 +35,10 @@ SETTINGS_ELEMENTS.SETTING_BACKGROUND.addEventListener('click',(e)=>{
 
 CHAT_SCREEN_ELEMENTS.INPUT_FORM.addEventListener('submit', (e)=>{
   e.preventDefault();
-  showOutputMessage();
+  sendMessage();
+  //showOutputMessage();
+  CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value = '';
+
 });
 
 AUTH_ELEMENTS.CLOSE.addEventListener('click', ()=>{
@@ -55,7 +63,7 @@ AUTH_ELEMENTS.MAIL_FORM.addEventListener('submit', (e)=>{
 })
 
 function setCookiesToken(){
-  const token = SUBMIT_ELEMENTS.CODE.value;
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTEwNjU0NjYsImV4cCI6MTY1MTUxMTg2Nn0.rvzDxTVM1RCqaBlTHuPx3RzJOA-teu-OQNtaTA64kMo'//SUBMIT_ELEMENTS.CODE.value;
   Cookies.set('token', `${token}`);
   showUserNameWindow();
 

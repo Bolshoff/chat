@@ -533,6 +533,9 @@ var _authorizationElementsJs = require("./authorization_elements.js");
 var _submitJs = require("./submit.js");
 var _jsCookie = require("js-cookie");
 var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
+var _webSocketOperations = require("./webSocketOperations");
+//const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTEwNjU0NjYsImV4cCI6MTY1MTUxMTg2Nn0.rvzDxTVM1RCqaBlTHuPx3RzJOA-teu-OQNtaTA64kMo';
+_webSocketOperations.connectOnServer();
 _chatWindowElementsJs.CHAT_SCREEN_ELEMENTS.SETTING_BUTTON.addEventListener('click', ()=>{
     _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
     _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.remove('hide');
@@ -549,7 +552,9 @@ _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.addEventListener('click
 });
 _chatWindowElementsJs.CHAT_SCREEN_ELEMENTS.INPUT_FORM.addEventListener('submit', (e)=>{
     e.preventDefault();
-    _chatWindowElementsJs.showOutputMessage();
+    _webSocketOperations.sendMessage();
+    //showOutputMessage();
+    _chatWindowElementsJs.CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value = '';
 });
 _authorizationElementsJs.AUTH_ELEMENTS.CLOSE.addEventListener('click', ()=>{
     _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
@@ -568,7 +573,8 @@ _authorizationElementsJs.AUTH_ELEMENTS.MAIL_FORM.addEventListener('submit', (e)=
     _authorizationElementsJs.getAuthCodeForMail();
 });
 function setCookiesToken() {
-    const token = _submitJs.SUBMIT_ELEMENTS.CODE.value;
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTEwNjU0NjYsImV4cCI6MTY1MTUxMTg2Nn0.rvzDxTVM1RCqaBlTHuPx3RzJOA-teu-OQNtaTA64kMo' //SUBMIT_ELEMENTS.CODE.value;
+    ;
     _jsCookieDefault.default.set('token', `${token}`);
     showUserNameWindow();
 }
@@ -602,12 +608,10 @@ async function testUserName() {
 }
 _chatWindowElementsJs.getMessageStory();
 
-},{"./chat_window_elements.js":"kWvmn","./settings_elements.js":"hjjhO","./authorization_elements.js":"aBJMP","./submit.js":"9jUCy","js-cookie":"c8bBu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kWvmn":[function(require,module,exports) {
+},{"./chat_window_elements.js":"kWvmn","./settings_elements.js":"hjjhO","./authorization_elements.js":"aBJMP","./submit.js":"9jUCy","js-cookie":"c8bBu","./webSocketOperations":"83w8i","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kWvmn":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CHAT_SCREEN_ELEMENTS", ()=>CHAT_SCREEN_ELEMENTS
-);
-parcelHelpers.export(exports, "showOutputMessage", ()=>showOutputMessage
 );
 parcelHelpers.export(exports, "getMessageStory", ()=>getMessageStory
 );
@@ -629,21 +633,14 @@ const CHAT_SCREEN_ELEMENTS = {
     INPUT_MESSAGE_TEXT: document.querySelector('.input-message__text'),
     MESSAGE_TIME: document.querySelector('.message__time')
 };
-function showOutputMessage() {
-    const message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
-    let minutes = new Date().getMinutes();
-    let hours = new Date().getHours();
-    if (hours < 10) hours = `0${new Date().getHours()}`;
-    if (minutes < 10) minutes = `0${new Date().getMinutes()}`;
-    message.querySelector('.output-message__text').innerHTML = `Я: ${CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value}`;
-    message.querySelector('.message__time').innerHTML = `${hours}:${minutes}`;
-    if (CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value) CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
-    CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value = '';
-}
 async function getMessageStory() {
     const storyURL = 'https://mighty-cove-31255.herokuapp.com/api/messages';
     const token = _jsCookieDefault.default.get('token');
+<<<<<<< HEAD
     const storyLength = 1500;
+=======
+    // const storyLength = 2;
+>>>>>>> c05c1fa373cc3019519779350379899d8348e895
     let response = await fetch(storyURL, {
         method: 'GET',
         headers: {
@@ -651,45 +648,21 @@ async function getMessageStory() {
         }
     });
     let messageStory = await response.json();
-    for(let i = 0; i < storyLength; i++){
-        const message = CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
+    for(let i = 0; i < messageStory.messages.length; i++)if (messageStory.messages[i].user.email === 'abolshoff@yandex.ru') {
+        let message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
+        message.querySelector('.output-message__text').innerHTML = `Я: ${messageStory.messages[i].text}`;
+        message.querySelector('.message__time').innerHTML = `${_formatDefault.default(new Date(messageStory.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`;
+        CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
+    } else {
+        let message = CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
         message.querySelector('.input-message__text').innerHTML = `${messageStory.messages[i].user.name}: ${messageStory.messages[i].text}`;
         message.querySelector('.message__time').innerHTML = `${_formatDefault.default(new Date(messageStory.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`;
         CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
     }
+    CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","js-cookie":"c8bBu","date-fns/format":"lnm6V"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"c8bBu":[function(require,module,exports) {
+},{"js-cookie":"c8bBu","date-fns/format":"lnm6V","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"c8bBu":[function(require,module,exports) {
 (function(global, factory) {
     module.exports = factory();
 })(this, function() {
@@ -909,7 +882,37 @@ function requiredArgs(required, args) {
 }
 exports.default = requiredArgs;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fsust":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"fsust":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _indexJs = require("../_lib/requiredArgs/index.js");
@@ -2885,6 +2888,66 @@ const SUBMIT_ELEMENTS = {
     SUBMIT_WINDOW: document.querySelector('.submit')
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["hqSpz","2OpUZ"], "2OpUZ", "parcelRequire25d8")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"83w8i":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "connectOnServer", ()=>connectOnServer
+);
+parcelHelpers.export(exports, "sendMessage", ()=>sendMessage
+);
+var _chatWindowElements = require("./chat_window_elements");
+var _format = require("date-fns/format");
+var _formatDefault = parcelHelpers.interopDefault(_format);
+const url = 'mighty-cove-31255.herokuapp.com';
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTEwNjU0NjYsImV4cCI6MTY1MTUxMTg2Nn0.rvzDxTVM1RCqaBlTHuPx3RzJOA-teu-OQNtaTA64kMo';
+const socket = new WebSocket(`ws://${url}/websockets?${token}`);
+function connectOnServer() {
+    const socket1 = new WebSocket(`ws://${url}/websockets?${token}`);
+    socket1.onopen = function(e) {
+        console.log(" Соединение установлено, рвботаем дальше");
+    };
+    socket1.onmessage = function(event) {
+        console.log(JSON.parse(event.data));
+        const messageText = JSON.parse(event.data);
+        // const message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
+        if (messageText.user.email === "abolshoff@yandex.ru") {
+            let message = _chatWindowElements.CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
+            message.querySelector('.output-message__text').innerHTML = `Я: ${messageText.text}`;
+            message.querySelector('.message__time').innerHTML = `${_formatDefault.default(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`;
+            _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
+        } else {
+            let message = _chatWindowElements.CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
+            message.querySelector('.input-message__text').innerHTML = `${messageText.user.name}: ${messageText.text}`;
+            message.querySelector('.message__time').innerHTML = `${_formatDefault.default(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`;
+            _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
+        }
+        _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
+    };
+    socket1.onclose = function(event) {
+        console.log('не было не единого разрыва');
+        setTimeout(()=>{
+            connectOnServer();
+        }, 5000);
+    };
+}
+function sendMessage() {
+    const outputMessage = _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value;
+    socket.send(JSON.stringify({
+        text: `${outputMessage}`
+    }));
+}
+function showOutputMessage() {
+    const message = _chatWindowElements.CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
+    let minutes = new Date().getMinutes();
+    let hours = new Date().getHours();
+    if (hours < 10) hours = `0${new Date().getHours()}`;
+    if (minutes < 10) minutes = `0${new Date().getMinutes()}`;
+    message.querySelector('.output-message__text').innerHTML = `Я: ${_chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value}`;
+    message.querySelector('.message__time').innerHTML = `${hours}:${minutes}`;
+    if (_chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value) _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
+    _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value = '';
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./chat_window_elements":"kWvmn","date-fns/format":"lnm6V"}]},["hqSpz","2OpUZ"], "2OpUZ", "parcelRequire25d8")
 
 //# sourceMappingURL=index.6690e0da.js.map
