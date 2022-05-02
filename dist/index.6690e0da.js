@@ -643,7 +643,7 @@ function showOutputMessage() {
 async function getMessageStory() {
     const storyURL = 'https://mighty-cove-31255.herokuapp.com/api/messages';
     const token = _jsCookieDefault.default.get('token');
-    const storyLength = 2;
+    const storyLength = 1500;
     let response = await fetch(storyURL, {
         method: 'GET',
         headers: {
