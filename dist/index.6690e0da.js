@@ -655,6 +655,7 @@ async function getMessageStory() {
         message.querySelector('.message__time').innerHTML = `${_formatDefault.default(new Date(messageStory.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`;
         CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
     }
+    CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
 }
 
 },{"js-cookie":"c8bBu","date-fns/format":"lnm6V","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"c8bBu":[function(require,module,exports) {
@@ -2915,6 +2916,7 @@ function connectOnServer() {
             message.querySelector('.message__time').innerHTML = `${_formatDefault.default(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`;
             _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
         }
+        _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
     };
 }
 function sendMessage() {

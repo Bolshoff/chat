@@ -45,6 +45,6 @@ export async function getMessageStory(){
 
 
   }
-
+  CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
 }
 

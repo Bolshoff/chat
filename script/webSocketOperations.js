@@ -25,7 +25,7 @@ export function connectOnServer(){
     message.querySelector('.message__time').innerHTML = `${format(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`
     CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
     }
-
+    CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
   };
 }
 
