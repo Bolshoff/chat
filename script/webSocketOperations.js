@@ -5,9 +5,9 @@ const url = 'mighty-cove-31255.herokuapp.com';
 const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTEwNjU0NjYsImV4cCI6MTY1MTUxMTg2Nn0.rvzDxTVM1RCqaBlTHuPx3RzJOA-teu-OQNtaTA64kMo';
 const socket = new WebSocket(`ws://${url}/websockets?${token}`);
 export function connectOnServer(){
-
+  const socket = new WebSocket(`ws://${url}/websockets?${token}`);
   socket.onopen = function(e) {
-    alert(" Соединение установлено, рвботаем дальше");
+    console.log(" Соединение установлено, рвботаем дальше");
   };
   socket.onmessage = function(event) {
     console.log(JSON.parse(event.data));
@@ -27,6 +27,13 @@ export function connectOnServer(){
     }
     CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
   };
+  socket.onclose = function(event){
+    console.log('не было не единого разрыва');
+
+   setTimeout(()=>{
+         connectOnServer();
+   }, 5000) ;
+  }
 }
 
 export  function sendMessage(){
@@ -37,10 +44,7 @@ export  function sendMessage(){
   }));
 }
 
-function updateMessages(){
-  const email = 'abolshoff@yandex.ru';
 
-}
   function showOutputMessage(){
   const message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
   let minutes = new Date().getMinutes();
