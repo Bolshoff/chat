@@ -23,16 +23,16 @@ export async function getMessageStory(){
   const storyURL = 'https://mighty-cove-31255.herokuapp.com/api/messages';
   const token = Cookies.get('token');
 
- // const storyLength = 2;
-
   let response = await fetch(storyURL,{
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`,
     }
   })
+
   let messageStory = await response.json();
-  for(let i =0; i < messageStory.messages.length; i++) {
+  for(let i = 0; i < messageStory.messages.length; i++) {
+
     if (messageStory.messages[i].user.email === 'abolshoff@yandex.ru'){
       let message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
       message.querySelector('.output-message__text').innerHTML = `Я: ${messageStory.messages[i].text}`;
