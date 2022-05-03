@@ -9,7 +9,7 @@ export const AUTH_ELEMENTS = {
 
 
 export async function getAuthCodeForMail(){
-  const url = 'https://mighty-cove-31255.herokuapp.com/api/user2';
+  const url = 'https://mighty-cove-31255.herokuapp.com/api/user';
   let mail = {
     email : `${AUTH_ELEMENTS.MAIL.value}`,
   }

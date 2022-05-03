@@ -49,6 +49,7 @@ body {
   border: 1px solid #000;
   margin: auto;
   display: flex;
+  overflow-x: hidden;
   overflow-y: scroll;
 }
 
@@ -138,6 +139,7 @@ body {
   height: 533px;
   background: #535353;
   position: absolute;
+  top: 0;
 }
 
 .chat-settings__window {

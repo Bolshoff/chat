@@ -7,11 +7,11 @@ import {SETTINGS_ELEMENTS, setUserName} from './settings_elements.js';
 import {AUTH_ELEMENTS, getAuthCodeForMail} from './authorization_elements.js';
 import {SUBMIT_ELEMENTS, } from './submit.js';
 import Cookies from 'js-cookie';
-import {connectOnServer, sendMessage} from './webSocketOperations';
+import socket, {connectOnServer, sendMessage} from './webSocketOperations';
 
-//const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTEwNjU0NjYsImV4cCI6MTY1MTUxMTg2Nn0.rvzDxTVM1RCqaBlTHuPx3RzJOA-teu-OQNtaTA64kMo';
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTE1NjIzMTUsImV4cCI6MTY1MjAwODcxNX0.exVSvFphWH51VkT-7o5L7rXnL0cwoz5Pjz-p2K3rytg';
 
-connectOnServer();
+
 
 CHAT_SCREEN_ELEMENTS.SETTING_BUTTON.addEventListener('click',()=>{
 
@@ -36,7 +36,7 @@ SETTINGS_ELEMENTS.SETTING_BACKGROUND.addEventListener('click',(e)=>{
 CHAT_SCREEN_ELEMENTS.INPUT_FORM.addEventListener('submit', (e)=>{
   e.preventDefault();
   sendMessage();
-  //showOutputMessage();
+
   CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value = '';
 
 });
@@ -44,6 +44,9 @@ CHAT_SCREEN_ELEMENTS.INPUT_FORM.addEventListener('submit', (e)=>{
 AUTH_ELEMENTS.CLOSE.addEventListener('click', ()=>{
   SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
   AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
+  getMessageStory();
+  connectOnServer();
+
 })
 
 SUBMIT_ELEMENTS.CLOSE.addEventListener('click', ()=>{
@@ -103,4 +106,4 @@ async function testUserName(){
 
 
 }
-getMessageStory();
+
