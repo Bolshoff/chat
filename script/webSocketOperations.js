@@ -1,47 +1,52 @@
 import {CHAT_SCREEN_ELEMENTS, } from './chat_window_elements';
 import format from 'date-fns/format';
+import ReconnectingWebSocket from 'reconnecting-websocket';
 
 const url = 'mighty-cove-31255.herokuapp.com';
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTEwNjU0NjYsImV4cCI6MTY1MTUxMTg2Nn0.rvzDxTVM1RCqaBlTHuPx3RzJOA-teu-OQNtaTA64kMo';
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTE1NjIzMTUsImV4cCI6MTY1MjAwODcxNX0.exVSvFphWH51VkT-7o5L7rXnL0cwoz5Pjz-p2K3rytg';
 const socket = new WebSocket(`ws://${url}/websockets?${token}`);
 export function connectOnServer(){
 
+   const socket = new WebSocket(`ws://${url}/websockets?${token}`);
+
   socket.onopen = function(e) {
-    alert(" Соединение установлено, рвботаем дальше");
+    console.log(" Соединение установлено, рвботаем дальше");
   };
   socket.onmessage = function(event) {
-    console.log(JSON.parse(event.data));
+     console.log(event.data);
     const messageText = JSON.parse(event.data);
-    // const message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
-     if (messageText.user.email === "abolshoff@yandex.ru") {
-       let message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
-       message.querySelector('.output-message__text').innerHTML = `Я: ${messageText.text}`;
-       message.querySelector('.message__time').innerHTML = `${format(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`
-       CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
+    // const messageText = event.data;
+    // console.log(messageText);
+
+    if (messageText.user.email === "abolshoff@yandex.ru") {
+      let message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
+      message.querySelector('.output-message__text').innerHTML = `Я: ${messageText.text}`;
+      message.querySelector('.message__time').innerHTML = `${format(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`
+      CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
     }else{
 
-    let message = CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
-    message.querySelector('.input-message__text').innerHTML = `${messageText.user.name}: ${messageText.text}`;
-    message.querySelector('.message__time').innerHTML = `${format(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`
-    CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
+      let message = CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
+      message.querySelector('.input-message__text').innerHTML = `${messageText.user.name}: ${messageText.text}`;
+      message.querySelector('.message__time').innerHTML = `${format(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`
+      CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
     }
     CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
   };
+  socket.onclose = function(event){
+    console.log('не было не единого разрыва');
+    const rws = new ReconnectingWebSocket(`ws://${url}/websockets?${token}`);
+  }
 }
 
 export  function sendMessage(){
-   const outputMessage = CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value;
-
+  const outputMessage = CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value;
   socket.send(JSON.stringify({
     text: `${outputMessage}`,
   }));
 }
 
-function updateMessages(){
-  const email = 'abolshoff@yandex.ru';
 
-}
-  function showOutputMessage(){
+function showOutputMessage(){
   const message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
   let minutes = new Date().getMinutes();
   let hours = new Date().getHours();
@@ -59,3 +64,4 @@ function updateMessages(){
   }
   CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value = '';
 }
+export default socket;
