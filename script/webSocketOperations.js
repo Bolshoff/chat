@@ -10,7 +10,7 @@ export function connectOnServer(){
    const socket = new WebSocket(`ws://${url}/websockets?${token}`);
 
   socket.onopen = function(e) {
-    console.log(" Соединение установлено, рвботаем дальше");
+    console.log(" Соединение установлено, работаем дальше");
   };
   socket.onmessage = function(event) {
      console.log(event.data);
@@ -33,7 +33,7 @@ export function connectOnServer(){
     CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
   };
   socket.onclose = function(event){
-    console.log('не было не единого разрыва');
+    console.log('не было ни единого разрыва');
     const rws = new ReconnectingWebSocket(`ws://${url}/websockets?${token}`);
   }
 }
