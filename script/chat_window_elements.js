@@ -19,7 +19,6 @@ let messageStory;
 export async function getMessageStory(){
   const storyURL = 'https://mighty-cove-31255.herokuapp.com/api/messages';
   const token = Cookies.get('token');
-
   let response = await fetch(storyURL,{
     method: 'GET',
     headers: {
@@ -49,29 +48,12 @@ function showMessageStory(messageStory){
       CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(message);
     }
   }
-  CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
+    CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
   messageStory.messages = messageStory.messages.slice(0,messageStory.messages.length-20);
-  console.log(messageStory.messages.length);
-
-
 
 }
-document.querySelector('.container').addEventListener('scroll',()=>{
-  console.log(messageStory.messages.length);
-  console.log(document.querySelector('.container').scrollTop);
 
-  if(messageStory.messages.length === 0 && document.querySelector('.container').scrollTop === 0){
-    alert('вся итория загружена');
-    document.querySelector('.container').scrollTop = 0;
-  }
-  if (document.querySelector('.container').scrollTop === 0){
-
-    showMessageStory(messageStory);
-    getLoadedMessagesHeight();
-
-  }
-
-})
+document.querySelector('.container').addEventListener('scroll',scrollListener);
 
 function getLoadedMessagesHeight(){
   const messageBlock = document.querySelectorAll('.message');
@@ -80,4 +62,23 @@ function getLoadedMessagesHeight(){
     messagesHeight += messageBlock[i].clientHeight;
   }
   document.querySelector('.container').scrollTop =  messagesHeight;
+}
+
+function showMessageAllHistoryLoad(){
+  const allHistoryLoadMessage = document.createElement('div');
+  allHistoryLoadMessage.classList.add('all-history-load-message');
+  allHistoryLoadMessage.innerText = 'Вся история загружена';
+  CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(allHistoryLoadMessage);
+
+}
+
+function scrollListener(){
+  if(messageStory.messages.length === 0 && document.querySelector('.container').scrollTop === 0){
+    showMessageAllHistoryLoad();
+    document.querySelector('.container').removeEventListener('scroll',scrollListener);
+  }
+  if (document.querySelector('.container').scrollTop === 0){
+    showMessageStory(messageStory);
+    getLoadedMessagesHeight();
+  }
 }

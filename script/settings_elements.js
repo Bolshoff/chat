@@ -11,7 +11,7 @@ export const SETTINGS_ELEMENTS = {
 
 export async function setUserName(){
   const url = "https://mighty-cove-31255.herokuapp.com/api/user";
-  const token ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTE1NjIzMTUsImV4cCI6MTY1MjAwODcxNX0.exVSvFphWH51VkT-7o5L7rXnL0cwoz5Pjz-p2K3rytg' //Cookies.get('token');
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTEwNjU0NjYsImV4cCI6MTY1MTUxMTg2Nn0.rvzDxTVM1RCqaBlTHuPx3RzJOA-teu-OQNtaTA64kMo';//Cookies.get('token');
   const userName = SETTINGS_ELEMENTS.SETTING_NAME_INPUT.value;
 try {
   let response = await fetch(url,{

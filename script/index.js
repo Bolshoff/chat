@@ -9,10 +9,6 @@ import {SUBMIT_ELEMENTS, } from './submit.js';
 import Cookies from 'js-cookie';
 import socket, {connectOnServer, sendMessage} from './webSocketOperations';
 
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTE1NjIzMTUsImV4cCI6MTY1MjAwODcxNX0.exVSvFphWH51VkT-7o5L7rXnL0cwoz5Pjz-p2K3rytg';
-
-
-
 CHAT_SCREEN_ELEMENTS.SETTING_BUTTON.addEventListener('click',()=>{
 
   SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
@@ -32,7 +28,6 @@ SETTINGS_ELEMENTS.SETTING_BACKGROUND.addEventListener('click',(e)=>{
   SUBMIT_ELEMENTS.CODE.classList.add('hide');
 })
 
-
 CHAT_SCREEN_ELEMENTS.INPUT_FORM.addEventListener('submit', (e)=>{
   e.preventDefault();
   sendMessage();
@@ -42,31 +37,36 @@ CHAT_SCREEN_ELEMENTS.INPUT_FORM.addEventListener('submit', (e)=>{
 });
 
 AUTH_ELEMENTS.CLOSE.addEventListener('click', ()=>{
-  SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
+  SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.remove('hide');
   AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
-  getMessageStory();
-  connectOnServer();
-
 })
 
 SUBMIT_ELEMENTS.CLOSE.addEventListener('click', ()=>{
-  SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
+
   SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.add('hide');
+  SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
 })
 
 SUBMIT_ELEMENTS.CODE_FORM.addEventListener('submit',(e)=>{
+
+  SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.add('hide');
+  SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
   e.preventDefault();
   setCookiesToken();
+
 
 })
 
 AUTH_ELEMENTS.MAIL_FORM.addEventListener('submit', (e)=>{
   e.preventDefault();
   getAuthCodeForMail();
+  AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
+  SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.remove('hide');
 })
 
+
 function setCookiesToken(){
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTEwNjU0NjYsImV4cCI6MTY1MTUxMTg2Nn0.rvzDxTVM1RCqaBlTHuPx3RzJOA-teu-OQNtaTA64kMo'//SUBMIT_ELEMENTS.CODE.value;
+  const token = SUBMIT_ELEMENTS.CODE.value;//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTE2NTEwNzgsImV4cCI6MTY1MjA5NzQ3OH0.stRO4inUaIk5H8rlcYECpyj4dgmHo56_iuSgg14kflc'//SUBMIT_ELEMENTS.CODE.value;
   Cookies.set('token', `${token}`);
   showUserNameWindow();
 
@@ -79,15 +79,16 @@ function showUserNameWindow(){
 
 SETTINGS_ELEMENTS.SETTING_NAME_FORM.addEventListener('submit',(e)=>{
   e.preventDefault();
+  SETTINGS_ELEMENTS.SETTING_WINDOW.classList.add('hide');
+  SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
   setUserName();
+  getMessageStory();
+  connectOnServer();
 })
 
-// document.querySelector('.test-button').addEventListener('click',(e)=>{
-//   e.preventDefault();
-//   testUserName();
-// })
-async function testUserName(){
-  const token = Cookies.get('token');
+async function showUserName(){
+  let token = Cookies.get('token')//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTEwNjU0NjYsImV4cCI6MTY1MTUxMTg2Nn0.rvzDxTVM1RCqaBlTHuPx3RzJOA-teu-OQNtaTA64kMo'; //Cookies.get('token');
+
   try {
     let user = await fetch('https://mighty-cove-31255.herokuapp.com/api/user/me',{
       method: 'GET',
@@ -103,7 +104,6 @@ async function testUserName(){
   }catch (e) {
     alert(e);
   }
-
-
 }
+showUserName();
 

@@ -535,7 +535,6 @@ var _jsCookie = require("js-cookie");
 var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
 var _webSocketOperations = require("./webSocketOperations");
 var _webSocketOperationsDefault = parcelHelpers.interopDefault(_webSocketOperations);
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTE1NjIzMTUsImV4cCI6MTY1MjAwODcxNX0.exVSvFphWH51VkT-7o5L7rXnL0cwoz5Pjz-p2K3rytg';
 _chatWindowElementsJs.CHAT_SCREEN_ELEMENTS.SETTING_BUTTON.addEventListener('click', ()=>{
     _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
     _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.remove('hide');
@@ -556,27 +555,28 @@ _chatWindowElementsJs.CHAT_SCREEN_ELEMENTS.INPUT_FORM.addEventListener('submit',
     _chatWindowElementsJs.CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value = '';
 });
 _authorizationElementsJs.AUTH_ELEMENTS.CLOSE.addEventListener('click', ()=>{
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
+    _submitJs.SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.remove('hide');
     _authorizationElementsJs.AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
-    _chatWindowElementsJs.getMessageStory();
-    _webSocketOperations.connectOnServer();
 });
 _submitJs.SUBMIT_ELEMENTS.CLOSE.addEventListener('click', ()=>{
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
     _submitJs.SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.add('hide');
+    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
 });
 _submitJs.SUBMIT_ELEMENTS.CODE_FORM.addEventListener('submit', (e)=>{
+    _submitJs.SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.add('hide');
+    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
     e.preventDefault();
     setCookiesToken();
 });
 _authorizationElementsJs.AUTH_ELEMENTS.MAIL_FORM.addEventListener('submit', (e)=>{
     e.preventDefault();
     _authorizationElementsJs.getAuthCodeForMail();
+    _authorizationElementsJs.AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
+    _submitJs.SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.remove('hide');
 });
 function setCookiesToken() {
-    const token1 = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTEwNjU0NjYsImV4cCI6MTY1MTUxMTg2Nn0.rvzDxTVM1RCqaBlTHuPx3RzJOA-teu-OQNtaTA64kMo' //SUBMIT_ELEMENTS.CODE.value;
-    ;
-    _jsCookieDefault.default.set('token', `${token1}`);
+    const token = _submitJs.SUBMIT_ELEMENTS.CODE.value; //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTE2NTEwNzgsImV4cCI6MTY1MjA5NzQ3OH0.stRO4inUaIk5H8rlcYECpyj4dgmHo56_iuSgg14kflc'//SUBMIT_ELEMENTS.CODE.value;
+    _jsCookieDefault.default.set('token', `${token}`);
     showUserNameWindow();
 }
 function showUserNameWindow() {
@@ -586,19 +586,20 @@ function showUserNameWindow() {
 }
 _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_NAME_FORM.addEventListener('submit', (e)=>{
     e.preventDefault();
+    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.add('hide');
+    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
     _settingsElementsJs.setUserName();
+    _chatWindowElementsJs.getMessageStory();
+    _webSocketOperations.connectOnServer();
 });
-// document.querySelector('.test-button').addEventListener('click',(e)=>{
-//   e.preventDefault();
-//   testUserName();
-// })
-async function testUserName() {
-    const token2 = _jsCookieDefault.default.get('token');
+async function showUserName() {
+    let token = _jsCookieDefault.default.get('token') //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTEwNjU0NjYsImV4cCI6MTY1MTUxMTg2Nn0.rvzDxTVM1RCqaBlTHuPx3RzJOA-teu-OQNtaTA64kMo'; //Cookies.get('token');
+    ;
     try {
         let user = await fetch('https://mighty-cove-31255.herokuapp.com/api/user/me', {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${token2}`
+                'Authorization': `Bearer ${token}`
             }
         });
         let userName = await user.json();
@@ -607,6 +608,7 @@ async function testUserName() {
         alert(e);
     }
 }
+showUserName();
 
 },{"./chat_window_elements.js":"kWvmn","./settings_elements.js":"hjjhO","./authorization_elements.js":"aBJMP","./submit.js":"9jUCy","js-cookie":"c8bBu","./webSocketOperations":"83w8i","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kWvmn":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -663,25 +665,29 @@ function showMessageStory(messageStory1) {
     }
     CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
     messageStory1.messages = messageStory1.messages.slice(0, messageStory1.messages.length - 20);
-    console.log(messageStory1.messages.length);
 }
-document.querySelector('.container').addEventListener('scroll', ()=>{
-    console.log(messageStory.messages.length);
-    console.log(document.querySelector('.container').scrollTop);
-    if (messageStory.messages.length === 0 && document.querySelector('.container').scrollTop === 0) {
-        alert('вся итория загружена');
-        document.querySelector('.container').scrollTop = 0;
-    }
-    if (document.querySelector('.container').scrollTop === 0) {
-        showMessageStory(messageStory);
-        getLoadedMessagesHeight();
-    }
-});
+document.querySelector('.container').addEventListener('scroll', scrollListener);
 function getLoadedMessagesHeight() {
     const messageBlock = document.querySelectorAll('.message');
     let messagesHeight = 0;
     for(let i = messageBlock.length - 1; i > messageBlock.length - 20; i--)messagesHeight += messageBlock[i].clientHeight;
     document.querySelector('.container').scrollTop = messagesHeight;
+}
+function showMessageAllHistoryLoad() {
+    const allHistoryLoadMessage = document.createElement('div');
+    allHistoryLoadMessage.classList.add('all-history-load-message');
+    allHistoryLoadMessage.innerText = 'Вся история загружена';
+    CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(allHistoryLoadMessage);
+}
+function scrollListener() {
+    if (messageStory.messages.length === 0 && document.querySelector('.container').scrollTop === 0) {
+        showMessageAllHistoryLoad();
+        document.querySelector('.container').removeEventListener('scroll', scrollListener);
+    }
+    if (document.querySelector('.container').scrollTop === 0) {
+        showMessageStory(messageStory);
+        getLoadedMessagesHeight();
+    }
 }
 
 },{"js-cookie":"c8bBu","date-fns/format":"lnm6V","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"c8bBu":[function(require,module,exports) {
@@ -2847,8 +2853,7 @@ const SETTINGS_ELEMENTS = {
 };
 async function setUserName() {
     const url = "https://mighty-cove-31255.herokuapp.com/api/user";
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTE1NjIzMTUsImV4cCI6MTY1MjAwODcxNX0.exVSvFphWH51VkT-7o5L7rXnL0cwoz5Pjz-p2K3rytg' //Cookies.get('token');
-    ;
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTEwNjU0NjYsImV4cCI6MTY1MTUxMTg2Nn0.rvzDxTVM1RCqaBlTHuPx3RzJOA-teu-OQNtaTA64kMo'; //Cookies.get('token');
     const userName = SETTINGS_ELEMENTS.SETTING_NAME_INPUT.value;
     try {
         let response = await fetch(url, {
@@ -2921,10 +2926,13 @@ parcelHelpers.export(exports, "sendMessage", ()=>sendMessage
 var _chatWindowElements = require("./chat_window_elements");
 var _format = require("date-fns/format");
 var _formatDefault = parcelHelpers.interopDefault(_format);
+var _jsCookie = require("js-cookie");
+var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
 var _reconnectingWebsocket = require("reconnecting-websocket");
 var _reconnectingWebsocketDefault = parcelHelpers.interopDefault(_reconnectingWebsocket);
 const url = 'mighty-cove-31255.herokuapp.com';
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTE1NjIzMTUsImV4cCI6MTY1MjAwODcxNX0.exVSvFphWH51VkT-7o5L7rXnL0cwoz5Pjz-p2K3rytg';
+const token = _jsCookieDefault.default.get('token') //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTE1NjIzMTUsImV4cCI6MTY1MjAwODcxNX0.exVSvFphWH51VkT-7o5L7rXnL0cwoz5Pjz-p2K3rytg';
+;
 const socket = new WebSocket(`ws://${url}/websockets?${token}`);
 function connectOnServer() {
     const socket1 = new WebSocket(`ws://${url}/websockets?${token}`);
@@ -2932,10 +2940,7 @@ function connectOnServer() {
         console.log(" Соединение установлено, работаем дальше");
     };
     socket1.onmessage = function(event) {
-        console.log(event.data);
         const messageText = JSON.parse(event.data);
-        // const messageText = event.data;
-        // console.log(messageText);
         if (messageText.user.email === "abolshoff@yandex.ru") {
             let message = _chatWindowElements.CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
             message.querySelector('.output-message__text').innerHTML = `Я: ${messageText.text}`;
@@ -2947,7 +2952,11 @@ function connectOnServer() {
             message.querySelector('.message__time').innerHTML = `${_formatDefault.default(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`;
             _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
         }
-        _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
+        const isScrolledToBottom = document.querySelector('.container').scrollHeight - document.querySelector('.container').clientHeight <= document.querySelector('.container').scrollTop + 1;
+        if (!isScrolledToBottom) document.querySelector('.container').scrollTop = document.querySelector('.container').scrollHeight - document.querySelector('.container').clientHeight;
+    // if (document.querySelector('.container').scrollTop = document.querySelector('.container').scrollHeight){
+    //   CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
+    // }
     };
     socket1.onclose = function(event) {
         console.log('не было ни единого разрыва');
@@ -2973,7 +2982,7 @@ function showOutputMessage() {
 }
 exports.default = socket;
 
-},{"./chat_window_elements":"kWvmn","date-fns/format":"lnm6V","reconnecting-websocket":"foTU5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"foTU5":[function(require,module,exports) {
+},{"./chat_window_elements":"kWvmn","date-fns/format":"lnm6V","reconnecting-websocket":"foTU5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","js-cookie":"c8bBu"}],"foTU5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /*! *****************************************************************************

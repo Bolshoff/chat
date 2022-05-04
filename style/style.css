@@ -130,6 +130,13 @@ body{
     background: #E5E5E5;
 
 }
+.all-history-load-message{
+
+    max-width: 260px;
+    align-self: center;
+    margin: 5px;
+    background: rgba(84, 84, 100, 0.5);
+}
 
 .modal-background{
     position: absolute;

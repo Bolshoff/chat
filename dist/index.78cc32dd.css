@@ -134,6 +134,13 @@ body {
   margin: 5px;
 }
 
+.all-history-load-message {
+  max-width: 260px;
+  background: #54546480;
+  align-self: center;
+  margin: 5px;
+}
+
 .modal-background {
   width: 320px;
   height: 533px;
