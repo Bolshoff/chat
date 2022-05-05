@@ -534,6 +534,7 @@ var _submitJs = require("./submit.js");
 var _jsCookie = require("js-cookie");
 var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
 var _webSocketOperations = require("./webSocketOperations");
+var _webSocketOperationsDefault = parcelHelpers.interopDefault(_webSocketOperations);
 _chatWindowElementsJs.CHAT_SCREEN_ELEMENTS.SETTING_BUTTON.addEventListener('click', ()=>{
     _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
     _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.remove('hide');
@@ -608,7 +609,7 @@ async function showUserName() {
     }
 }
 _chatWindowElementsJs.CHAT_SCREEN_ELEMENTS.QUIT_BUTTON.addEventListener('click', ()=>{
-    socket.close(1000, 'Выход из чата');
+    _webSocketOperationsDefault.default.close(1000, 'Выход из чата');
 });
 
 },{"./chat_window_elements.js":"kWvmn","./settings_elements.js":"hjjhO","./authorization_elements.js":"aBJMP","./submit.js":"9jUCy","js-cookie":"c8bBu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./webSocketOperations":"83w8i"}],"kWvmn":[function(require,module,exports) {
@@ -2960,29 +2961,25 @@ function connectOnServer() {
     //   CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
     // }
     };
-    socket1.onclose = function(event) {
-        console.log(event.code);
-        console.log(event.reason);
-        console.log('не было ни единого разрыва');
-        const rws = new _reconnectingWebsocketDefault.default(`ws://${url}${token}`);
-    };
+// socket.onclose = function(event){
+//   console.log(event.code);
+//   console.log(event.reason);
+//   console.log('не было ни единого разрыва');
+//   const rws = new ReconnectingWebSocket(`ws://${url}${token}`);
+// }
 }
-function sendMessage() {
+socket.onclose = function(event) {
+    console.log(event.code);
+    console.log(event.reason);
+    console.log('не было ни единого разрыва');
+    if (event.code === 1006) // const socket = new ReconnectingWebSocket(`ws://${url}${token}`);
+    connectOnServer();
+};
+function sendMessage(socket2) {
     const outputMessage = _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value;
-    socket.send(JSON.stringify({
+    socket2.send(JSON.stringify({
         text: `${outputMessage}`
     }));
-}
-function showOutputMessage() {
-    const message = _chatWindowElements.CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
-    let minutes = new Date().getMinutes();
-    let hours = new Date().getHours();
-    if (hours < 10) hours = `0${new Date().getHours()}`;
-    if (minutes < 10) minutes = `0${new Date().getMinutes()}`;
-    message.querySelector('.output-message__text').textContent = `Я: ${_chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value}`;
-    message.querySelector('.message__time').textContent = `${hours}:${minutes}`;
-    if (_chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value) _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
-    _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value = '';
 }
 exports.default = socket;
 

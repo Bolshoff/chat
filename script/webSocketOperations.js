@@ -8,7 +8,7 @@ const token = Cookies.get('token') ;
 const socket = new WebSocket(`ws://${url}${token}`);
 
 export function connectOnServer(){
-  const socket = new WebSocket(`ws://${url}${token}`);
+   const socket = new WebSocket(`ws://${url}${token}`);
   socket.onopen = function(e) {
     console.log(" Соединение установлено, работаем дальше");
   };
@@ -35,18 +35,27 @@ export function connectOnServer(){
     //   CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
     // }
   };
-  socket.onclose = function(event){
-    console.log(event.code);
-    console.log(event.reason);
-    console.log('не было ни единого разрыва');
-    const rws = new ReconnectingWebSocket(`ws://${url}${token}`);
-  }
+  // socket.onclose = function(event){
+  //   console.log(event.code);
+  //   console.log(event.reason);
+  //   console.log('не было ни единого разрыва');
+  //   const rws = new ReconnectingWebSocket(`ws://${url}${token}`);
+  // }
 
 }
 
+socket.onclose = function(event){
+  console.log(event.code);
+  console.log(event.reason);
+  console.log('не было ни единого разрыва');
+  if(event.code ===1006) {
+    // const socket = new ReconnectingWebSocket(`ws://${url}${token}`);
+    connectOnServer();
+  }
+}
 
 
-export  function sendMessage(){
+export  function sendMessage(socket){
   const outputMessage = CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value;
   socket.send(JSON.stringify({
     text: `${outputMessage}`,
