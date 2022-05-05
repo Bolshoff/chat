@@ -7,7 +7,7 @@ import {SETTINGS_ELEMENTS, setUserName} from './settings_elements.js';
 import {AUTH_ELEMENTS, getAuthCodeForMail} from './authorization_elements.js';
 import {SUBMIT_ELEMENTS, } from './submit.js';
 import Cookies from 'js-cookie';
-import socket, {connectOnServer, sendMessage} from './webSocketOperations';
+import  {connectOnServer, sendMessage} from './webSocketOperations';
 
 CHAT_SCREEN_ELEMENTS.SETTING_BUTTON.addEventListener('click',()=>{
 

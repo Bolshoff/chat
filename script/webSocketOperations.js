@@ -8,16 +8,13 @@ const token = Cookies.get('token') ;
 const socket = new WebSocket(`ws://${url}${token}`);
 
 export function connectOnServer(){
-   const socket = new WebSocket(`ws://${url}${token}`);
+  const socket = new WebSocket(`ws://${url}${token}`);
   socket.onopen = function(e) {
     console.log(" Соединение установлено, работаем дальше");
   };
   socket.onmessage = function(event) {
-   try{ const messageText = JSON.parse(event.data);
-      return messageText;
-      }catch (e) {
-     console.log(e);
-      }
+    const messageText = JSON.parse(event.data);
+
     if (messageText.user.email === "abolshoff@yandex.ru") {
       let message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
       message.querySelector('.output-message__text').textContent = `Я: ${messageText.text}`;
@@ -39,10 +36,15 @@ export function connectOnServer(){
     // }
   };
   socket.onclose = function(event){
+    console.log(event.code);
+    console.log(event.reason);
     console.log('не было ни единого разрыва');
-    const rws = new ReconnectingWebSocket(`ws://${url}/websockets?${token}`);
+    const rws = new ReconnectingWebSocket(`ws://${url}${token}`);
   }
+
 }
+
+
 
 export  function sendMessage(){
   const outputMessage = CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value;
@@ -51,23 +53,4 @@ export  function sendMessage(){
   }));
 }
 
-
-function showOutputMessage(){
-  const message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
-  let minutes = new Date().getMinutes();
-  let hours = new Date().getHours();
-  if (hours < 10 ){
-    hours = `0${new Date().getHours()}`;
-  }
-  if(minutes < 10){
-    minutes = `0${new Date().getMinutes()}`;
-  }
-  message.querySelector('.output-message__text').textContent = `Я: ${CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value}`;
-  message.querySelector('.message__time').textContent = `${hours}:${minutes}`;
-
-  if(CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value) {
-    CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
-  }
-  CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value = '';
-}
 export default socket;

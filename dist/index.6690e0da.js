@@ -534,7 +534,6 @@ var _submitJs = require("./submit.js");
 var _jsCookie = require("js-cookie");
 var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
 var _webSocketOperations = require("./webSocketOperations");
-var _webSocketOperationsDefault = parcelHelpers.interopDefault(_webSocketOperations);
 _chatWindowElementsJs.CHAT_SCREEN_ELEMENTS.SETTING_BUTTON.addEventListener('click', ()=>{
     _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
     _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.remove('hide');
@@ -609,10 +608,10 @@ async function showUserName() {
     }
 }
 _chatWindowElementsJs.CHAT_SCREEN_ELEMENTS.QUIT_BUTTON.addEventListener('click', ()=>{
-    _webSocketOperationsDefault.default.close(1000, 'Выход из чата');
+    socket.close(1000, 'Выход из чата');
 });
 
-},{"./chat_window_elements.js":"kWvmn","./settings_elements.js":"hjjhO","./authorization_elements.js":"aBJMP","./submit.js":"9jUCy","js-cookie":"c8bBu","./webSocketOperations":"83w8i","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kWvmn":[function(require,module,exports) {
+},{"./chat_window_elements.js":"kWvmn","./settings_elements.js":"hjjhO","./authorization_elements.js":"aBJMP","./submit.js":"9jUCy","js-cookie":"c8bBu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./webSocketOperations":"83w8i"}],"kWvmn":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CHAT_SCREEN_ELEMENTS", ()=>CHAT_SCREEN_ELEMENTS
@@ -2942,12 +2941,7 @@ function connectOnServer() {
         console.log(" Соединение установлено, работаем дальше");
     };
     socket1.onmessage = function(event) {
-        try {
-            const messageText = JSON.parse(event.data);
-            return messageText;
-        } catch (e) {
-            console.log(e);
-        }
+        const messageText = JSON.parse(event.data);
         if (messageText.user.email === "abolshoff@yandex.ru") {
             let message = _chatWindowElements.CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
             message.querySelector('.output-message__text').textContent = `Я: ${messageText.text}`;
@@ -2967,8 +2961,10 @@ function connectOnServer() {
     // }
     };
     socket1.onclose = function(event) {
+        console.log(event.code);
+        console.log(event.reason);
         console.log('не было ни единого разрыва');
-        const rws = new _reconnectingWebsocketDefault.default(`ws://${url}/websockets?${token}`);
+        const rws = new _reconnectingWebsocketDefault.default(`ws://${url}${token}`);
     };
 }
 function sendMessage() {
@@ -2990,7 +2986,7 @@ function showOutputMessage() {
 }
 exports.default = socket;
 
-},{"./chat_window_elements":"kWvmn","date-fns/format":"lnm6V","reconnecting-websocket":"foTU5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","js-cookie":"c8bBu"}],"foTU5":[function(require,module,exports) {
+},{"./chat_window_elements":"kWvmn","date-fns/format":"lnm6V","js-cookie":"c8bBu","reconnecting-websocket":"foTU5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"foTU5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /*! *****************************************************************************
