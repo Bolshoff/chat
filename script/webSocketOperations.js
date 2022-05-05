@@ -13,18 +13,27 @@ export function connectOnServer(){
     console.log(" Соединение установлено, работаем дальше");
   };
   socket.onmessage = function(event) {
-    const messageText = JSON.parse(event.data);
-
-    if (messageText.user.email === "abolshoff@yandex.ru") {
-      let message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
-      message.querySelector('.output-message__text').textContent = `Я: ${messageText.text}`;
-      message.querySelector('.message__time').innerHTML = `${format(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`
-      CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
-    }else{
-      let message = CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
-      message.querySelector('.input-message__text').textContent = `${messageText.user.name}: ${messageText.text}`;
-      message.querySelector('.message__time').textContent = `${format(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`
-      CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
+    try {
+      const messageText = JSON.parse(event.data);
+      if (messageText.user.email === "abolshoff@yandex.ru") {
+        let message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(
+            true);
+        message.querySelector(
+            '.output-message__text').textContent = `Я: ${messageText.text}`;
+        message.querySelector('.message__time').innerHTML = `${format(
+            new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`
+        CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
+      } else {
+        let message = CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(
+            true);
+        message.querySelector(
+            '.input-message__text').textContent = `${messageText.user.name}: ${messageText.text}`;
+        message.querySelector('.message__time').textContent = `${format(
+            new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`
+        CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
+      }
+    }catch (e) {
+      console.log(e);
     }
     const messageContainer =  document.querySelector('.container');
     const isScrolledToBottom = messageContainer.scrollHeight - messageContainer.clientHeight <= messageContainer.scrollTop + 1;
@@ -55,7 +64,7 @@ socket.onclose = function(event){
 }
 
 
-export  function sendMessage(socket){
+export  function sendMessage(){
   const outputMessage = CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value;
   socket.send(JSON.stringify({
     text: `${outputMessage}`,

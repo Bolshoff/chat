@@ -2942,17 +2942,21 @@ function connectOnServer() {
         console.log(" Соединение установлено, работаем дальше");
     };
     socket1.onmessage = function(event) {
-        const messageText = JSON.parse(event.data);
-        if (messageText.user.email === "abolshoff@yandex.ru") {
-            let message = _chatWindowElements.CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
-            message.querySelector('.output-message__text').textContent = `Я: ${messageText.text}`;
-            message.querySelector('.message__time').innerHTML = `${_formatDefault.default(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`;
-            _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
-        } else {
-            let message = _chatWindowElements.CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
-            message.querySelector('.input-message__text').textContent = `${messageText.user.name}: ${messageText.text}`;
-            message.querySelector('.message__time').textContent = `${_formatDefault.default(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`;
-            _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
+        try {
+            const messageText = JSON.parse(event.data);
+            if (messageText.user.email === "abolshoff@yandex.ru") {
+                let message = _chatWindowElements.CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
+                message.querySelector('.output-message__text').textContent = `Я: ${messageText.text}`;
+                message.querySelector('.message__time').innerHTML = `${_formatDefault.default(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`;
+                _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
+            } else {
+                let message = _chatWindowElements.CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
+                message.querySelector('.input-message__text').textContent = `${messageText.user.name}: ${messageText.text}`;
+                message.querySelector('.message__time').textContent = `${_formatDefault.default(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`;
+                _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
+            }
+        } catch (e) {
+            console.log(e);
         }
         const messageContainer = document.querySelector('.container');
         const isScrolledToBottom = messageContainer.scrollHeight - messageContainer.clientHeight <= messageContainer.scrollTop + 1;
@@ -2975,9 +2979,9 @@ socket.onclose = function(event) {
     if (event.code === 1006) // const socket = new ReconnectingWebSocket(`ws://${url}${token}`);
     connectOnServer();
 };
-function sendMessage(socket2) {
+function sendMessage() {
     const outputMessage = _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value;
-    socket2.send(JSON.stringify({
+    socket.send(JSON.stringify({
         text: `${outputMessage}`
     }));
 }
