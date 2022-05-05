@@ -13,6 +13,7 @@ export const CHAT_SCREEN_ELEMENTS = {
   INPUT_TEMPLATE : document.querySelector('#input-template'),
   INPUT_MESSAGE_TEXT : document.querySelector('.input-message__text'),
   MESSAGE_TIME : document.querySelector('.message__time'),
+  MESSAGE_CONTAINER : document.querySelector('.container'),
 }
 
 let messageStory;
@@ -38,13 +39,13 @@ function showMessageStory(messageStory){
 
     if (messageStory.messages[i].user.email === 'abolshoff@yandex.ru'){
       let message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
-      message.querySelector('.output-message__text').innerHTML = `Я: ${messageStory.messages[i].text}`;
-      message.querySelector('.message__time').innerHTML = `${format(new Date(messageStory.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`
+      message.querySelector('.output-message__text').textContent = `Я: ${messageStory.messages[i].text}`;
+      message.querySelector('.message__time').textContent = `${format(new Date(messageStory.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`
       CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(message);
     }else{
       let message = CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
-      message.querySelector('.input-message__text').innerHTML = `${messageStory.messages[i].user.name}: ${messageStory.messages[i].text}`;
-      message.querySelector('.message__time').innerHTML = `${format(new Date(messageStory.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`
+      message.querySelector('.input-message__text').textContent = `${messageStory.messages[i].user.name}: ${messageStory.messages[i].text}`;
+      message.querySelector('.message__time').textContent = `${format(new Date(messageStory.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`
       CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(message);
     }
   }
@@ -53,7 +54,7 @@ function showMessageStory(messageStory){
 
 }
 
-document.querySelector('.container').addEventListener('scroll',scrollListener);
+CHAT_SCREEN_ELEMENTS.MESSAGE_CONTAINER.addEventListener('scroll',scrollListener);
 
 function getLoadedMessagesHeight(){
   const messageBlock = document.querySelectorAll('.message');

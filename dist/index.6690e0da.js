@@ -575,7 +575,7 @@ _authorizationElementsJs.AUTH_ELEMENTS.MAIL_FORM.addEventListener('submit', (e)=
     _submitJs.SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.remove('hide');
 });
 function setCookiesToken() {
-    const token = _submitJs.SUBMIT_ELEMENTS.CODE.value; //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTE2NTEwNzgsImV4cCI6MTY1MjA5NzQ3OH0.stRO4inUaIk5H8rlcYECpyj4dgmHo56_iuSgg14kflc'//SUBMIT_ELEMENTS.CODE.value;
+    const token = _submitJs.SUBMIT_ELEMENTS.CODE.value;
     _jsCookieDefault.default.set('token', `${token}`);
     showUserNameWindow();
 }
@@ -591,10 +591,10 @@ _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_NAME_FORM.addEventListener('submit
     _settingsElementsJs.setUserName();
     _chatWindowElementsJs.getMessageStory();
     _webSocketOperations.connectOnServer();
+    setTimeout(showUserName, 1000);
 });
 async function showUserName() {
-    let token = _jsCookieDefault.default.get('token') //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTEwNjU0NjYsImV4cCI6MTY1MTUxMTg2Nn0.rvzDxTVM1RCqaBlTHuPx3RzJOA-teu-OQNtaTA64kMo'; //Cookies.get('token');
-    ;
+    let token = _jsCookieDefault.default.get('token');
     try {
         let user = await fetch('https://mighty-cove-31255.herokuapp.com/api/user/me', {
             method: 'GET',
@@ -603,12 +603,14 @@ async function showUserName() {
             }
         });
         let userName = await user.json();
-        console.log(userName);
+        document.querySelector('.nickname').textContent = `Ник: ${userName.name}`;
     } catch (e) {
         alert(e);
     }
 }
-showUserName();
+_chatWindowElementsJs.CHAT_SCREEN_ELEMENTS.QUIT_BUTTON.addEventListener('click', ()=>{
+    _webSocketOperationsDefault.default.close(1000, 'Выход из чата');
+});
 
 },{"./chat_window_elements.js":"kWvmn","./settings_elements.js":"hjjhO","./authorization_elements.js":"aBJMP","./submit.js":"9jUCy","js-cookie":"c8bBu","./webSocketOperations":"83w8i","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kWvmn":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -633,7 +635,8 @@ const CHAT_SCREEN_ELEMENTS = {
     OUTPUT_MESSAGE_TEXT: document.querySelector('.output-message__text'),
     INPUT_TEMPLATE: document.querySelector('#input-template'),
     INPUT_MESSAGE_TEXT: document.querySelector('.input-message__text'),
-    MESSAGE_TIME: document.querySelector('.message__time')
+    MESSAGE_TIME: document.querySelector('.message__time'),
+    MESSAGE_CONTAINER: document.querySelector('.container')
 };
 let messageStory;
 async function getMessageStory() {
@@ -654,19 +657,19 @@ function showMessageStory(messageStory1) {
     if (messageStory1.messages.length < 20) messageCount = 0;
     for(let i = messageStory1.messages.length - 1; i > messageCount; i--)if (messageStory1.messages[i].user.email === 'abolshoff@yandex.ru') {
         let message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
-        message.querySelector('.output-message__text').innerHTML = `Я: ${messageStory1.messages[i].text}`;
-        message.querySelector('.message__time').innerHTML = `${_formatDefault.default(new Date(messageStory1.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`;
+        message.querySelector('.output-message__text').textContent = `Я: ${messageStory1.messages[i].text}`;
+        message.querySelector('.message__time').textContent = `${_formatDefault.default(new Date(messageStory1.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`;
         CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(message);
     } else {
         let message = CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
-        message.querySelector('.input-message__text').innerHTML = `${messageStory1.messages[i].user.name}: ${messageStory1.messages[i].text}`;
-        message.querySelector('.message__time').innerHTML = `${_formatDefault.default(new Date(messageStory1.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`;
+        message.querySelector('.input-message__text').textContent = `${messageStory1.messages[i].user.name}: ${messageStory1.messages[i].text}`;
+        message.querySelector('.message__time').textContent = `${_formatDefault.default(new Date(messageStory1.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`;
         CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(message);
     }
     CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
     messageStory1.messages = messageStory1.messages.slice(0, messageStory1.messages.length - 20);
 }
-document.querySelector('.container').addEventListener('scroll', scrollListener);
+CHAT_SCREEN_ELEMENTS.MESSAGE_CONTAINER.addEventListener('scroll', scrollListener);
 function getLoadedMessagesHeight() {
     const messageBlock = document.querySelectorAll('.message');
     let messagesHeight = 0;
@@ -2853,7 +2856,7 @@ const SETTINGS_ELEMENTS = {
 };
 async function setUserName() {
     const url = "https://mighty-cove-31255.herokuapp.com/api/user";
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTEwNjU0NjYsImV4cCI6MTY1MTUxMTg2Nn0.rvzDxTVM1RCqaBlTHuPx3RzJOA-teu-OQNtaTA64kMo'; //Cookies.get('token');
+    const token = _jsCookieDefault.default.get('token');
     const userName = SETTINGS_ELEMENTS.SETTING_NAME_INPUT.value;
     try {
         let response = await fetch(url, {
@@ -2930,30 +2933,35 @@ var _jsCookie = require("js-cookie");
 var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
 var _reconnectingWebsocket = require("reconnecting-websocket");
 var _reconnectingWebsocketDefault = parcelHelpers.interopDefault(_reconnectingWebsocket);
-const url = 'mighty-cove-31255.herokuapp.com';
-const token = _jsCookieDefault.default.get('token') //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTE1NjIzMTUsImV4cCI6MTY1MjAwODcxNX0.exVSvFphWH51VkT-7o5L7rXnL0cwoz5Pjz-p2K3rytg';
-;
-const socket = new WebSocket(`ws://${url}/websockets?${token}`);
+const url = 'mighty-cove-31255.herokuapp.com/websockets?';
+const token = _jsCookieDefault.default.get('token');
+const socket = new WebSocket(`ws://${url}${token}`);
 function connectOnServer() {
-    const socket1 = new WebSocket(`ws://${url}/websockets?${token}`);
+    const socket1 = new WebSocket(`ws://${url}${token}`);
     socket1.onopen = function(e) {
         console.log(" Соединение установлено, работаем дальше");
     };
     socket1.onmessage = function(event) {
-        const messageText = JSON.parse(event.data);
+        try {
+            const messageText = JSON.parse(event.data);
+            return messageText;
+        } catch (e) {
+            console.log(e);
+        }
         if (messageText.user.email === "abolshoff@yandex.ru") {
             let message = _chatWindowElements.CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
-            message.querySelector('.output-message__text').innerHTML = `Я: ${messageText.text}`;
+            message.querySelector('.output-message__text').textContent = `Я: ${messageText.text}`;
             message.querySelector('.message__time').innerHTML = `${_formatDefault.default(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`;
             _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
         } else {
             let message = _chatWindowElements.CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
-            message.querySelector('.input-message__text').innerHTML = `${messageText.user.name}: ${messageText.text}`;
-            message.querySelector('.message__time').innerHTML = `${_formatDefault.default(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`;
+            message.querySelector('.input-message__text').textContent = `${messageText.user.name}: ${messageText.text}`;
+            message.querySelector('.message__time').textContent = `${_formatDefault.default(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`;
             _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
         }
-        const isScrolledToBottom = document.querySelector('.container').scrollHeight - document.querySelector('.container').clientHeight <= document.querySelector('.container').scrollTop + 1;
-        if (!isScrolledToBottom) document.querySelector('.container').scrollTop = document.querySelector('.container').scrollHeight - document.querySelector('.container').clientHeight;
+        const messageContainer = document.querySelector('.container');
+        const isScrolledToBottom = messageContainer.scrollHeight - messageContainer.clientHeight <= messageContainer.scrollTop + 1;
+        if (!isScrolledToBottom) messageContainer.scrollTop = messageContainer.scrollHeight - messageContainer.clientHeight;
     // if (document.querySelector('.container').scrollTop = document.querySelector('.container').scrollHeight){
     //   CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
     // }
@@ -2975,8 +2983,8 @@ function showOutputMessage() {
     let hours = new Date().getHours();
     if (hours < 10) hours = `0${new Date().getHours()}`;
     if (minutes < 10) minutes = `0${new Date().getMinutes()}`;
-    message.querySelector('.output-message__text').innerHTML = `Я: ${_chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value}`;
-    message.querySelector('.message__time').innerHTML = `${hours}:${minutes}`;
+    message.querySelector('.output-message__text').textContent = `Я: ${_chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value}`;
+    message.querySelector('.message__time').textContent = `${hours}:${minutes}`;
     if (_chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value) _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
     _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value = '';
 }

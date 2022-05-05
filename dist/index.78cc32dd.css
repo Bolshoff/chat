@@ -290,6 +290,13 @@ body {
   border-radius: 5px;
 }
 
+.nickname {
+  width: 90px;
+  height: 30px;
+  text-justify: auto;
+  overflow: hidden;
+}
+
 .hide {
   display: none;
 }

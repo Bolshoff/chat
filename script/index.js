@@ -66,7 +66,7 @@ AUTH_ELEMENTS.MAIL_FORM.addEventListener('submit', (e)=>{
 
 
 function setCookiesToken(){
-  const token = SUBMIT_ELEMENTS.CODE.value;//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTE2NTEwNzgsImV4cCI6MTY1MjA5NzQ3OH0.stRO4inUaIk5H8rlcYECpyj4dgmHo56_iuSgg14kflc'//SUBMIT_ELEMENTS.CODE.value;
+  const token = SUBMIT_ELEMENTS.CODE.value;
   Cookies.set('token', `${token}`);
   showUserNameWindow();
 
@@ -84,26 +84,28 @@ SETTINGS_ELEMENTS.SETTING_NAME_FORM.addEventListener('submit',(e)=>{
   setUserName();
   getMessageStory();
   connectOnServer();
+ setTimeout(showUserName, 1000);
 })
 
 async function showUserName(){
-  let token = Cookies.get('token')//'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTEwNjU0NjYsImV4cCI6MTY1MTUxMTg2Nn0.rvzDxTVM1RCqaBlTHuPx3RzJOA-teu-OQNtaTA64kMo'; //Cookies.get('token');
+  let token = Cookies.get('token');
 
   try {
     let user = await fetch('https://mighty-cove-31255.herokuapp.com/api/user/me',{
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}` ,
-
       },
-
     });
     let userName = await user.json();
-    console.log(userName);
-
+    document.querySelector('.nickname').textContent = `Ник: ${userName.name}`;
   }catch (e) {
     alert(e);
   }
 }
-showUserName();
+
+CHAT_SCREEN_ELEMENTS.QUIT_BUTTON.addEventListener('click',()=>{
+  socket.close(1000, 'Выход из чата');
+})
+
 
