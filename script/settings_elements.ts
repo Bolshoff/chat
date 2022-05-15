@@ -14,7 +14,7 @@ export async function setUserName(){
   const token = Cookies.get('token');
   const userName = SETTINGS_ELEMENTS.SETTING_NAME_INPUT.value;
 try {
-  let response = await fetch(url,{
+  const response = await fetch(url,{
     method: 'PATCH',
     headers: {
       'Authorization': `Bearer ${token}`,

@@ -142,13 +142,13 @@
       this[globalName] = mainExports;
     }
   }
-})({"hqSpz":[function(require,module,exports) {
+})({"dx8iv":[function(require,module,exports) {
 "use strict";
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-module.bundle.HMR_BUNDLE_ID = "04c3a0646690e0da";
+module.bundle.HMR_BUNDLE_ID = "22d5bbafb50aa2ba";
 function _toConsumableArray(arr) {
     return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
 }
@@ -525,28 +525,28 @@ function hmrAcceptRun(bundle, id) {
     acceptedAssets[id] = true;
 }
 
-},{}],"2OpUZ":[function(require,module,exports) {
+},{}],"HaqPS":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _chatWindowElementsJs = require("./chat_window_elements.ts");
-var _settingsElementsJs = require("./settings_elements.ts");
-var _authorizationElementsJs = require("./authorization_elements.ts");
-var _submitJs = require("./submit.ts");
+var _chatWindowElementsJs = require("./chat_window_elements.js");
+var _settingsElementsTs = require("./settings_elements.ts");
+var _authorizationElementsTs = require("./authorization_elements.ts");
+var _submitJs = require("./submit.js");
 var _jsCookie = require("js-cookie");
 var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
 var _webSocketOperations = require("./webSocketOperations");
 var _webSocketOperationsDefault = parcelHelpers.interopDefault(_webSocketOperations);
 _chatWindowElementsJs.CHAT_SCREEN_ELEMENTS.SETTING_BUTTON.addEventListener('click', ()=>{
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.remove('hide');
+    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
+    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.remove('hide');
 });
-_settingsElementsJs.SETTINGS_ELEMENTS.SETTING_CLOSE.addEventListener('click', ()=>{
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.add('hide');
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
+_settingsElementsTs.SETTINGS_ELEMENTS.SETTING_CLOSE.addEventListener('click', ()=>{
+    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.add('hide');
+    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
 });
-_settingsElementsJs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.addEventListener('click', (e)=>{
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.add('hide');
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
-    _authorizationElementsJs.AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
+_settingsElementsTs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.addEventListener('click', (e)=>{
+    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.add('hide');
+    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
+    _authorizationElementsTs.AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
     _submitJs.SUBMIT_ELEMENTS.CODE.classList.add('hide');
 });
 _chatWindowElementsJs.CHAT_SCREEN_ELEMENTS.INPUT_FORM.addEventListener('submit', (e)=>{
@@ -554,24 +554,24 @@ _chatWindowElementsJs.CHAT_SCREEN_ELEMENTS.INPUT_FORM.addEventListener('submit',
     _webSocketOperations.sendMessage();
     _chatWindowElementsJs.CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value = '';
 });
-_authorizationElementsJs.AUTH_ELEMENTS.CLOSE.addEventListener('click', ()=>{
+_authorizationElementsTs.AUTH_ELEMENTS.CLOSE.addEventListener('click', ()=>{
     _submitJs.SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.remove('hide');
-    _authorizationElementsJs.AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
+    _authorizationElementsTs.AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
 });
 _submitJs.SUBMIT_ELEMENTS.CLOSE.addEventListener('click', ()=>{
     _submitJs.SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.add('hide');
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
+    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
 });
 _submitJs.SUBMIT_ELEMENTS.CODE_FORM.addEventListener('submit', (e)=>{
     _submitJs.SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.add('hide');
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
+    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
     e.preventDefault();
     setCookiesToken();
 });
-_authorizationElementsJs.AUTH_ELEMENTS.MAIL_FORM.addEventListener('submit', (e)=>{
+_authorizationElementsTs.AUTH_ELEMENTS.MAIL_FORM.addEventListener('submit', (e)=>{
     e.preventDefault();
-    _authorizationElementsJs.getAuthCodeForMail();
-    _authorizationElementsJs.AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
+    _authorizationElementsTs.getAuthCodeForMail();
+    _authorizationElementsTs.AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
     _submitJs.SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.remove('hide');
 });
 function setCookiesToken() {
@@ -580,15 +580,15 @@ function setCookiesToken() {
     showUserNameWindow();
 }
 function showUserNameWindow() {
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.remove('hide');
+    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
+    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.remove('hide');
     _submitJs.SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.add('hide');
 }
-_settingsElementsJs.SETTINGS_ELEMENTS.SETTING_NAME_FORM.addEventListener('submit', (e)=>{
+_settingsElementsTs.SETTINGS_ELEMENTS.SETTING_NAME_FORM.addEventListener('submit', (e)=>{
     e.preventDefault();
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.add('hide');
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
-    _settingsElementsJs.setUserName();
+    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.add('hide');
+    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
+    _settingsElementsTs.setUserName();
     _chatWindowElementsJs.getMessageStory();
     _webSocketOperations.connectOnServer();
     setTimeout(showUserName, 1000);
@@ -612,18 +612,137 @@ _chatWindowElementsJs.CHAT_SCREEN_ELEMENTS.QUIT_BUTTON.addEventListener('click',
     _webSocketOperationsDefault.default.close(1000, 'Выход из чата');
 });
 
-},{"./chat_window_elements.js":"kWvmn","./settings_elements.js":"hjjhO","./authorization_elements.js":"aBJMP","./submit.js":"9jUCy","js-cookie":"c8bBu","./webSocketOperations":"83w8i","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kWvmn":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CHAT_SCREEN_ELEMENTS", ()=>CHAT_SCREEN_ELEMENTS
-);
-parcelHelpers.export(exports, "getMessageStory", ()=>getMessageStory
-);
-var _jsCookie = require("js-cookie");
-var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
-var _format = require("date-fns/format");
-var _formatDefault = parcelHelpers.interopDefault(_format);
-const CHAT_SCREEN_ELEMENTS = {
+},{"./chat_window_elements.js":"kWvmn","./settings_elements.ts":"4LGt7","./authorization_elements.ts":"csn7O","./submit.js":"9jUCy","js-cookie":"c8bBu","./webSocketOperations":"v9nlW","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kWvmn":[function(require,module,exports) {
+"use strict";
+var __awaiter = this && this.__awaiter || function(thisArg, _arguments, P, generator) {
+    function adopt(value) {
+        return value instanceof P ? value : new P(function(resolve) {
+            resolve(value);
+        });
+    }
+    return new (P || (P = Promise))(function(resolve, reject) {
+        function fulfilled(value) {
+            try {
+                step(generator.next(value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function rejected(value) {
+            try {
+                step(generator["throw"](value));
+            } catch (e) {
+                reject(e);
+            }
+        }
+        function step(result) {
+            result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = this && this.__generator || function(thisArg, body) {
+    var _ = {
+        label: 0,
+        sent: function() {
+            if (t[0] & 1) throw t[1];
+            return t[1];
+        },
+        trys: [],
+        ops: []
+    }, f, y, t, g;
+    return g = {
+        next: verb(0),
+        "throw": verb(1),
+        "return": verb(2)
+    }, typeof Symbol === "function" && (g[Symbol.iterator] = function() {
+        return this;
+    }), g;
+    function verb(n) {
+        return function(v) {
+            return step([
+                n,
+                v
+            ]);
+        };
+    }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while(_)try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [
+                op[0] & 2,
+                t.value
+            ];
+            switch(op[0]){
+                case 0:
+                case 1:
+                    t = op;
+                    break;
+                case 4:
+                    _.label++;
+                    return {
+                        value: op[1],
+                        done: false
+                    };
+                case 5:
+                    _.label++;
+                    y = op[1];
+                    op = [
+                        0
+                    ];
+                    continue;
+                case 7:
+                    op = _.ops.pop();
+                    _.trys.pop();
+                    continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+                        _ = 0;
+                        continue;
+                    }
+                    if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+                        _.label = op[1];
+                        break;
+                    }
+                    if (op[0] === 6 && _.label < t[1]) {
+                        _.label = t[1];
+                        t = op;
+                        break;
+                    }
+                    if (t && _.label < t[2]) {
+                        _.label = t[2];
+                        _.ops.push(op);
+                        break;
+                    }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop();
+                    continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) {
+            op = [
+                6,
+                e
+            ];
+            y = 0;
+        } finally{
+            f = t = 0;
+        }
+        if (op[0] & 5) throw op[1];
+        return {
+            value: op[0] ? op[1] : void 0,
+            done: true
+        };
+    }
+};
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.getMessageStory = exports.CHAT_SCREEN_ELEMENTS = void 0;
+var js_cookie_1 = require("js-cookie");
+var format_1 = require("date-fns/format");
+exports.CHAT_SCREEN_ELEMENTS = {
     SETTING_BUTTON: document.querySelector('.managing-chat__button-settings'),
     QUIT_BUTTON: document.querySelector('.managing-chat__button-quit'),
     MESSAGE_INPUT: document.querySelector('.input-chat__input'),
@@ -638,49 +757,71 @@ const CHAT_SCREEN_ELEMENTS = {
     MESSAGE_TIME: document.querySelector('.message__time'),
     MESSAGE_CONTAINER: document.querySelector('.container')
 };
-let messageStory;
-async function getMessageStory() {
-    const storyURL = 'https://mighty-cove-31255.herokuapp.com/api/messages';
-    const token = _jsCookieDefault.default.get('token');
-    let response = await fetch(storyURL, {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
+var messageStory;
+function getMessageStory() {
+    return __awaiter(this, void 0, void 0, function() {
+        var storyURL, token, response;
+        return __generator(this, function(_a) {
+            switch(_a.label){
+                case 0:
+                    storyURL = 'https://mighty-cove-31255.herokuapp.com/api/messages';
+                    token = js_cookie_1.default.get('token');
+                    return [
+                        4 /*yield*/ ,
+                        fetch(storyURL, {
+                            method: 'GET',
+                            headers: {
+                                'Authorization': "Bearer ".concat(token)
+                            }
+                        })
+                    ];
+                case 1:
+                    response = _a.sent();
+                    return [
+                        4 /*yield*/ ,
+                        response.json()
+                    ];
+                case 2:
+                    messageStory = _a.sent();
+                    showMessageStory(messageStory);
+                    return [
+                        2 /*return*/ ,
+                        messageStory
+                    ];
+            }
+        });
     });
-    messageStory = await response.json();
-    showMessageStory(messageStory);
-    return messageStory;
 }
+exports.getMessageStory = getMessageStory;
 function showMessageStory(messageStory1) {
-    let messageCount = messageStory1.messages.length - 20;
+    var messageCount = messageStory1.messages.length - 20;
     if (messageStory1.messages.length < 20) messageCount = 0;
-    for(let i = messageStory1.messages.length - 1; i > messageCount; i--)if (messageStory1.messages[i].user.email === 'abolshoff@yandex.ru') {
-        let message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
-        message.querySelector('.output-message__text').textContent = `Я: ${messageStory1.messages[i].text}`;
-        message.querySelector('.message__time').textContent = `${_formatDefault.default(new Date(messageStory1.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`;
-        CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(message);
+    for(var i = messageStory1.messages.length - 1; i > messageCount; i--)if (messageStory1.messages[i].user.email === 'abolshoff@yandex.ru') {
+        var message = exports.CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
+        message.querySelector('.output-message__text').textContent = "\u042F: ".concat(messageStory1.messages[i].text);
+        message.querySelector('.message__time').textContent = "".concat((0, format_1.default)(new Date(messageStory1.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm"));
+        exports.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(message);
     } else {
-        let message = CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
-        message.querySelector('.input-message__text').textContent = `${messageStory1.messages[i].user.name}: ${messageStory1.messages[i].text}`;
-        message.querySelector('.message__time').textContent = `${_formatDefault.default(new Date(messageStory1.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`;
-        CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(message);
+        var message = exports.CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
+        message.querySelector('.input-message__text').textContent = "".concat(messageStory1.messages[i].user.name, ": ").concat(messageStory1.messages[i].text);
+        message.querySelector('.message__time').textContent = "".concat((0, format_1.default)(new Date(messageStory1.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm"));
+        exports.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(message);
     }
-    CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
+    exports.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
     messageStory1.messages = messageStory1.messages.slice(0, messageStory1.messages.length - 20);
 }
-CHAT_SCREEN_ELEMENTS.MESSAGE_CONTAINER.addEventListener('scroll', scrollListener);
+exports.CHAT_SCREEN_ELEMENTS.MESSAGE_CONTAINER.addEventListener('scroll', scrollListener);
 function getLoadedMessagesHeight() {
-    const messageBlock = document.querySelectorAll('.message');
-    let messagesHeight = 0;
-    for(let i = messageBlock.length - 1; i > messageBlock.length - 20; i--)messagesHeight += messageBlock[i].clientHeight;
+    var messageBlock = document.querySelectorAll('.message');
+    var messagesHeight = 0;
+    for(var i = messageBlock.length - 1; i > messageBlock.length - 20; i--)messagesHeight += messageBlock[i].clientHeight;
     document.querySelector('.container').scrollTop = messagesHeight;
 }
 function showMessageAllHistoryLoad() {
-    const allHistoryLoadMessage = document.createElement('div');
+    var allHistoryLoadMessage = document.createElement('div');
     allHistoryLoadMessage.classList.add('all-history-load-message');
     allHistoryLoadMessage.innerText = 'Вся история загружена';
-    CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(allHistoryLoadMessage);
+    exports.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(allHistoryLoadMessage);
 }
 function scrollListener() {
     if (messageStory.messages.length === 0 && document.querySelector('.container').scrollTop === 0) {
@@ -693,7 +834,7 @@ function scrollListener() {
     }
 }
 
-},{"js-cookie":"c8bBu","date-fns/format":"lnm6V","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"c8bBu":[function(require,module,exports) {
+},{"js-cookie":"c8bBu","date-fns/format":"lnm6V"}],"c8bBu":[function(require,module,exports) {
 (function(global, factory) {
     module.exports = factory();
 })(this, function() {
@@ -786,24 +927,24 @@ function scrollListener() {
 },{}],"lnm6V":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../isValid/index.ts");
+var _indexJs = require("../isValid/index.js");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../locale/en-US/index.ts");
+var _indexJs1 = require("../locale/en-US/index.js");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../subMilliseconds/index.ts");
+var _indexJs2 = require("../subMilliseconds/index.js");
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
-var _indexJs3 = require("../toDate/index.ts");
+var _indexJs3 = require("../toDate/index.js");
 var _indexJsDefault3 = parcelHelpers.interopDefault(_indexJs3);
-var _indexJs4 = require("../_lib/format/formatters/index.ts");
+var _indexJs4 = require("../_lib/format/formatters/index.js");
 var _indexJsDefault4 = parcelHelpers.interopDefault(_indexJs4);
-var _indexJs5 = require("../_lib/format/longFormatters/index.ts");
+var _indexJs5 = require("../_lib/format/longFormatters/index.js");
 var _indexJsDefault5 = parcelHelpers.interopDefault(_indexJs5);
-var _indexJs6 = require("../_lib/getTimezoneOffsetInMilliseconds/index.ts");
+var _indexJs6 = require("../_lib/getTimezoneOffsetInMilliseconds/index.js");
 var _indexJsDefault6 = parcelHelpers.interopDefault(_indexJs6);
-var _indexJs7 = require("../_lib/protectedTokens/index.ts");
-var _indexJs8 = require("../_lib/toInteger/index.ts");
+var _indexJs7 = require("../_lib/protectedTokens/index.js");
+var _indexJs8 = require("../_lib/toInteger/index.js");
 var _indexJsDefault7 = parcelHelpers.interopDefault(_indexJs8);
-var _indexJs9 = require("../_lib/requiredArgs/index.ts"); // This RegExp consists of three parts separated by `|`:
+var _indexJs9 = require("../_lib/requiredArgs/index.js"); // This RegExp consists of three parts separated by `|`:
 var _indexJsDefault8 = parcelHelpers.interopDefault(_indexJs9);
 // - [yYQqMLwIdDecihHKkms]o matches any available ordinal number token
 //   (one of the certain letters followed by `o`)
@@ -880,11 +1021,11 @@ function cleanEscapedString(input) {
 },{"../isValid/index.js":"eXoMl","../locale/en-US/index.js":"8XKCq","../subMilliseconds/index.js":"lL2M9","../toDate/index.js":"fsust","../_lib/format/formatters/index.js":"3cYKM","../_lib/format/longFormatters/index.js":"1ztit","../_lib/getTimezoneOffsetInMilliseconds/index.js":"bc74C","../_lib/protectedTokens/index.js":"4R0Xq","../_lib/toInteger/index.js":"f7kKX","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eXoMl":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../isDate/index.ts");
+var _indexJs = require("../isDate/index.js");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../toDate/index.ts");
+var _indexJs1 = require("../toDate/index.js");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../_lib/requiredArgs/index.ts");
+var _indexJs2 = require("../_lib/requiredArgs/index.js");
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
 function isValid(dirtyDate) {
     _indexJsDefault2.default(1, arguments);
@@ -897,7 +1038,7 @@ exports.default = isValid;
 },{"../isDate/index.js":"kqNhT","../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kqNhT":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../_lib/requiredArgs/index.ts");
+var _indexJs = require("../_lib/requiredArgs/index.js");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
 function isDate(value) {
     _indexJsDefault.default(1, arguments);
@@ -946,7 +1087,7 @@ exports.export = function(dest, destName, get) {
 },{}],"fsust":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../_lib/requiredArgs/index.ts");
+var _indexJs = require("../_lib/requiredArgs/index.js");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
 function toDate(argument) {
     _indexJsDefault.default(1, arguments);
@@ -968,15 +1109,15 @@ exports.default = toDate;
 },{"../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8XKCq":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("./_lib/formatDistance/index.ts");
+var _indexJs = require("./_lib/formatDistance/index.js");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("./_lib/formatLong/index.ts");
+var _indexJs1 = require("./_lib/formatLong/index.js");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("./_lib/formatRelative/index.ts");
+var _indexJs2 = require("./_lib/formatRelative/index.js");
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
-var _indexJs3 = require("./_lib/localize/index.ts");
+var _indexJs3 = require("./_lib/localize/index.js");
 var _indexJsDefault3 = parcelHelpers.interopDefault(_indexJs3);
-var _indexJs4 = require("./_lib/match/index.ts");
+var _indexJs4 = require("./_lib/match/index.js");
 var _indexJsDefault4 = parcelHelpers.interopDefault(_indexJs4);
 /**
  * @type {Locale}
@@ -1083,7 +1224,7 @@ exports.default = formatDistance;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cA6Xb":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../../_lib/buildFormatLongFn/index.ts");
+var _indexJs = require("../../../_lib/buildFormatLongFn/index.js");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
 var dateFormats = {
     full: 'EEEE, MMMM do, y',
@@ -1152,7 +1293,7 @@ exports.default = formatRelative;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jv1Fa":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../../_lib/buildLocalizeFn/index.ts");
+var _indexJs = require("../../../_lib/buildLocalizeFn/index.js");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
 var eraValues = {
     narrow: [
@@ -1411,9 +1552,9 @@ exports.default = buildLocalizeFn;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1wA2o":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../../_lib/buildMatchFn/index.ts");
+var _indexJs = require("../../../_lib/buildMatchFn/index.js");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../../../_lib/buildMatchPatternFn/index.ts");
+var _indexJs1 = require("../../../_lib/buildMatchPatternFn/index.js");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
 var matchOrdinalNumberPattern = /^(\d+)(th|st|nd|rd)?/i;
 var parseOrdinalNumberPattern = /\d+/i;
@@ -1628,11 +1769,11 @@ exports.default = buildMatchPatternFn;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lL2M9":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../_lib/toInteger/index.ts");
+var _indexJs = require("../_lib/toInteger/index.js");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../addMilliseconds/index.ts");
+var _indexJs1 = require("../addMilliseconds/index.js");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../_lib/requiredArgs/index.ts");
+var _indexJs2 = require("../_lib/requiredArgs/index.js");
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
 function subMilliseconds(dirtyDate, dirtyAmount) {
     _indexJsDefault2.default(2, arguments);
@@ -1655,11 +1796,11 @@ exports.default = toInteger;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7Tp9s":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../_lib/toInteger/index.ts");
+var _indexJs = require("../_lib/toInteger/index.js");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../toDate/index.ts");
+var _indexJs1 = require("../toDate/index.js");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../_lib/requiredArgs/index.ts");
+var _indexJs2 = require("../_lib/requiredArgs/index.js");
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
 function addMilliseconds(dirtyDate, dirtyAmount) {
     _indexJsDefault2.default(2, arguments);
@@ -1672,19 +1813,19 @@ exports.default = addMilliseconds;
 },{"../_lib/toInteger/index.js":"f7kKX","../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3cYKM":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../../_lib/getUTCDayOfYear/index.ts");
+var _indexJs = require("../../../_lib/getUTCDayOfYear/index.js");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../../../_lib/getUTCISOWeek/index.ts");
+var _indexJs1 = require("../../../_lib/getUTCISOWeek/index.js");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../../../_lib/getUTCISOWeekYear/index.ts");
+var _indexJs2 = require("../../../_lib/getUTCISOWeekYear/index.js");
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
-var _indexJs3 = require("../../../_lib/getUTCWeek/index.ts");
+var _indexJs3 = require("../../../_lib/getUTCWeek/index.js");
 var _indexJsDefault3 = parcelHelpers.interopDefault(_indexJs3);
-var _indexJs4 = require("../../../_lib/getUTCWeekYear/index.ts");
+var _indexJs4 = require("../../../_lib/getUTCWeekYear/index.js");
 var _indexJsDefault4 = parcelHelpers.interopDefault(_indexJs4);
-var _indexJs5 = require("../../addLeadingZeros/index.ts");
+var _indexJs5 = require("../../addLeadingZeros/index.js");
 var _indexJsDefault5 = parcelHelpers.interopDefault(_indexJs5);
-var _indexJs6 = require("../lightFormatters/index.ts");
+var _indexJs6 = require("../lightFormatters/index.js");
 var _indexJsDefault6 = parcelHelpers.interopDefault(_indexJs6);
 var dayPeriodEnum = {
     am: 'am',
@@ -2407,9 +2548,9 @@ exports.default = formatters;
 },{"../../../_lib/getUTCDayOfYear/index.js":"7wqIf","../../../_lib/getUTCISOWeek/index.js":"4nEkI","../../../_lib/getUTCISOWeekYear/index.js":"03QaQ","../../../_lib/getUTCWeek/index.js":"b7GgV","../../../_lib/getUTCWeekYear/index.js":"8i6st","../../addLeadingZeros/index.js":"6pP6x","../lightFormatters/index.js":"9oZiA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7wqIf":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../toDate/index.ts");
+var _indexJs = require("../../toDate/index.js");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../requiredArgs/index.ts");
+var _indexJs1 = require("../requiredArgs/index.js");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
 var MILLISECONDS_IN_DAY = 86400000; // This function will be a part of public API when UTC function will be implemented.
 function getUTCDayOfYear(dirtyDate) {
@@ -2427,13 +2568,13 @@ exports.default = getUTCDayOfYear;
 },{"../../toDate/index.js":"fsust","../requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4nEkI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../toDate/index.ts");
+var _indexJs = require("../../toDate/index.js");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../startOfUTCISOWeek/index.ts");
+var _indexJs1 = require("../startOfUTCISOWeek/index.js");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../startOfUTCISOWeekYear/index.ts");
+var _indexJs2 = require("../startOfUTCISOWeekYear/index.js");
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
-var _indexJs3 = require("../requiredArgs/index.ts");
+var _indexJs3 = require("../requiredArgs/index.js");
 var _indexJsDefault3 = parcelHelpers.interopDefault(_indexJs3);
 var MILLISECONDS_IN_WEEK = 604800000; // This function will be a part of public API when UTC function will be implemented.
 function getUTCISOWeek(dirtyDate) {
@@ -2449,9 +2590,9 @@ exports.default = getUTCISOWeek;
 },{"../../toDate/index.js":"fsust","../startOfUTCISOWeek/index.js":"3ta4C","../startOfUTCISOWeekYear/index.js":"4u8O6","../requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3ta4C":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../toDate/index.ts");
+var _indexJs = require("../../toDate/index.js");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../requiredArgs/index.ts"); // This function will be a part of public API when UTC function will be implemented.
+var _indexJs1 = require("../requiredArgs/index.js"); // This function will be a part of public API when UTC function will be implemented.
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
 function startOfUTCISOWeek(dirtyDate) {
     _indexJsDefault1.default(1, arguments);
@@ -2468,11 +2609,11 @@ exports.default = startOfUTCISOWeek;
 },{"../../toDate/index.js":"fsust","../requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4u8O6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../getUTCISOWeekYear/index.ts");
+var _indexJs = require("../getUTCISOWeekYear/index.js");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../startOfUTCISOWeek/index.ts");
+var _indexJs1 = require("../startOfUTCISOWeek/index.js");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../requiredArgs/index.ts"); // This function will be a part of public API when UTC function will be implemented.
+var _indexJs2 = require("../requiredArgs/index.js"); // This function will be a part of public API when UTC function will be implemented.
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
 function startOfUTCISOWeekYear(dirtyDate) {
     _indexJsDefault2.default(1, arguments);
@@ -2488,11 +2629,11 @@ exports.default = startOfUTCISOWeekYear;
 },{"../getUTCISOWeekYear/index.js":"03QaQ","../startOfUTCISOWeek/index.js":"3ta4C","../requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"03QaQ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../toDate/index.ts");
+var _indexJs = require("../../toDate/index.js");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../requiredArgs/index.ts");
+var _indexJs1 = require("../requiredArgs/index.js");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../startOfUTCISOWeek/index.ts"); // This function will be a part of public API when UTC function will be implemented.
+var _indexJs2 = require("../startOfUTCISOWeek/index.js"); // This function will be a part of public API when UTC function will be implemented.
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
 function getUTCISOWeekYear(dirtyDate) {
     _indexJsDefault1.default(1, arguments);
@@ -2515,13 +2656,13 @@ exports.default = getUTCISOWeekYear;
 },{"../../toDate/index.js":"fsust","../requiredArgs/index.js":"9wUgQ","../startOfUTCISOWeek/index.js":"3ta4C","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"b7GgV":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../toDate/index.ts");
+var _indexJs = require("../../toDate/index.js");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../startOfUTCWeek/index.ts");
+var _indexJs1 = require("../startOfUTCWeek/index.js");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../startOfUTCWeekYear/index.ts");
+var _indexJs2 = require("../startOfUTCWeekYear/index.js");
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
-var _indexJs3 = require("../requiredArgs/index.ts");
+var _indexJs3 = require("../requiredArgs/index.js");
 var _indexJsDefault3 = parcelHelpers.interopDefault(_indexJs3);
 var MILLISECONDS_IN_WEEK = 604800000; // This function will be a part of public API when UTC function will be implemented.
 function getUTCWeek(dirtyDate, options) {
@@ -2537,11 +2678,11 @@ exports.default = getUTCWeek;
 },{"../../toDate/index.js":"fsust","../startOfUTCWeek/index.js":"dDZbE","../startOfUTCWeekYear/index.js":"bJAVl","../requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dDZbE":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../toDate/index.ts");
+var _indexJs = require("../../toDate/index.js");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../requiredArgs/index.ts");
+var _indexJs1 = require("../requiredArgs/index.js");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../toInteger/index.ts"); // This function will be a part of public API when UTC function will be implemented.
+var _indexJs2 = require("../toInteger/index.js"); // This function will be a part of public API when UTC function will be implemented.
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
 function startOfUTCWeek(dirtyDate, dirtyOptions) {
     _indexJsDefault1.default(1, arguments);
@@ -2563,13 +2704,13 @@ exports.default = startOfUTCWeek;
 },{"../../toDate/index.js":"fsust","../requiredArgs/index.js":"9wUgQ","../toInteger/index.js":"f7kKX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bJAVl":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../getUTCWeekYear/index.ts");
+var _indexJs = require("../getUTCWeekYear/index.js");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../requiredArgs/index.ts");
+var _indexJs1 = require("../requiredArgs/index.js");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../startOfUTCWeek/index.ts");
+var _indexJs2 = require("../startOfUTCWeek/index.js");
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
-var _indexJs3 = require("../toInteger/index.ts"); // This function will be a part of public API when UTC function will be implemented.
+var _indexJs3 = require("../toInteger/index.js"); // This function will be a part of public API when UTC function will be implemented.
 var _indexJsDefault3 = parcelHelpers.interopDefault(_indexJs3);
 function startOfUTCWeekYear(dirtyDate, dirtyOptions) {
     _indexJsDefault1.default(1, arguments);
@@ -2590,13 +2731,13 @@ exports.default = startOfUTCWeekYear;
 },{"../getUTCWeekYear/index.js":"8i6st","../requiredArgs/index.js":"9wUgQ","../startOfUTCWeek/index.js":"dDZbE","../toInteger/index.js":"f7kKX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8i6st":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../toDate/index.ts");
+var _indexJs = require("../../toDate/index.js");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../requiredArgs/index.ts");
+var _indexJs1 = require("../requiredArgs/index.js");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../startOfUTCWeek/index.ts");
+var _indexJs2 = require("../startOfUTCWeek/index.js");
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
-var _indexJs3 = require("../toInteger/index.ts"); // This function will be a part of public API when UTC function will be implemented.
+var _indexJs3 = require("../toInteger/index.js"); // This function will be a part of public API when UTC function will be implemented.
 var _indexJsDefault3 = parcelHelpers.interopDefault(_indexJs3);
 function getUTCWeekYear(dirtyDate, dirtyOptions) {
     _indexJsDefault1.default(1, arguments);
@@ -2636,7 +2777,7 @@ exports.default = addLeadingZeros;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9oZiA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../addLeadingZeros/index.ts");
+var _indexJs = require("../../addLeadingZeros/index.js");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
 /*
  * |     | Unit                           |     | Unit                           |
@@ -2837,7 +2978,7 @@ function throwProtectedError(token, format, input) {
     else if (token === 'DD') throw new RangeError("Use `dd` instead of `DD` (in `".concat(format, "`) for formatting days of the month to the input `").concat(input, "`; see: https://git.io/fxCyr"));
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hjjhO":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4LGt7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "SETTINGS_ELEMENTS", ()=>SETTINGS_ELEMENTS
@@ -2874,7 +3015,7 @@ async function setUserName() {
     }
 }
 
-},{"js-cookie":"c8bBu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aBJMP":[function(require,module,exports) {
+},{"js-cookie":"c8bBu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"csn7O":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "AUTH_ELEMENTS", ()=>AUTH_ELEMENTS
@@ -2907,11 +3048,12 @@ async function getAuthCodeForMail() {
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9jUCy":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "SUBMIT_ELEMENTS", ()=>SUBMIT_ELEMENTS
-);
-const SUBMIT_ELEMENTS = {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.SUBMIT_ELEMENTS = void 0;
+exports.SUBMIT_ELEMENTS = {
     CLOSE: document.querySelector('.submit__close-button'),
     CODE: document.querySelector('.submit__code-input'),
     CODE_FORM: document.querySelector('.submit__code-form'),
@@ -2919,7 +3061,7 @@ const SUBMIT_ELEMENTS = {
     SUBMIT_WINDOW: document.querySelector('.submit')
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"83w8i":[function(require,module,exports) {
+},{}],"v9nlW":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "connectOnServer", ()=>connectOnServer
@@ -2931,8 +3073,6 @@ var _format = require("date-fns/format");
 var _formatDefault = parcelHelpers.interopDefault(_format);
 var _jsCookie = require("js-cookie");
 var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
-var _reconnectingWebsocket = require("reconnecting-websocket");
-var _reconnectingWebsocketDefault = parcelHelpers.interopDefault(_reconnectingWebsocket);
 const url = 'mighty-cove-31255.herokuapp.com/websockets?';
 const token = _jsCookieDefault.default.get('token');
 const socket = new WebSocket(`ws://${url}${token}`);
@@ -2987,540 +3127,87 @@ function sendMessage() {
 }
 exports.default = socket;
 
-},{"./chat_window_elements":"kWvmn","date-fns/format":"lnm6V","js-cookie":"c8bBu","reconnecting-websocket":"foTU5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"foTU5":[function(require,module,exports) {
+},{"./chat_window_elements":"3cxJW","date-fns/format":"lnm6V","js-cookie":"c8bBu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3cxJW":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
-
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
-
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
-***************************************************************************** */ /* global Reflect, Promise */ var extendStatics = function(d1, b1) {
-    extendStatics = Object.setPrototypeOf || ({
-        __proto__: []
-    }) instanceof Array && function(d, b) {
-        d.__proto__ = b;
-    } || function(d, b) {
-        for(var p in b)if (b.hasOwnProperty(p)) d[p] = b[p];
-    };
-    return extendStatics(d1, b1);
+parcelHelpers.export(exports, "CHAT_SCREEN_ELEMENTS", ()=>CHAT_SCREEN_ELEMENTS
+);
+parcelHelpers.export(exports, "getMessageStory", ()=>getMessageStory
+);
+var _jsCookie = require("js-cookie");
+var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
+var _format = require("date-fns/format");
+var _formatDefault = parcelHelpers.interopDefault(_format);
+const CHAT_SCREEN_ELEMENTS = {
+    SETTING_BUTTON: document.querySelector('.managing-chat__button-settings'),
+    QUIT_BUTTON: document.querySelector('.managing-chat__button-quit'),
+    MESSAGE_INPUT: document.querySelector('.input-chat__input'),
+    SUBMIT_BUTTON: document.querySelector('.input-chat__submit-button'),
+    INPUT_FORM: document.querySelector('.input-chat__form'),
+    CHAT_SCREEN: document.querySelector('.chat-screen'),
+    MESSAGE_SCREEN: document.querySelector('.message-screen'),
+    OUTPUT_TEMPLATE: document.querySelector('#output-template'),
+    OUTPUT_MESSAGE_TEXT: document.querySelector('.output-message__text'),
+    INPUT_TEMPLATE: document.querySelector('#input-template'),
+    INPUT_MESSAGE_TEXT: document.querySelector('.input-message__text'),
+    MESSAGE_TIME: document.querySelector('.message__time'),
+    MESSAGE_CONTAINER: document.querySelector('.container')
 };
-function __extends(d, b) {
-    extendStatics(d, b);
-    function __() {
-        this.constructor = d;
-    }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+let messageStory;
+async function getMessageStory() {
+    const storyURL = 'https://mighty-cove-31255.herokuapp.com/api/messages';
+    const token = _jsCookieDefault.default.get('token');
+    let response = await fetch(storyURL, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
+    messageStory = await response.json();
+    showMessageStory(messageStory);
+    return messageStory;
 }
-function __values(o) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
-    if (m) return m.call(o);
-    return {
-        next: function() {
-            if (o && i >= o.length) o = void 0;
-            return {
-                value: o && o[i++],
-                done: !o
-            };
-        }
-    };
+function showMessageStory(messageStory1) {
+    let messageCount = messageStory1.messages.length - 20;
+    if (messageStory1.messages.length < 20) messageCount = 0;
+    for(let i = messageStory1.messages.length - 1; i > messageCount; i--)if (messageStory1.messages[i].user.email === 'abolshoff@yandex.ru') {
+        let message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
+        message.querySelector('.output-message__text').textContent = `Я: ${messageStory1.messages[i].text}`;
+        message.querySelector('.message__time').textContent = `${_formatDefault.default(new Date(messageStory1.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`;
+        CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(message);
+    } else {
+        let message = CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
+        message.querySelector('.input-message__text').textContent = `${messageStory1.messages[i].user.name}: ${messageStory1.messages[i].text}`;
+        message.querySelector('.message__time').textContent = `${_formatDefault.default(new Date(messageStory1.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`;
+        CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(message);
+    }
+    CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
+    messageStory1.messages = messageStory1.messages.slice(0, messageStory1.messages.length - 20);
 }
-function __read(o, n) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator];
-    if (!m) return o;
-    var i = m.call(o), r, ar = [], e;
-    try {
-        while((n === void 0 || n-- > 0) && !(r = i.next()).done)ar.push(r.value);
-    } catch (error) {
-        e = {
-            error: error
-        };
-    } finally{
-        try {
-            if (r && !r.done && (m = i["return"])) m.call(i);
-        } finally{
-            if (e) throw e.error;
-        }
-    }
-    return ar;
+CHAT_SCREEN_ELEMENTS.MESSAGE_CONTAINER.addEventListener('scroll', scrollListener);
+function getLoadedMessagesHeight() {
+    const messageBlock = document.querySelectorAll('.message');
+    let messagesHeight = 0;
+    for(let i = messageBlock.length - 1; i > messageBlock.length - 20; i--)messagesHeight += messageBlock[i].clientHeight;
+    document.querySelector('.container').scrollTop = messagesHeight;
 }
-function __spread() {
-    for(var ar = [], i = 0; i < arguments.length; i++)ar = ar.concat(__read(arguments[i]));
-    return ar;
+function showMessageAllHistoryLoad() {
+    const allHistoryLoadMessage = document.createElement('div');
+    allHistoryLoadMessage.classList.add('all-history-load-message');
+    allHistoryLoadMessage.innerText = 'Вся история загружена';
+    CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(allHistoryLoadMessage);
 }
-var Event = /** @class */ function() {
-    function Event1(type, target) {
-        this.target = target;
-        this.type = type;
+function scrollListener() {
+    if (messageStory.messages.length === 0 && document.querySelector('.container').scrollTop === 0) {
+        showMessageAllHistoryLoad();
+        document.querySelector('.container').removeEventListener('scroll', scrollListener);
     }
-    return Event1;
-}();
-var ErrorEvent = /** @class */ function(_super) {
-    __extends(ErrorEvent1, _super);
-    function ErrorEvent1(error, target) {
-        var _this = _super.call(this, 'error', target) || this;
-        _this.message = error.message;
-        _this.error = error;
-        return _this;
+    if (document.querySelector('.container').scrollTop === 0) {
+        showMessageStory(messageStory);
+        getLoadedMessagesHeight();
     }
-    return ErrorEvent1;
-}(Event);
-var CloseEvent = /** @class */ function(_super) {
-    __extends(CloseEvent1, _super);
-    function CloseEvent1(code, reason, target) {
-        if (code === void 0) code = 1000;
-        if (reason === void 0) reason = '';
-        var _this = _super.call(this, 'close', target) || this;
-        _this.wasClean = true;
-        _this.code = code;
-        _this.reason = reason;
-        return _this;
-    }
-    return CloseEvent1;
-}(Event);
-/*!
- * Reconnecting WebSocket
- * by Pedro Ladaria <pedro.ladaria@gmail.com>
- * https://github.com/pladaria/reconnecting-websocket
- * License MIT
- */ var getGlobalWebSocket = function() {
-    if (typeof WebSocket !== 'undefined') // @ts-ignore
-    return WebSocket;
-};
-/**
- * Returns true if given argument looks like a WebSocket class
- */ var isWebSocket = function(w) {
-    return typeof w !== 'undefined' && !!w && w.CLOSING === 2;
-};
-var DEFAULT = {
-    maxReconnectionDelay: 10000,
-    minReconnectionDelay: 1000 + Math.random() * 4000,
-    minUptime: 5000,
-    reconnectionDelayGrowFactor: 1.3,
-    connectionTimeout: 4000,
-    maxRetries: Infinity,
-    maxEnqueuedMessages: Infinity,
-    startClosed: false,
-    debug: false
-};
-var ReconnectingWebSocket = /** @class */ function() {
-    function ReconnectingWebSocket1(url, protocols, options) {
-        var _this = this;
-        if (options === void 0) options = {};
-        this._listeners = {
-            error: [],
-            message: [],
-            open: [],
-            close: []
-        };
-        this._retryCount = -1;
-        this._shouldReconnect = true;
-        this._connectLock = false;
-        this._binaryType = 'blob';
-        this._closeCalled = false;
-        this._messageQueue = [];
-        /**
-         * An event listener to be called when the WebSocket connection's readyState changes to CLOSED
-         */ this.onclose = null;
-        /**
-         * An event listener to be called when an error occurs
-         */ this.onerror = null;
-        /**
-         * An event listener to be called when a message is received from the server
-         */ this.onmessage = null;
-        /**
-         * An event listener to be called when the WebSocket connection's readyState changes to OPEN;
-         * this indicates that the connection is ready to send and receive data
-         */ this.onopen = null;
-        this._handleOpen = function(event) {
-            _this._debug('open event');
-            var _a = _this._options.minUptime, minUptime = _a === void 0 ? DEFAULT.minUptime : _a;
-            clearTimeout(_this._connectTimeout);
-            _this._uptimeTimeout = setTimeout(function() {
-                return _this._acceptOpen();
-            }, minUptime);
-            _this._ws.binaryType = _this._binaryType;
-            // send enqueued messages (messages sent before websocket open event)
-            _this._messageQueue.forEach(function(message) {
-                return _this._ws.send(message);
-            });
-            _this._messageQueue = [];
-            if (_this.onopen) _this.onopen(event);
-            _this._listeners.open.forEach(function(listener) {
-                return _this._callEventListener(event, listener);
-            });
-        };
-        this._handleMessage = function(event) {
-            _this._debug('message event');
-            if (_this.onmessage) _this.onmessage(event);
-            _this._listeners.message.forEach(function(listener) {
-                return _this._callEventListener(event, listener);
-            });
-        };
-        this._handleError = function(event) {
-            _this._debug('error event', event.message);
-            _this._disconnect(undefined, event.message === 'TIMEOUT' ? 'timeout' : undefined);
-            if (_this.onerror) _this.onerror(event);
-            _this._debug('exec error listeners');
-            _this._listeners.error.forEach(function(listener) {
-                return _this._callEventListener(event, listener);
-            });
-            _this._connect();
-        };
-        this._handleClose = function(event) {
-            _this._debug('close event');
-            _this._clearTimeouts();
-            if (_this._shouldReconnect) _this._connect();
-            if (_this.onclose) _this.onclose(event);
-            _this._listeners.close.forEach(function(listener) {
-                return _this._callEventListener(event, listener);
-            });
-        };
-        this._url = url;
-        this._protocols = protocols;
-        this._options = options;
-        if (this._options.startClosed) this._shouldReconnect = false;
-        this._connect();
-    }
-    Object.defineProperty(ReconnectingWebSocket1, "CONNECTING", {
-        get: function() {
-            return 0;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ReconnectingWebSocket1, "OPEN", {
-        get: function() {
-            return 1;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ReconnectingWebSocket1, "CLOSING", {
-        get: function() {
-            return 2;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ReconnectingWebSocket1, "CLOSED", {
-        get: function() {
-            return 3;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ReconnectingWebSocket1.prototype, "CONNECTING", {
-        get: function() {
-            return ReconnectingWebSocket1.CONNECTING;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ReconnectingWebSocket1.prototype, "OPEN", {
-        get: function() {
-            return ReconnectingWebSocket1.OPEN;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ReconnectingWebSocket1.prototype, "CLOSING", {
-        get: function() {
-            return ReconnectingWebSocket1.CLOSING;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ReconnectingWebSocket1.prototype, "CLOSED", {
-        get: function() {
-            return ReconnectingWebSocket1.CLOSED;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ReconnectingWebSocket1.prototype, "binaryType", {
-        get: function() {
-            return this._ws ? this._ws.binaryType : this._binaryType;
-        },
-        set: function(value) {
-            this._binaryType = value;
-            if (this._ws) this._ws.binaryType = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ReconnectingWebSocket1.prototype, "retryCount", {
-        /**
-         * Returns the number or connection retries
-         */ get: function() {
-            return Math.max(this._retryCount, 0);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ReconnectingWebSocket1.prototype, "bufferedAmount", {
-        /**
-         * The number of bytes of data that have been queued using calls to send() but not yet
-         * transmitted to the network. This value resets to zero once all queued data has been sent.
-         * This value does not reset to zero when the connection is closed; if you keep calling send(),
-         * this will continue to climb. Read only
-         */ get: function() {
-            var bytes = this._messageQueue.reduce(function(acc, message) {
-                if (typeof message === 'string') acc += message.length; // not byte size
-                else if (message instanceof Blob) acc += message.size;
-                else acc += message.byteLength;
-                return acc;
-            }, 0);
-            return bytes + (this._ws ? this._ws.bufferedAmount : 0);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ReconnectingWebSocket1.prototype, "extensions", {
-        /**
-         * The extensions selected by the server. This is currently only the empty string or a list of
-         * extensions as negotiated by the connection
-         */ get: function() {
-            return this._ws ? this._ws.extensions : '';
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ReconnectingWebSocket1.prototype, "protocol", {
-        /**
-         * A string indicating the name of the sub-protocol the server selected;
-         * this will be one of the strings specified in the protocols parameter when creating the
-         * WebSocket object
-         */ get: function() {
-            return this._ws ? this._ws.protocol : '';
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ReconnectingWebSocket1.prototype, "readyState", {
-        /**
-         * The current state of the connection; this is one of the Ready state constants
-         */ get: function() {
-            if (this._ws) return this._ws.readyState;
-            return this._options.startClosed ? ReconnectingWebSocket1.CLOSED : ReconnectingWebSocket1.CONNECTING;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ReconnectingWebSocket1.prototype, "url", {
-        /**
-         * The URL as resolved by the constructor
-         */ get: function() {
-            return this._ws ? this._ws.url : '';
-        },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * Closes the WebSocket connection or connection attempt, if any. If the connection is already
-     * CLOSED, this method does nothing
-     */ ReconnectingWebSocket1.prototype.close = function(code, reason) {
-        if (code === void 0) code = 1000;
-        this._closeCalled = true;
-        this._shouldReconnect = false;
-        this._clearTimeouts();
-        if (!this._ws) {
-            this._debug('close enqueued: no ws instance');
-            return;
-        }
-        if (this._ws.readyState === this.CLOSED) {
-            this._debug('close: already closed');
-            return;
-        }
-        this._ws.close(code, reason);
-    };
-    /**
-     * Closes the WebSocket connection or connection attempt and connects again.
-     * Resets retry counter;
-     */ ReconnectingWebSocket1.prototype.reconnect = function(code, reason) {
-        this._shouldReconnect = true;
-        this._closeCalled = false;
-        this._retryCount = -1;
-        if (!this._ws || this._ws.readyState === this.CLOSED) this._connect();
-        else {
-            this._disconnect(code, reason);
-            this._connect();
-        }
-    };
-    /**
-     * Enqueue specified data to be transmitted to the server over the WebSocket connection
-     */ ReconnectingWebSocket1.prototype.send = function(data) {
-        if (this._ws && this._ws.readyState === this.OPEN) {
-            this._debug('send', data);
-            this._ws.send(data);
-        } else {
-            var _a = this._options.maxEnqueuedMessages, maxEnqueuedMessages = _a === void 0 ? DEFAULT.maxEnqueuedMessages : _a;
-            if (this._messageQueue.length < maxEnqueuedMessages) {
-                this._debug('enqueue', data);
-                this._messageQueue.push(data);
-            }
-        }
-    };
-    /**
-     * Register an event handler of a specific event type
-     */ ReconnectingWebSocket1.prototype.addEventListener = function(type, listener) {
-        if (this._listeners[type]) // @ts-ignore
-        this._listeners[type].push(listener);
-    };
-    ReconnectingWebSocket1.prototype.dispatchEvent = function(event) {
-        var e_1, _a;
-        var listeners = this._listeners[event.type];
-        if (listeners) try {
-            for(var listeners_1 = __values(listeners), listeners_1_1 = listeners_1.next(); !listeners_1_1.done; listeners_1_1 = listeners_1.next()){
-                var listener = listeners_1_1.value;
-                this._callEventListener(event, listener);
-            }
-        } catch (e_1_1) {
-            e_1 = {
-                error: e_1_1
-            };
-        } finally{
-            try {
-                if (listeners_1_1 && !listeners_1_1.done && (_a = listeners_1.return)) _a.call(listeners_1);
-            } finally{
-                if (e_1) throw e_1.error;
-            }
-        }
-        return true;
-    };
-    /**
-     * Removes an event listener
-     */ ReconnectingWebSocket1.prototype.removeEventListener = function(type, listener) {
-        if (this._listeners[type]) // @ts-ignore
-        this._listeners[type] = this._listeners[type].filter(function(l) {
-            return l !== listener;
-        });
-    };
-    ReconnectingWebSocket1.prototype._debug = function() {
-        var args = [];
-        for(var _i = 0; _i < arguments.length; _i++)args[_i] = arguments[_i];
-        if (this._options.debug) // not using spread because compiled version uses Symbols
-        // tslint:disable-next-line
-        console.log.apply(console, __spread([
-            'RWS>'
-        ], args));
-    };
-    ReconnectingWebSocket1.prototype._getNextDelay = function() {
-        var _a = this._options, _b = _a.reconnectionDelayGrowFactor, reconnectionDelayGrowFactor = _b === void 0 ? DEFAULT.reconnectionDelayGrowFactor : _b, _c = _a.minReconnectionDelay, minReconnectionDelay = _c === void 0 ? DEFAULT.minReconnectionDelay : _c, _d = _a.maxReconnectionDelay, maxReconnectionDelay = _d === void 0 ? DEFAULT.maxReconnectionDelay : _d;
-        var delay = 0;
-        if (this._retryCount > 0) {
-            delay = minReconnectionDelay * Math.pow(reconnectionDelayGrowFactor, this._retryCount - 1);
-            if (delay > maxReconnectionDelay) delay = maxReconnectionDelay;
-        }
-        this._debug('next delay', delay);
-        return delay;
-    };
-    ReconnectingWebSocket1.prototype._wait = function() {
-        var _this = this;
-        return new Promise(function(resolve) {
-            setTimeout(resolve, _this._getNextDelay());
-        });
-    };
-    ReconnectingWebSocket1.prototype._getNextUrl = function(urlProvider) {
-        if (typeof urlProvider === 'string') return Promise.resolve(urlProvider);
-        if (typeof urlProvider === 'function') {
-            var url = urlProvider();
-            if (typeof url === 'string') return Promise.resolve(url);
-            if (!!url.then) return url;
-        }
-        throw Error('Invalid URL');
-    };
-    ReconnectingWebSocket1.prototype._connect = function() {
-        var _this = this;
-        if (this._connectLock || !this._shouldReconnect) return;
-        this._connectLock = true;
-        var _a = this._options, _b = _a.maxRetries, maxRetries = _b === void 0 ? DEFAULT.maxRetries : _b, _c = _a.connectionTimeout, connectionTimeout = _c === void 0 ? DEFAULT.connectionTimeout : _c, _d = _a.WebSocket, WebSocket = _d === void 0 ? getGlobalWebSocket() : _d;
-        if (this._retryCount >= maxRetries) {
-            this._debug('max retries reached', this._retryCount, '>=', maxRetries);
-            return;
-        }
-        this._retryCount++;
-        this._debug('connect', this._retryCount);
-        this._removeListeners();
-        if (!isWebSocket(WebSocket)) throw Error('No valid WebSocket class provided');
-        this._wait().then(function() {
-            return _this._getNextUrl(_this._url);
-        }).then(function(url) {
-            // close could be called before creating the ws
-            if (_this._closeCalled) return;
-            _this._debug('connect', {
-                url: url,
-                protocols: _this._protocols
-            });
-            _this._ws = _this._protocols ? new WebSocket(url, _this._protocols) : new WebSocket(url);
-            _this._ws.binaryType = _this._binaryType;
-            _this._connectLock = false;
-            _this._addListeners();
-            _this._connectTimeout = setTimeout(function() {
-                return _this._handleTimeout();
-            }, connectionTimeout);
-        });
-    };
-    ReconnectingWebSocket1.prototype._handleTimeout = function() {
-        this._debug('timeout event');
-        this._handleError(new ErrorEvent(Error('TIMEOUT'), this));
-    };
-    ReconnectingWebSocket1.prototype._disconnect = function(code, reason) {
-        if (code === void 0) code = 1000;
-        this._clearTimeouts();
-        if (!this._ws) return;
-        this._removeListeners();
-        try {
-            this._ws.close(code, reason);
-            this._handleClose(new CloseEvent(code, reason, this));
-        } catch (error) {
-        // ignore
-        }
-    };
-    ReconnectingWebSocket1.prototype._acceptOpen = function() {
-        this._debug('accept open');
-        this._retryCount = 0;
-    };
-    ReconnectingWebSocket1.prototype._callEventListener = function(event, listener) {
-        if ('handleEvent' in listener) // @ts-ignore
-        listener.handleEvent(event);
-        else // @ts-ignore
-        listener(event);
-    };
-    ReconnectingWebSocket1.prototype._removeListeners = function() {
-        if (!this._ws) return;
-        this._debug('removeListeners');
-        this._ws.removeEventListener('open', this._handleOpen);
-        this._ws.removeEventListener('close', this._handleClose);
-        this._ws.removeEventListener('message', this._handleMessage);
-        // @ts-ignore
-        this._ws.removeEventListener('error', this._handleError);
-    };
-    ReconnectingWebSocket1.prototype._addListeners = function() {
-        if (!this._ws) return;
-        this._debug('addListeners');
-        this._ws.addEventListener('open', this._handleOpen);
-        this._ws.addEventListener('close', this._handleClose);
-        this._ws.addEventListener('message', this._handleMessage);
-        // @ts-ignore
-        this._ws.addEventListener('error', this._handleError);
-    };
-    ReconnectingWebSocket1.prototype._clearTimeouts = function() {
-        clearTimeout(this._connectTimeout);
-        clearTimeout(this._uptimeTimeout);
-    };
-    return ReconnectingWebSocket1;
-}();
-exports.default = ReconnectingWebSocket;
+}
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["hqSpz","2OpUZ"], "2OpUZ", "parcelRequire25d8")
+},{"js-cookie":"c8bBu","date-fns/format":"lnm6V","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["dx8iv","HaqPS"], "HaqPS", "parcelRequire25d8")
 
-//# sourceMappingURL=index.6690e0da.js.map
+//# sourceMappingURL=index.b50aa2ba.js.map

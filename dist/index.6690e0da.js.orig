@@ -527,26 +527,26 @@ function hmrAcceptRun(bundle, id) {
 
 },{}],"2OpUZ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _chatWindowElementsJs = require("./chat_window_elements.js");
-var _settingsElementsJs = require("./settings_elements.js");
-var _authorizationElementsJs = require("./authorization_elements.js");
-var _submitJs = require("./submit.js");
+var _chatWindowElementsJs = require("./chat_window_elements.ts");
+var _settingsElementsJs = require("./settings_elements.ts");
+var _authorizationElementsJs = require("./authorization_elements.ts");
+var _submitJs = require("./submit.ts");
 var _jsCookie = require("js-cookie");
 var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
 var _webSocketOperations = require("./webSocketOperations");
 var _webSocketOperationsDefault = parcelHelpers.interopDefault(_webSocketOperations);
 const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTE1NjIzMTUsImV4cCI6MTY1MjAwODcxNX0.exVSvFphWH51VkT-7o5L7rXnL0cwoz5Pjz-p2K3rytg';
 _chatWindowElementsJs.CHAT_SCREEN_ELEMENTS.SETTING_BUTTON.addEventListener('click', ()=>{
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.remove('hide');
+    _settingsElementsJs.Settings_elements.SETTING_WINDOW.classList.remove('hide');
+    _settingsElementsJs.Settings_elements.SETTING_BACKGROUND.classList.remove('hide');
 });
-_settingsElementsJs.SETTINGS_ELEMENTS.SETTING_CLOSE.addEventListener('click', ()=>{
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.add('hide');
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
+_settingsElementsJs.Settings_elements.SETTING_CLOSE.addEventListener('click', ()=>{
+    _settingsElementsJs.Settings_elements.SETTING_WINDOW.classList.add('hide');
+    _settingsElementsJs.Settings_elements.SETTING_BACKGROUND.classList.add('hide');
 });
-_settingsElementsJs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.addEventListener('click', (e)=>{
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.add('hide');
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
+_settingsElementsJs.Settings_elements.SETTING_BACKGROUND.addEventListener('click', (e)=>{
+    _settingsElementsJs.Settings_elements.SETTING_WINDOW.classList.add('hide');
+    _settingsElementsJs.Settings_elements.SETTING_BACKGROUND.classList.add('hide');
     _authorizationElementsJs.AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
     _submitJs.SUBMIT_ELEMENTS.CODE.classList.add('hide');
 });
@@ -556,13 +556,13 @@ _chatWindowElementsJs.CHAT_SCREEN_ELEMENTS.INPUT_FORM.addEventListener('submit',
     _chatWindowElementsJs.CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value = '';
 });
 _authorizationElementsJs.AUTH_ELEMENTS.CLOSE.addEventListener('click', ()=>{
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
+    _settingsElementsJs.Settings_elements.SETTING_BACKGROUND.classList.add('hide');
     _authorizationElementsJs.AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
     _chatWindowElementsJs.getMessageStory();
     _webSocketOperations.connectOnServer();
 });
 _submitJs.SUBMIT_ELEMENTS.CLOSE.addEventListener('click', ()=>{
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
+    _settingsElementsJs.Settings_elements.SETTING_BACKGROUND.classList.add('hide');
     _submitJs.SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.add('hide');
 });
 _submitJs.SUBMIT_ELEMENTS.CODE_FORM.addEventListener('submit', (e)=>{
@@ -580,11 +580,11 @@ function setCookiesToken() {
     showUserNameWindow();
 }
 function showUserNameWindow() {
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
-    _settingsElementsJs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.remove('hide');
+    _settingsElementsJs.Settings_elements.SETTING_WINDOW.classList.remove('hide');
+    _settingsElementsJs.Settings_elements.SETTING_BACKGROUND.classList.remove('hide');
     _submitJs.SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.add('hide');
 }
-_settingsElementsJs.SETTINGS_ELEMENTS.SETTING_NAME_FORM.addEventListener('submit', (e)=>{
+_settingsElementsJs.Settings_elements.SETTING_NAME_FORM.addEventListener('submit', (e)=>{
     e.preventDefault();
     _settingsElementsJs.setUserName();
 });
@@ -608,7 +608,7 @@ async function testUserName() {
     }
 }
 
-},{"./chat_window_elements.js":"kWvmn","./settings_elements.js":"hjjhO","./authorization_elements.js":"aBJMP","./submit.js":"9jUCy","js-cookie":"c8bBu","./webSocketOperations":"83w8i","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kWvmn":[function(require,module,exports) {
+},{"./chat_window_elements.ts":"kWvmn","./settings_elements.ts":"hjjhO","./authorization_elements.ts":"aBJMP","./submit.ts":"9jUCy","js-cookie":"c8bBu","./webSocketOperations":"83w8i","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kWvmn":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CHAT_SCREEN_ELEMENTS", ()=>CHAT_SCREEN_ELEMENTS
@@ -750,24 +750,24 @@ async function getMessageStory() {
 },{}],"lnm6V":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../isValid/index.js");
+var _indexJs = require("../isValid/index.ts");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../locale/en-US/index.js");
+var _indexJs1 = require("../locale/en-US/index.ts");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../subMilliseconds/index.js");
+var _indexJs2 = require("../subMilliseconds/index.ts");
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
-var _indexJs3 = require("../toDate/index.js");
+var _indexJs3 = require("../toDate/index.ts");
 var _indexJsDefault3 = parcelHelpers.interopDefault(_indexJs3);
-var _indexJs4 = require("../_lib/format/formatters/index.js");
+var _indexJs4 = require("../_lib/format/formatters/index.ts");
 var _indexJsDefault4 = parcelHelpers.interopDefault(_indexJs4);
-var _indexJs5 = require("../_lib/format/longFormatters/index.js");
+var _indexJs5 = require("../_lib/format/longFormatters/index.ts");
 var _indexJsDefault5 = parcelHelpers.interopDefault(_indexJs5);
-var _indexJs6 = require("../_lib/getTimezoneOffsetInMilliseconds/index.js");
+var _indexJs6 = require("../_lib/getTimezoneOffsetInMilliseconds/index.ts");
 var _indexJsDefault6 = parcelHelpers.interopDefault(_indexJs6);
-var _indexJs7 = require("../_lib/protectedTokens/index.js");
-var _indexJs8 = require("../_lib/toInteger/index.js");
+var _indexJs7 = require("../_lib/protectedTokens/index.ts");
+var _indexJs8 = require("../_lib/toInteger/index.ts");
 var _indexJsDefault7 = parcelHelpers.interopDefault(_indexJs8);
-var _indexJs9 = require("../_lib/requiredArgs/index.js"); // This RegExp consists of three parts separated by `|`:
+var _indexJs9 = require("../_lib/requiredArgs/index.ts"); // This RegExp consists of three parts separated by `|`:
 var _indexJsDefault8 = parcelHelpers.interopDefault(_indexJs9);
 // - [yYQqMLwIdDecihHKkms]o matches any available ordinal number token
 //   (one of the certain letters followed by `o`)
@@ -841,14 +841,14 @@ function cleanEscapedString(input) {
     return input.match(escapedStringRegExp)[1].replace(doubleQuoteRegExp, "'");
 }
 
-},{"../isValid/index.js":"eXoMl","../locale/en-US/index.js":"8XKCq","../subMilliseconds/index.js":"lL2M9","../toDate/index.js":"fsust","../_lib/format/formatters/index.js":"3cYKM","../_lib/format/longFormatters/index.js":"1ztit","../_lib/getTimezoneOffsetInMilliseconds/index.js":"bc74C","../_lib/protectedTokens/index.js":"4R0Xq","../_lib/toInteger/index.js":"f7kKX","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eXoMl":[function(require,module,exports) {
+},{"../isValid/index.ts":"eXoMl","../locale/en-US/index.ts":"8XKCq","../subMilliseconds/index.ts":"lL2M9","../toDate/index.ts":"fsust","../_lib/format/formatters/index.ts":"3cYKM","../_lib/format/longFormatters/index.ts":"1ztit","../_lib/getTimezoneOffsetInMilliseconds/index.ts":"bc74C","../_lib/protectedTokens/index.ts":"4R0Xq","../_lib/toInteger/index.ts":"f7kKX","../_lib/requiredArgs/index.ts":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eXoMl":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../isDate/index.js");
+var _indexJs = require("../isDate/index.ts");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../toDate/index.js");
+var _indexJs1 = require("../toDate/index.ts");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../_lib/requiredArgs/index.js");
+var _indexJs2 = require("../_lib/requiredArgs/index.ts");
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
 function isValid(dirtyDate) {
     _indexJsDefault2.default(1, arguments);
@@ -858,10 +858,10 @@ function isValid(dirtyDate) {
 }
 exports.default = isValid;
 
-},{"../isDate/index.js":"kqNhT","../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kqNhT":[function(require,module,exports) {
+},{"../isDate/index.ts":"kqNhT","../toDate/index.ts":"fsust","../_lib/requiredArgs/index.ts":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kqNhT":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../_lib/requiredArgs/index.js");
+var _indexJs = require("../_lib/requiredArgs/index.ts");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
 function isDate(value) {
     _indexJsDefault.default(1, arguments);
@@ -869,7 +869,7 @@ function isDate(value) {
 }
 exports.default = isDate;
 
-},{"../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9wUgQ":[function(require,module,exports) {
+},{"../_lib/requiredArgs/index.ts":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9wUgQ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function requiredArgs(required, args) {
@@ -910,7 +910,7 @@ exports.export = function(dest, destName, get) {
 },{}],"fsust":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../_lib/requiredArgs/index.js");
+var _indexJs = require("../_lib/requiredArgs/index.ts");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
 function toDate(argument) {
     _indexJsDefault.default(1, arguments);
@@ -929,18 +929,18 @@ function toDate(argument) {
 }
 exports.default = toDate;
 
-},{"../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8XKCq":[function(require,module,exports) {
+},{"../_lib/requiredArgs/index.ts":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8XKCq":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("./_lib/formatDistance/index.js");
+var _indexJs = require("./_lib/formatDistance/index.ts");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("./_lib/formatLong/index.js");
+var _indexJs1 = require("./_lib/formatLong/index.ts");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("./_lib/formatRelative/index.js");
+var _indexJs2 = require("./_lib/formatRelative/index.ts");
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
-var _indexJs3 = require("./_lib/localize/index.js");
+var _indexJs3 = require("./_lib/localize/index.ts");
 var _indexJsDefault3 = parcelHelpers.interopDefault(_indexJs3);
-var _indexJs4 = require("./_lib/match/index.js");
+var _indexJs4 = require("./_lib/match/index.ts");
 var _indexJsDefault4 = parcelHelpers.interopDefault(_indexJs4);
 /**
  * @type {Locale}
@@ -964,7 +964,7 @@ var _indexJsDefault4 = parcelHelpers.interopDefault(_indexJs4);
 };
 exports.default = locale;
 
-},{"./_lib/formatDistance/index.js":"lLrcE","./_lib/formatLong/index.js":"cA6Xb","./_lib/formatRelative/index.js":"9QlMp","./_lib/localize/index.js":"jv1Fa","./_lib/match/index.js":"1wA2o","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lLrcE":[function(require,module,exports) {
+},{"./_lib/formatDistance/index.ts":"lLrcE","./_lib/formatLong/index.ts":"cA6Xb","./_lib/formatRelative/index.ts":"9QlMp","./_lib/localize/index.ts":"jv1Fa","./_lib/match/index.ts":"1wA2o","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lLrcE":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var formatDistanceLocale = {
@@ -1047,7 +1047,7 @@ exports.default = formatDistance;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cA6Xb":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../../_lib/buildFormatLongFn/index.js");
+var _indexJs = require("../../../_lib/buildFormatLongFn/index.ts");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
 var dateFormats = {
     full: 'EEEE, MMMM do, y',
@@ -1083,7 +1083,7 @@ var formatLong = {
 };
 exports.default = formatLong;
 
-},{"../../../_lib/buildFormatLongFn/index.js":"h1FGd","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"h1FGd":[function(require,module,exports) {
+},{"../../../_lib/buildFormatLongFn/index.ts":"h1FGd","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"h1FGd":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function buildFormatLongFn(args) {
@@ -1116,7 +1116,7 @@ exports.default = formatRelative;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jv1Fa":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../../_lib/buildLocalizeFn/index.js");
+var _indexJs = require("../../../_lib/buildLocalizeFn/index.ts");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
 var eraValues = {
     narrow: [
@@ -1349,7 +1349,7 @@ var localize = {
 };
 exports.default = localize;
 
-},{"../../../_lib/buildLocalizeFn/index.js":"5l2rZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5l2rZ":[function(require,module,exports) {
+},{"../../../_lib/buildLocalizeFn/index.ts":"5l2rZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5l2rZ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function buildLocalizeFn(args) {
@@ -1375,9 +1375,9 @@ exports.default = buildLocalizeFn;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1wA2o":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../../_lib/buildMatchFn/index.js");
+var _indexJs = require("../../../_lib/buildMatchFn/index.ts");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../../../_lib/buildMatchPatternFn/index.js");
+var _indexJs1 = require("../../../_lib/buildMatchPatternFn/index.ts");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
 var matchOrdinalNumberPattern = /^(\d+)(th|st|nd|rd)?/i;
 var parseOrdinalNumberPattern = /\d+/i;
@@ -1526,7 +1526,7 @@ var match = {
 };
 exports.default = match;
 
-},{"../../../_lib/buildMatchFn/index.js":"2nEf9","../../../_lib/buildMatchPatternFn/index.js":"4GjCS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2nEf9":[function(require,module,exports) {
+},{"../../../_lib/buildMatchFn/index.ts":"2nEf9","../../../_lib/buildMatchPatternFn/index.ts":"4GjCS","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2nEf9":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function buildMatchFn(args) {
@@ -1592,11 +1592,11 @@ exports.default = buildMatchPatternFn;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lL2M9":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../_lib/toInteger/index.js");
+var _indexJs = require("../_lib/toInteger/index.ts");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../addMilliseconds/index.js");
+var _indexJs1 = require("../addMilliseconds/index.ts");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../_lib/requiredArgs/index.js");
+var _indexJs2 = require("../_lib/requiredArgs/index.ts");
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
 function subMilliseconds(dirtyDate, dirtyAmount) {
     _indexJsDefault2.default(2, arguments);
@@ -1605,7 +1605,7 @@ function subMilliseconds(dirtyDate, dirtyAmount) {
 }
 exports.default = subMilliseconds;
 
-},{"../_lib/toInteger/index.js":"f7kKX","../addMilliseconds/index.js":"7Tp9s","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"f7kKX":[function(require,module,exports) {
+},{"../_lib/toInteger/index.ts":"f7kKX","../addMilliseconds/index.ts":"7Tp9s","../_lib/requiredArgs/index.ts":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"f7kKX":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function toInteger(dirtyNumber) {
@@ -1619,11 +1619,11 @@ exports.default = toInteger;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7Tp9s":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../_lib/toInteger/index.js");
+var _indexJs = require("../_lib/toInteger/index.ts");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../toDate/index.js");
+var _indexJs1 = require("../toDate/index.ts");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../_lib/requiredArgs/index.js");
+var _indexJs2 = require("../_lib/requiredArgs/index.ts");
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
 function addMilliseconds(dirtyDate, dirtyAmount) {
     _indexJsDefault2.default(2, arguments);
@@ -1633,22 +1633,22 @@ function addMilliseconds(dirtyDate, dirtyAmount) {
 }
 exports.default = addMilliseconds;
 
-},{"../_lib/toInteger/index.js":"f7kKX","../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3cYKM":[function(require,module,exports) {
+},{"../_lib/toInteger/index.ts":"f7kKX","../toDate/index.ts":"fsust","../_lib/requiredArgs/index.ts":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3cYKM":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../../_lib/getUTCDayOfYear/index.js");
+var _indexJs = require("../../../_lib/getUTCDayOfYear/index.ts");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../../../_lib/getUTCISOWeek/index.js");
+var _indexJs1 = require("../../../_lib/getUTCISOWeek/index.ts");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../../../_lib/getUTCISOWeekYear/index.js");
+var _indexJs2 = require("../../../_lib/getUTCISOWeekYear/index.ts");
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
-var _indexJs3 = require("../../../_lib/getUTCWeek/index.js");
+var _indexJs3 = require("../../../_lib/getUTCWeek/index.ts");
 var _indexJsDefault3 = parcelHelpers.interopDefault(_indexJs3);
-var _indexJs4 = require("../../../_lib/getUTCWeekYear/index.js");
+var _indexJs4 = require("../../../_lib/getUTCWeekYear/index.ts");
 var _indexJsDefault4 = parcelHelpers.interopDefault(_indexJs4);
-var _indexJs5 = require("../../addLeadingZeros/index.js");
+var _indexJs5 = require("../../addLeadingZeros/index.ts");
 var _indexJsDefault5 = parcelHelpers.interopDefault(_indexJs5);
-var _indexJs6 = require("../lightFormatters/index.js");
+var _indexJs6 = require("../lightFormatters/index.ts");
 var _indexJsDefault6 = parcelHelpers.interopDefault(_indexJs6);
 var dayPeriodEnum = {
     am: 'am',
@@ -2368,12 +2368,12 @@ function formatTimezone(offset, dirtyDelimiter) {
 }
 exports.default = formatters;
 
-},{"../../../_lib/getUTCDayOfYear/index.js":"7wqIf","../../../_lib/getUTCISOWeek/index.js":"4nEkI","../../../_lib/getUTCISOWeekYear/index.js":"03QaQ","../../../_lib/getUTCWeek/index.js":"b7GgV","../../../_lib/getUTCWeekYear/index.js":"8i6st","../../addLeadingZeros/index.js":"6pP6x","../lightFormatters/index.js":"9oZiA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7wqIf":[function(require,module,exports) {
+},{"../../../_lib/getUTCDayOfYear/index.ts":"7wqIf","../../../_lib/getUTCISOWeek/index.ts":"4nEkI","../../../_lib/getUTCISOWeekYear/index.ts":"03QaQ","../../../_lib/getUTCWeek/index.ts":"b7GgV","../../../_lib/getUTCWeekYear/index.ts":"8i6st","../../addLeadingZeros/index.ts":"6pP6x","../lightFormatters/index.ts":"9oZiA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7wqIf":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../toDate/index.js");
+var _indexJs = require("../../toDate/index.ts");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../requiredArgs/index.js");
+var _indexJs1 = require("../requiredArgs/index.ts");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
 var MILLISECONDS_IN_DAY = 86400000; // This function will be a part of public API when UTC function will be implemented.
 function getUTCDayOfYear(dirtyDate) {
@@ -2388,16 +2388,16 @@ function getUTCDayOfYear(dirtyDate) {
 }
 exports.default = getUTCDayOfYear;
 
-},{"../../toDate/index.js":"fsust","../requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4nEkI":[function(require,module,exports) {
+},{"../../toDate/index.ts":"fsust","../requiredArgs/index.ts":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4nEkI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../toDate/index.js");
+var _indexJs = require("../../toDate/index.ts");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../startOfUTCISOWeek/index.js");
+var _indexJs1 = require("../startOfUTCISOWeek/index.ts");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../startOfUTCISOWeekYear/index.js");
+var _indexJs2 = require("../startOfUTCISOWeekYear/index.ts");
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
-var _indexJs3 = require("../requiredArgs/index.js");
+var _indexJs3 = require("../requiredArgs/index.ts");
 var _indexJsDefault3 = parcelHelpers.interopDefault(_indexJs3);
 var MILLISECONDS_IN_WEEK = 604800000; // This function will be a part of public API when UTC function will be implemented.
 function getUTCISOWeek(dirtyDate) {
@@ -2410,12 +2410,12 @@ function getUTCISOWeek(dirtyDate) {
 }
 exports.default = getUTCISOWeek;
 
-},{"../../toDate/index.js":"fsust","../startOfUTCISOWeek/index.js":"3ta4C","../startOfUTCISOWeekYear/index.js":"4u8O6","../requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3ta4C":[function(require,module,exports) {
+},{"../../toDate/index.ts":"fsust","../startOfUTCISOWeek/index.ts":"3ta4C","../startOfUTCISOWeekYear/index.ts":"4u8O6","../requiredArgs/index.ts":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3ta4C":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../toDate/index.js");
+var _indexJs = require("../../toDate/index.ts");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../requiredArgs/index.js"); // This function will be a part of public API when UTC function will be implemented.
+var _indexJs1 = require("../requiredArgs/index.ts"); // This function will be a part of public API when UTC function will be implemented.
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
 function startOfUTCISOWeek(dirtyDate) {
     _indexJsDefault1.default(1, arguments);
@@ -2429,14 +2429,14 @@ function startOfUTCISOWeek(dirtyDate) {
 }
 exports.default = startOfUTCISOWeek;
 
-},{"../../toDate/index.js":"fsust","../requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4u8O6":[function(require,module,exports) {
+},{"../../toDate/index.ts":"fsust","../requiredArgs/index.ts":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4u8O6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../getUTCISOWeekYear/index.js");
+var _indexJs = require("../getUTCISOWeekYear/index.ts");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../startOfUTCISOWeek/index.js");
+var _indexJs1 = require("../startOfUTCISOWeek/index.ts");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../requiredArgs/index.js"); // This function will be a part of public API when UTC function will be implemented.
+var _indexJs2 = require("../requiredArgs/index.ts"); // This function will be a part of public API when UTC function will be implemented.
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
 function startOfUTCISOWeekYear(dirtyDate) {
     _indexJsDefault2.default(1, arguments);
@@ -2449,14 +2449,14 @@ function startOfUTCISOWeekYear(dirtyDate) {
 }
 exports.default = startOfUTCISOWeekYear;
 
-},{"../getUTCISOWeekYear/index.js":"03QaQ","../startOfUTCISOWeek/index.js":"3ta4C","../requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"03QaQ":[function(require,module,exports) {
+},{"../getUTCISOWeekYear/index.ts":"03QaQ","../startOfUTCISOWeek/index.ts":"3ta4C","../requiredArgs/index.ts":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"03QaQ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../toDate/index.js");
+var _indexJs = require("../../toDate/index.ts");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../requiredArgs/index.js");
+var _indexJs1 = require("../requiredArgs/index.ts");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../startOfUTCISOWeek/index.js"); // This function will be a part of public API when UTC function will be implemented.
+var _indexJs2 = require("../startOfUTCISOWeek/index.ts"); // This function will be a part of public API when UTC function will be implemented.
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
 function getUTCISOWeekYear(dirtyDate) {
     _indexJsDefault1.default(1, arguments);
@@ -2476,16 +2476,16 @@ function getUTCISOWeekYear(dirtyDate) {
 }
 exports.default = getUTCISOWeekYear;
 
-},{"../../toDate/index.js":"fsust","../requiredArgs/index.js":"9wUgQ","../startOfUTCISOWeek/index.js":"3ta4C","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"b7GgV":[function(require,module,exports) {
+},{"../../toDate/index.ts":"fsust","../requiredArgs/index.ts":"9wUgQ","../startOfUTCISOWeek/index.ts":"3ta4C","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"b7GgV":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../toDate/index.js");
+var _indexJs = require("../../toDate/index.ts");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../startOfUTCWeek/index.js");
+var _indexJs1 = require("../startOfUTCWeek/index.ts");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../startOfUTCWeekYear/index.js");
+var _indexJs2 = require("../startOfUTCWeekYear/index.ts");
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
-var _indexJs3 = require("../requiredArgs/index.js");
+var _indexJs3 = require("../requiredArgs/index.ts");
 var _indexJsDefault3 = parcelHelpers.interopDefault(_indexJs3);
 var MILLISECONDS_IN_WEEK = 604800000; // This function will be a part of public API when UTC function will be implemented.
 function getUTCWeek(dirtyDate, options) {
@@ -2498,14 +2498,14 @@ function getUTCWeek(dirtyDate, options) {
 }
 exports.default = getUTCWeek;
 
-},{"../../toDate/index.js":"fsust","../startOfUTCWeek/index.js":"dDZbE","../startOfUTCWeekYear/index.js":"bJAVl","../requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dDZbE":[function(require,module,exports) {
+},{"../../toDate/index.ts":"fsust","../startOfUTCWeek/index.ts":"dDZbE","../startOfUTCWeekYear/index.ts":"bJAVl","../requiredArgs/index.ts":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dDZbE":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../toDate/index.js");
+var _indexJs = require("../../toDate/index.ts");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../requiredArgs/index.js");
+var _indexJs1 = require("../requiredArgs/index.ts");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../toInteger/index.js"); // This function will be a part of public API when UTC function will be implemented.
+var _indexJs2 = require("../toInteger/index.ts"); // This function will be a part of public API when UTC function will be implemented.
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
 function startOfUTCWeek(dirtyDate, dirtyOptions) {
     _indexJsDefault1.default(1, arguments);
@@ -2524,16 +2524,16 @@ function startOfUTCWeek(dirtyDate, dirtyOptions) {
 }
 exports.default = startOfUTCWeek;
 
-},{"../../toDate/index.js":"fsust","../requiredArgs/index.js":"9wUgQ","../toInteger/index.js":"f7kKX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bJAVl":[function(require,module,exports) {
+},{"../../toDate/index.ts":"fsust","../requiredArgs/index.ts":"9wUgQ","../toInteger/index.ts":"f7kKX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bJAVl":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../getUTCWeekYear/index.js");
+var _indexJs = require("../getUTCWeekYear/index.ts");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../requiredArgs/index.js");
+var _indexJs1 = require("../requiredArgs/index.ts");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../startOfUTCWeek/index.js");
+var _indexJs2 = require("../startOfUTCWeek/index.ts");
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
-var _indexJs3 = require("../toInteger/index.js"); // This function will be a part of public API when UTC function will be implemented.
+var _indexJs3 = require("../toInteger/index.ts"); // This function will be a part of public API when UTC function will be implemented.
 var _indexJsDefault3 = parcelHelpers.interopDefault(_indexJs3);
 function startOfUTCWeekYear(dirtyDate, dirtyOptions) {
     _indexJsDefault1.default(1, arguments);
@@ -2551,16 +2551,16 @@ function startOfUTCWeekYear(dirtyDate, dirtyOptions) {
 }
 exports.default = startOfUTCWeekYear;
 
-},{"../getUTCWeekYear/index.js":"8i6st","../requiredArgs/index.js":"9wUgQ","../startOfUTCWeek/index.js":"dDZbE","../toInteger/index.js":"f7kKX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8i6st":[function(require,module,exports) {
+},{"../getUTCWeekYear/index.ts":"8i6st","../requiredArgs/index.ts":"9wUgQ","../startOfUTCWeek/index.ts":"dDZbE","../toInteger/index.ts":"f7kKX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8i6st":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../toDate/index.js");
+var _indexJs = require("../../toDate/index.ts");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
-var _indexJs1 = require("../requiredArgs/index.js");
+var _indexJs1 = require("../requiredArgs/index.ts");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
-var _indexJs2 = require("../startOfUTCWeek/index.js");
+var _indexJs2 = require("../startOfUTCWeek/index.ts");
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
-var _indexJs3 = require("../toInteger/index.js"); // This function will be a part of public API when UTC function will be implemented.
+var _indexJs3 = require("../toInteger/index.ts"); // This function will be a part of public API when UTC function will be implemented.
 var _indexJsDefault3 = parcelHelpers.interopDefault(_indexJs3);
 function getUTCWeekYear(dirtyDate, dirtyOptions) {
     _indexJsDefault1.default(1, arguments);
@@ -2586,7 +2586,7 @@ function getUTCWeekYear(dirtyDate, dirtyOptions) {
 }
 exports.default = getUTCWeekYear;
 
-},{"../../toDate/index.js":"fsust","../requiredArgs/index.js":"9wUgQ","../startOfUTCWeek/index.js":"dDZbE","../toInteger/index.js":"f7kKX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6pP6x":[function(require,module,exports) {
+},{"../../toDate/index.ts":"fsust","../requiredArgs/index.ts":"9wUgQ","../startOfUTCWeek/index.ts":"dDZbE","../toInteger/index.ts":"f7kKX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6pP6x":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function addLeadingZeros(number, targetLength) {
@@ -2600,7 +2600,7 @@ exports.default = addLeadingZeros;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9oZiA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _indexJs = require("../../addLeadingZeros/index.js");
+var _indexJs = require("../../addLeadingZeros/index.ts");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
 /*
  * |     | Unit                           |     | Unit                           |
@@ -2679,7 +2679,7 @@ var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
 };
 exports.default = formatters;
 
-},{"../../addLeadingZeros/index.js":"6pP6x","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1ztit":[function(require,module,exports) {
+},{"../../addLeadingZeros/index.ts":"6pP6x","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1ztit":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function dateLongFormatter(pattern, formatLong) {
@@ -2804,13 +2804,13 @@ function throwProtectedError(token, format, input) {
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hjjhO":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "SETTINGS_ELEMENTS", ()=>SETTINGS_ELEMENTS
+parcelHelpers.export(exports, "Settings_elements", ()=>Settings_elements
 );
 parcelHelpers.export(exports, "setUserName", ()=>setUserName
 );
 var _jsCookie = require("js-cookie");
 var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
-const SETTINGS_ELEMENTS = {
+const Settings_elements = {
     SETTING_BACKGROUND: document.querySelector('.modal-background'),
     SETTING_CLOSE: document.querySelector('.chat-settings__close-button'),
     SETTING_NAME_FORM: document.querySelector('.chat-settings__user-name-form'),
@@ -2822,7 +2822,7 @@ async function setUserName() {
     const url = "https://mighty-cove-31255.herokuapp.com/api/user";
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib2xzaG9mZkB5YW5kZXgucnUiLCJpYXQiOjE2NTE1NjIzMTUsImV4cCI6MTY1MjAwODcxNX0.exVSvFphWH51VkT-7o5L7rXnL0cwoz5Pjz-p2K3rytg' //Cookies.get('token');
     ;
-    const userName = SETTINGS_ELEMENTS.SETTING_NAME_INPUT.value;
+    const userName = Settings_elements.SETTING_NAME_INPUT.value;
     try {
         let response = await fetch(url, {
             method: 'PATCH',

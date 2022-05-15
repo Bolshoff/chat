@@ -1,111 +1,137 @@
-import {
-  CHAT_SCREEN_ELEMENTS,
-  getMessageStory,
-  showOutputMessage,
-} from './chat_window_elements.js';
-import {SETTINGS_ELEMENTS, setUserName} from './settings_elements.js';
-import {AUTH_ELEMENTS, getAuthCodeForMail} from './authorization_elements.js';
-import {SUBMIT_ELEMENTS, } from './submit.js';
-import Cookies from 'js-cookie';
-import socket, {connectOnServer, sendMessage} from './webSocketOperations';
-
-CHAT_SCREEN_ELEMENTS.SETTING_BUTTON.addEventListener('click',()=>{
-
-  SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
-  SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.remove('hide');
-})
-
-SETTINGS_ELEMENTS.SETTING_CLOSE.addEventListener('click',()=>{
-  SETTINGS_ELEMENTS.SETTING_WINDOW.classList.add('hide');
-  SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
-})
-
-SETTINGS_ELEMENTS.SETTING_BACKGROUND.addEventListener('click',(e)=>{
-
-  SETTINGS_ELEMENTS.SETTING_WINDOW.classList.add('hide');
-  SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
-  AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
-  SUBMIT_ELEMENTS.CODE.classList.add('hide');
-})
-
-CHAT_SCREEN_ELEMENTS.INPUT_FORM.addEventListener('submit', (e)=>{
-  e.preventDefault();
-  sendMessage();
-
-  CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value = '';
-
-});
-
-AUTH_ELEMENTS.CLOSE.addEventListener('click', ()=>{
-  SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.remove('hide');
-  AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
-})
-
-SUBMIT_ELEMENTS.CLOSE.addEventListener('click', ()=>{
-
-  SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.add('hide');
-  SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
-})
-
-SUBMIT_ELEMENTS.CODE_FORM.addEventListener('submit',(e)=>{
-
-  SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.add('hide');
-  SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
-  e.preventDefault();
-  setCookiesToken();
-
-
-})
-
-AUTH_ELEMENTS.MAIL_FORM.addEventListener('submit', (e)=>{
-  e.preventDefault();
-  getAuthCodeForMail();
-  AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
-  SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.remove('hide');
-})
-
-
-function setCookiesToken(){
-  const token = SUBMIT_ELEMENTS.CODE.value;
-  Cookies.set('token', `${token}`);
-  showUserNameWindow();
-
-}
-function showUserNameWindow(){
-  SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
-  SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.remove('hide');
-  SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.add('hide');
-}
-
-SETTINGS_ELEMENTS.SETTING_NAME_FORM.addEventListener('submit',(e)=>{
-  e.preventDefault();
-  SETTINGS_ELEMENTS.SETTING_WINDOW.classList.add('hide');
-  SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
-  setUserName();
-  getMessageStory();
-  connectOnServer();
- setTimeout(showUserName, 1000);
-})
-
-async function showUserName(){
-  let token = Cookies.get('token');
-
-  try {
-    let user = await fetch('https://mighty-cove-31255.herokuapp.com/api/user/me',{
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}` ,
-      },
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
-    let userName = await user.json();
-    document.querySelector('.nickname').textContent = `Ник: ${userName.name}`;
-  }catch (e) {
-    alert(e);
-  }
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var chat_window_elements_js_1 = require("./chat_window_elements.js");
+var settings_elements_ts_1 = require("./settings_elements.ts");
+var authorization_elements_ts_1 = require("./authorization_elements.ts");
+var submit_js_1 = require("./submit.js");
+var js_cookie_1 = require("js-cookie");
+var webSocketOperations_1 = require("./webSocketOperations");
+chat_window_elements_js_1.CHAT_SCREEN_ELEMENTS.SETTING_BUTTON.addEventListener('click', function () {
+    settings_elements_ts_1.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
+    settings_elements_ts_1.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.remove('hide');
+});
+settings_elements_ts_1.SETTINGS_ELEMENTS.SETTING_CLOSE.addEventListener('click', function () {
+    settings_elements_ts_1.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.add('hide');
+    settings_elements_ts_1.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
+});
+settings_elements_ts_1.SETTINGS_ELEMENTS.SETTING_BACKGROUND.addEventListener('click', function (e) {
+    settings_elements_ts_1.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.add('hide');
+    settings_elements_ts_1.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
+    authorization_elements_ts_1.AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
+    submit_js_1.SUBMIT_ELEMENTS.CODE.classList.add('hide');
+});
+chat_window_elements_js_1.CHAT_SCREEN_ELEMENTS.INPUT_FORM.addEventListener('submit', function (e) {
+    e.preventDefault();
+    (0, webSocketOperations_1.sendMessage)();
+    chat_window_elements_js_1.CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value = '';
+});
+authorization_elements_ts_1.AUTH_ELEMENTS.CLOSE.addEventListener('click', function () {
+    submit_js_1.SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.remove('hide');
+    authorization_elements_ts_1.AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
+});
+submit_js_1.SUBMIT_ELEMENTS.CLOSE.addEventListener('click', function () {
+    submit_js_1.SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.add('hide');
+    settings_elements_ts_1.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
+});
+submit_js_1.SUBMIT_ELEMENTS.CODE_FORM.addEventListener('submit', function (e) {
+    submit_js_1.SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.add('hide');
+    settings_elements_ts_1.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
+    e.preventDefault();
+    setCookiesToken();
+});
+authorization_elements_ts_1.AUTH_ELEMENTS.MAIL_FORM.addEventListener('submit', function (e) {
+    e.preventDefault();
+    (0, authorization_elements_ts_1.getAuthCodeForMail)();
+    authorization_elements_ts_1.AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
+    submit_js_1.SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.remove('hide');
+});
+function setCookiesToken() {
+    var token = submit_js_1.SUBMIT_ELEMENTS.CODE.value;
+    js_cookie_1.default.set('token', "".concat(token));
+    showUserNameWindow();
 }
-
-CHAT_SCREEN_ELEMENTS.QUIT_BUTTON.addEventListener('click',()=>{
-  socket.close(1000, 'Выход из чата');
-})
-
-
+function showUserNameWindow() {
+    settings_elements_ts_1.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
+    settings_elements_ts_1.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.remove('hide');
+    submit_js_1.SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.add('hide');
+}
+settings_elements_ts_1.SETTINGS_ELEMENTS.SETTING_NAME_FORM.addEventListener('submit', function (e) {
+    e.preventDefault();
+    settings_elements_ts_1.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.add('hide');
+    settings_elements_ts_1.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
+    (0, settings_elements_ts_1.setUserName)();
+    (0, chat_window_elements_js_1.getMessageStory)();
+    (0, webSocketOperations_1.connectOnServer)();
+    setTimeout(showUserName, 1000);
+});
+function showUserName() {
+    return __awaiter(this, void 0, void 0, function () {
+        var token, user, userName, e_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    token = js_cookie_1.default.get('token');
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 4, , 5]);
+                    return [4 /*yield*/, fetch('https://mighty-cove-31255.herokuapp.com/api/user/me', {
+                            method: 'GET',
+                            headers: {
+                                'Authorization': "Bearer ".concat(token),
+                            },
+                        })];
+                case 2:
+                    user = _a.sent();
+                    return [4 /*yield*/, user.json()];
+                case 3:
+                    userName = _a.sent();
+                    document.querySelector('.nickname').textContent = "\u041D\u0438\u043A: ".concat(userName.name);
+                    return [3 /*break*/, 5];
+                case 4:
+                    e_1 = _a.sent();
+                    alert(e_1);
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
+            }
+        });
+    });
+}
+chat_window_elements_js_1.CHAT_SCREEN_ELEMENTS.QUIT_BUTTON.addEventListener('click', function () {
+    webSocketOperations_1.default.close(1000, 'Выход из чата');
+});

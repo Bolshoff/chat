@@ -1,38 +1,41 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sendMessage = exports.connectOnServer = void 0;
-var chat_window_elements_1 = require("./chat_window_elements");
-var format_1 = require("date-fns/format");
-var js_cookie_1 = require("js-cookie");
-var url = 'mighty-cove-31255.herokuapp.com/websockets?';
-var token = js_cookie_1.default.get('token');
-var socket = new WebSocket("ws://".concat(url).concat(token));
+const chat_window_elements_1 = require("./chat_window_elements");
+const format_1 = __importDefault(require("date-fns/format"));
+const js_cookie_1 = __importDefault(require("js-cookie"));
+const url = 'mighty-cove-31255.herokuapp.com/websockets?';
+const token = js_cookie_1.default.get('token');
+const socket = new WebSocket(`ws://${url}${token}`);
 function connectOnServer() {
-    var socket = new WebSocket("ws://".concat(url).concat(token));
-    socket.onopen = function (e) {
+    const socket = new WebSocket(`ws://${url}${token}`);
+    socket.onopen = function () {
         console.log(" Соединение установлено, работаем дальше");
     };
     socket.onmessage = function (event) {
         try {
-            var messageText = JSON.parse(event.data);
+            const messageText = JSON.parse(event.data);
             if (messageText.user.email === "abolshoff@yandex.ru") {
-                var message = chat_window_elements_1.CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
-                message.querySelector('.output-message__text').textContent = "\u042F: ".concat(messageText.text);
-                message.querySelector('.message__time').innerHTML = "".concat((0, format_1.default)(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm"));
+                const message = chat_window_elements_1.CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
+                message.querySelector('.output-message__text').textContent = `Я: ${messageText.text}`;
+                message.querySelector('.message__time').innerHTML = `${(0, format_1.default)(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`;
                 chat_window_elements_1.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
             }
             else {
-                var message = chat_window_elements_1.CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
-                message.querySelector('.input-message__text').textContent = "".concat(messageText.user.name, ": ").concat(messageText.text);
-                message.querySelector('.message__time').textContent = "".concat((0, format_1.default)(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm"));
+                const message = chat_window_elements_1.CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
+                message.querySelector('.input-message__text').textContent = `${messageText.user.name}: ${messageText.text}`;
+                message.querySelector('.message__time').textContent = `${(0, format_1.default)(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`;
                 chat_window_elements_1.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
             }
         }
         catch (e) {
             console.log(e);
         }
-        var messageContainer = document.querySelector('.container');
-        var isScrolledToBottom = messageContainer.scrollHeight - messageContainer.clientHeight <= messageContainer.scrollTop + 1;
+        const messageContainer = document.querySelector('.container');
+        const isScrolledToBottom = messageContainer.scrollHeight - messageContainer.clientHeight <= messageContainer.scrollTop + 1;
         if (!isScrolledToBottom) {
             messageContainer.scrollTop = messageContainer.scrollHeight - messageContainer.clientHeight;
         }
@@ -58,9 +61,9 @@ socket.onclose = function (event) {
     }
 };
 function sendMessage() {
-    var outputMessage = chat_window_elements_1.CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value;
+    const outputMessage = chat_window_elements_1.CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value;
     socket.send(JSON.stringify({
-        text: "".concat(outputMessage),
+        text: `${outputMessage}`,
     }));
 }
 exports.sendMessage = sendMessage;
