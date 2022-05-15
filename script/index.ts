@@ -65,7 +65,7 @@ AUTH_ELEMENTS.MAIL_FORM.addEventListener('submit', (e)=>{
 
 
 function setCookiesToken(){
-  const token = SUBMIT_ELEMENTS.CODE.value;
+  const token: string = SUBMIT_ELEMENTS.CODE.value;
   Cookies.set('token', `${token}`);
   showUserNameWindow();
 
@@ -87,7 +87,7 @@ SETTINGS_ELEMENTS.SETTING_NAME_FORM.addEventListener('submit',(e)=>{
 })
 
 async function showUserName(){
-  const token = Cookies.get('token');
+  const token: string | undefined = Cookies.get('token');
 
   try {
     const user = await fetch('https://mighty-cove-31255.herokuapp.com/api/user/me',{
@@ -97,7 +97,8 @@ async function showUserName(){
       },
     });
     const userName = await user.json();
-    document.querySelector('.nickname').textContent = `Ник: ${userName.name}`;
+    const nickName = document.querySelector('.nickname') as HTMLElement;
+    nickName.textContent = `Ник: ${userName.name}`;
   }catch (e) {
     alert(e);
   }

@@ -110,7 +110,8 @@ function showUserName() {
                 },
             });
             const userName = yield user.json();
-            document.querySelector('.nickname').textContent = `Ник: ${userName.name}`;
+            const nickName = document.querySelector('.nickname');
+            nickName.textContent = `Ник: ${userName.name}`;
         }
         catch (e) {
             alert(e);

@@ -527,51 +527,51 @@ function hmrAcceptRun(bundle, id) {
 
 },{}],"HaqPS":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _chatWindowElementsJs = require("./chat_window_elements.js");
-var _settingsElementsTs = require("./settings_elements.ts");
-var _authorizationElementsTs = require("./authorization_elements.ts");
+var _chatWindowElements = require("./chat_window_elements");
+var _settingsElements = require("./settings_elements");
+var _authorizationElements = require("./authorization_elements");
 var _submitJs = require("./submit.js");
 var _jsCookie = require("js-cookie");
 var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
 var _webSocketOperations = require("./webSocketOperations");
 var _webSocketOperationsDefault = parcelHelpers.interopDefault(_webSocketOperations);
-_chatWindowElementsJs.CHAT_SCREEN_ELEMENTS.SETTING_BUTTON.addEventListener('click', ()=>{
-    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
-    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.remove('hide');
+_chatWindowElements.CHAT_SCREEN_ELEMENTS.SETTING_BUTTON.addEventListener('click', ()=>{
+    _settingsElements.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
+    _settingsElements.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.remove('hide');
 });
-_settingsElementsTs.SETTINGS_ELEMENTS.SETTING_CLOSE.addEventListener('click', ()=>{
-    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.add('hide');
-    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
+_settingsElements.SETTINGS_ELEMENTS.SETTING_CLOSE.addEventListener('click', ()=>{
+    _settingsElements.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.add('hide');
+    _settingsElements.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
 });
-_settingsElementsTs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.addEventListener('click', (e)=>{
-    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.add('hide');
-    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
-    _authorizationElementsTs.AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
+_settingsElements.SETTINGS_ELEMENTS.SETTING_BACKGROUND.addEventListener('click', ()=>{
+    _settingsElements.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.add('hide');
+    _settingsElements.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
+    _authorizationElements.AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
     _submitJs.SUBMIT_ELEMENTS.CODE.classList.add('hide');
 });
-_chatWindowElementsJs.CHAT_SCREEN_ELEMENTS.INPUT_FORM.addEventListener('submit', (e)=>{
+_chatWindowElements.CHAT_SCREEN_ELEMENTS.INPUT_FORM.addEventListener('submit', (e)=>{
     e.preventDefault();
     _webSocketOperations.sendMessage();
-    _chatWindowElementsJs.CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value = '';
+    _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value = '';
 });
-_authorizationElementsTs.AUTH_ELEMENTS.CLOSE.addEventListener('click', ()=>{
+_authorizationElements.AUTH_ELEMENTS.CLOSE.addEventListener('click', ()=>{
     _submitJs.SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.remove('hide');
-    _authorizationElementsTs.AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
+    _authorizationElements.AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
 });
 _submitJs.SUBMIT_ELEMENTS.CLOSE.addEventListener('click', ()=>{
     _submitJs.SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.add('hide');
-    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
+    _settingsElements.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
 });
 _submitJs.SUBMIT_ELEMENTS.CODE_FORM.addEventListener('submit', (e)=>{
     _submitJs.SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.add('hide');
-    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
+    _settingsElements.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
     e.preventDefault();
     setCookiesToken();
 });
-_authorizationElementsTs.AUTH_ELEMENTS.MAIL_FORM.addEventListener('submit', (e)=>{
+_authorizationElements.AUTH_ELEMENTS.MAIL_FORM.addEventListener('submit', (e)=>{
     e.preventDefault();
-    _authorizationElementsTs.getAuthCodeForMail();
-    _authorizationElementsTs.AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
+    _authorizationElements.getAuthCodeForMail();
+    _authorizationElements.AUTH_ELEMENTS.AUTH_WINDOW.classList.add('hide');
     _submitJs.SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.remove('hide');
 });
 function setCookiesToken() {
@@ -580,169 +580,51 @@ function setCookiesToken() {
     showUserNameWindow();
 }
 function showUserNameWindow() {
-    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
-    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.remove('hide');
+    _settingsElements.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.remove('hide');
+    _settingsElements.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.remove('hide');
     _submitJs.SUBMIT_ELEMENTS.SUBMIT_WINDOW.classList.add('hide');
 }
-_settingsElementsTs.SETTINGS_ELEMENTS.SETTING_NAME_FORM.addEventListener('submit', (e)=>{
+_settingsElements.SETTINGS_ELEMENTS.SETTING_NAME_FORM.addEventListener('submit', (e)=>{
     e.preventDefault();
-    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.add('hide');
-    _settingsElementsTs.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
-    _settingsElementsTs.setUserName();
-    _chatWindowElementsJs.getMessageStory();
+    _settingsElements.SETTINGS_ELEMENTS.SETTING_WINDOW.classList.add('hide');
+    _settingsElements.SETTINGS_ELEMENTS.SETTING_BACKGROUND.classList.add('hide');
+    _settingsElements.setUserName();
+    _chatWindowElements.getMessageStory();
     _webSocketOperations.connectOnServer();
     setTimeout(showUserName, 1000);
 });
 async function showUserName() {
-    let token = _jsCookieDefault.default.get('token');
+    const token = _jsCookieDefault.default.get('token');
     try {
-        let user = await fetch('https://mighty-cove-31255.herokuapp.com/api/user/me', {
+        const user = await fetch('https://mighty-cove-31255.herokuapp.com/api/user/me', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
             }
         });
-        let userName = await user.json();
-        document.querySelector('.nickname').textContent = `Ник: ${userName.name}`;
+        const userName = await user.json();
+        const nickName = document.querySelector('.nickname');
+        nickName.textContent = `Ник: ${userName.name}`;
     } catch (e) {
         alert(e);
     }
 }
-_chatWindowElementsJs.CHAT_SCREEN_ELEMENTS.QUIT_BUTTON.addEventListener('click', ()=>{
+_chatWindowElements.CHAT_SCREEN_ELEMENTS.QUIT_BUTTON.addEventListener('click', ()=>{
     _webSocketOperationsDefault.default.close(1000, 'Выход из чата');
 });
 
-},{"./chat_window_elements.js":"kWvmn","./settings_elements.ts":"4LGt7","./authorization_elements.ts":"csn7O","./submit.js":"9jUCy","js-cookie":"c8bBu","./webSocketOperations":"v9nlW","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kWvmn":[function(require,module,exports) {
-"use strict";
-var __awaiter = this && this.__awaiter || function(thisArg, _arguments, P, generator) {
-    function adopt(value) {
-        return value instanceof P ? value : new P(function(resolve) {
-            resolve(value);
-        });
-    }
-    return new (P || (P = Promise))(function(resolve, reject) {
-        function fulfilled(value) {
-            try {
-                step(generator.next(value));
-            } catch (e) {
-                reject(e);
-            }
-        }
-        function rejected(value) {
-            try {
-                step(generator["throw"](value));
-            } catch (e) {
-                reject(e);
-            }
-        }
-        function step(result) {
-            result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
-        }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = this && this.__generator || function(thisArg, body) {
-    var _ = {
-        label: 0,
-        sent: function() {
-            if (t[0] & 1) throw t[1];
-            return t[1];
-        },
-        trys: [],
-        ops: []
-    }, f, y, t, g;
-    return g = {
-        next: verb(0),
-        "throw": verb(1),
-        "return": verb(2)
-    }, typeof Symbol === "function" && (g[Symbol.iterator] = function() {
-        return this;
-    }), g;
-    function verb(n) {
-        return function(v) {
-            return step([
-                n,
-                v
-            ]);
-        };
-    }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while(_)try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [
-                op[0] & 2,
-                t.value
-            ];
-            switch(op[0]){
-                case 0:
-                case 1:
-                    t = op;
-                    break;
-                case 4:
-                    _.label++;
-                    return {
-                        value: op[1],
-                        done: false
-                    };
-                case 5:
-                    _.label++;
-                    y = op[1];
-                    op = [
-                        0
-                    ];
-                    continue;
-                case 7:
-                    op = _.ops.pop();
-                    _.trys.pop();
-                    continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-                        _ = 0;
-                        continue;
-                    }
-                    if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
-                        _.label = op[1];
-                        break;
-                    }
-                    if (op[0] === 6 && _.label < t[1]) {
-                        _.label = t[1];
-                        t = op;
-                        break;
-                    }
-                    if (t && _.label < t[2]) {
-                        _.label = t[2];
-                        _.ops.push(op);
-                        break;
-                    }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop();
-                    continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) {
-            op = [
-                6,
-                e
-            ];
-            y = 0;
-        } finally{
-            f = t = 0;
-        }
-        if (op[0] & 5) throw op[1];
-        return {
-            value: op[0] ? op[1] : void 0,
-            done: true
-        };
-    }
-};
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.getMessageStory = exports.CHAT_SCREEN_ELEMENTS = void 0;
-var js_cookie_1 = require("js-cookie");
-var format_1 = require("date-fns/format");
-exports.CHAT_SCREEN_ELEMENTS = {
+},{"./chat_window_elements":"3cxJW","./settings_elements":"4LGt7","./authorization_elements":"csn7O","./submit.js":"9jUCy","js-cookie":"c8bBu","./webSocketOperations":"v9nlW","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3cxJW":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "CHAT_SCREEN_ELEMENTS", ()=>CHAT_SCREEN_ELEMENTS
+);
+parcelHelpers.export(exports, "getMessageStory", ()=>getMessageStory
+);
+var _jsCookie = require("js-cookie");
+var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
+var _format = require("date-fns/format");
+var _formatDefault = parcelHelpers.interopDefault(_format);
+const CHAT_SCREEN_ELEMENTS = {
     SETTING_BUTTON: document.querySelector('.managing-chat__button-settings'),
     QUIT_BUTTON: document.querySelector('.managing-chat__button-quit'),
     MESSAGE_INPUT: document.querySelector('.input-chat__input'),
@@ -757,84 +639,68 @@ exports.CHAT_SCREEN_ELEMENTS = {
     MESSAGE_TIME: document.querySelector('.message__time'),
     MESSAGE_CONTAINER: document.querySelector('.container')
 };
-var messageStory;
-function getMessageStory() {
-    return __awaiter(this, void 0, void 0, function() {
-        var storyURL, token, response;
-        return __generator(this, function(_a) {
-            switch(_a.label){
-                case 0:
-                    storyURL = 'https://mighty-cove-31255.herokuapp.com/api/messages';
-                    token = js_cookie_1.default.get('token');
-                    return [
-                        4 /*yield*/ ,
-                        fetch(storyURL, {
-                            method: 'GET',
-                            headers: {
-                                'Authorization': "Bearer ".concat(token)
-                            }
-                        })
-                    ];
-                case 1:
-                    response = _a.sent();
-                    return [
-                        4 /*yield*/ ,
-                        response.json()
-                    ];
-                case 2:
-                    messageStory = _a.sent();
-                    showMessageStory(messageStory);
-                    return [
-                        2 /*return*/ ,
-                        messageStory
-                    ];
-            }
-        });
+let messageStory;
+async function getMessageStory() {
+    const storyURL = 'https://mighty-cove-31255.herokuapp.com/api/messages';
+    const token = _jsCookieDefault.default.get('token');
+    const response = await fetch(storyURL, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
     });
+    messageStory = await response.json();
+    showMessageStory(messageStory);
+    return messageStory;
 }
-exports.getMessageStory = getMessageStory;
 function showMessageStory(messageStory1) {
-    var messageCount = messageStory1.messages.length - 20;
+    let messageCount = messageStory1.messages.length - 20;
     if (messageStory1.messages.length < 20) messageCount = 0;
-    for(var i = messageStory1.messages.length - 1; i > messageCount; i--)if (messageStory1.messages[i].user.email === 'abolshoff@yandex.ru') {
-        var message = exports.CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
-        message.querySelector('.output-message__text').textContent = "\u042F: ".concat(messageStory1.messages[i].text);
-        message.querySelector('.message__time').textContent = "".concat((0, format_1.default)(new Date(messageStory1.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm"));
-        exports.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(message);
+    for(let i = messageStory1.messages.length - 1; i > messageCount; i--)if (messageStory1.messages[i].user.email === 'abolshoff@yandex.ru') {
+        const message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
+        const outputMessage = document.querySelector('.output-message__text');
+        const messageTime = document.querySelector('.message__time');
+        outputMessage.textContent = `Я: ${messageStory1.messages[i].text}`;
+        messageTime.textContent = `${_formatDefault.default(new Date(messageStory1.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`;
+        CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(message);
     } else {
-        var message = exports.CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
-        message.querySelector('.input-message__text').textContent = "".concat(messageStory1.messages[i].user.name, ": ").concat(messageStory1.messages[i].text);
-        message.querySelector('.message__time').textContent = "".concat((0, format_1.default)(new Date(messageStory1.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm"));
-        exports.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(message);
+        const message = CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
+        const inputMessage = document.querySelector('.input-message__text');
+        const messageTime = document.querySelector('.message__time');
+        inputMessage.textContent = `${messageStory1.messages[i].user.name}: ${messageStory1.messages[i].text}`;
+        messageTime.textContent = `${_formatDefault.default(new Date(messageStory1.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`;
+        CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(message);
     }
-    exports.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
+    CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
     messageStory1.messages = messageStory1.messages.slice(0, messageStory1.messages.length - 20);
 }
-exports.CHAT_SCREEN_ELEMENTS.MESSAGE_CONTAINER.addEventListener('scroll', scrollListener);
+CHAT_SCREEN_ELEMENTS.MESSAGE_CONTAINER.addEventListener('scroll', scrollListener);
 function getLoadedMessagesHeight() {
-    var messageBlock = document.querySelectorAll('.message');
-    var messagesHeight = 0;
-    for(var i = messageBlock.length - 1; i > messageBlock.length - 20; i--)messagesHeight += messageBlock[i].clientHeight;
-    document.querySelector('.container').scrollTop = messagesHeight;
+    const messageBlock = document.querySelectorAll('.message');
+    const container = document.querySelector('.container');
+    let messagesHeight = 0;
+    for(let i = messageBlock.length - 1; i > messageBlock.length - 20; i--)messagesHeight += messageBlock[i].clientHeight;
+    container.scrollTop = messagesHeight;
 }
 function showMessageAllHistoryLoad() {
-    var allHistoryLoadMessage = document.createElement('div');
+    const allHistoryLoadMessage = document.createElement('div');
     allHistoryLoadMessage.classList.add('all-history-load-message');
     allHistoryLoadMessage.innerText = 'Вся история загружена';
-    exports.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(allHistoryLoadMessage);
+    CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(allHistoryLoadMessage);
 }
 function scrollListener() {
-    if (messageStory.messages.length === 0 && document.querySelector('.container').scrollTop === 0) {
+    const container = document.querySelector('.container');
+    if (messageStory.messages.length === 0 && container.scrollTop === 0) {
         showMessageAllHistoryLoad();
-        document.querySelector('.container').removeEventListener('scroll', scrollListener);
+        container.removeEventListener('scroll', scrollListener);
     }
-    if (document.querySelector('.container').scrollTop === 0) {
+    if (container.scrollTop === 0) {
         showMessageStory(messageStory);
         getLoadedMessagesHeight();
     }
 }
 
-},{"js-cookie":"c8bBu","date-fns/format":"lnm6V"}],"c8bBu":[function(require,module,exports) {
+},{"js-cookie":"c8bBu","date-fns/format":"lnm6V","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"c8bBu":[function(require,module,exports) {
 (function(global, factory) {
     module.exports = factory();
 })(this, function() {
@@ -3000,7 +2866,7 @@ async function setUserName() {
     const token = _jsCookieDefault.default.get('token');
     const userName = SETTINGS_ELEMENTS.SETTING_NAME_INPUT.value;
     try {
-        let response = await fetch(url, {
+        const response = await fetch(url, {
             method: 'PATCH',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -3031,11 +2897,11 @@ const AUTH_ELEMENTS = {
 };
 async function getAuthCodeForMail() {
     const url = 'https://mighty-cove-31255.herokuapp.com/api/user';
-    let mail = {
+    const mail = {
         email: `${AUTH_ELEMENTS.MAIL.value}`
     };
     try {
-        let response = await fetch(url, {
+        const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -3078,21 +2944,29 @@ const token = _jsCookieDefault.default.get('token');
 const socket = new WebSocket(`ws://${url}${token}`);
 function connectOnServer() {
     const socket1 = new WebSocket(`ws://${url}${token}`);
-    socket1.onopen = function(e) {
+    socket1.onopen = function() {
         console.log(" Соединение установлено, работаем дальше");
     };
     socket1.onmessage = function(event) {
         try {
             const messageText = JSON.parse(event.data);
             if (messageText.user.email === "abolshoff@yandex.ru") {
-                let message = _chatWindowElements.CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
-                message.querySelector('.output-message__text').textContent = `Я: ${messageText.text}`;
-                message.querySelector('.message__time').innerHTML = `${_formatDefault.default(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`;
+                const message = _chatWindowElements.CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
+                const outputMessage = document.querySelector('.output-message__text');
+                const messageTime = document.querySelector('.message__time');
+                // message.querySelector('.output-message__text').textContent = `Я: ${messageText.text}`;
+                outputMessage.textContent = `Я: ${messageText.text}`;
+                // message.querySelector('.message__time').innerHTML = `${format(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`;
+                messageTime.textContent = `${_formatDefault.default(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`;
                 _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
             } else {
-                let message = _chatWindowElements.CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
-                message.querySelector('.input-message__text').textContent = `${messageText.user.name}: ${messageText.text}`;
-                message.querySelector('.message__time').textContent = `${_formatDefault.default(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`;
+                const message = _chatWindowElements.CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
+                const messageTime = document.querySelector('.message__time');
+                const inputMessage = document.querySelector('.input-message__text');
+                // message.querySelector('.input-message__text').textContent = `${messageText.user.name}: ${messageText.text}`;
+                inputMessage.textContent = `${messageText.user.name}: ${messageText.text}`;
+                // message.querySelector('.message__time').textContent = `${format(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`
+                messageTime.textContent = `${_formatDefault.default(new Date(messageText.createdAt), "yyyy-MM-dd'-'HH:mm")}`;
                 _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.append(message);
             }
         } catch (e) {
@@ -3101,23 +2975,13 @@ function connectOnServer() {
         const messageContainer = document.querySelector('.container');
         const isScrolledToBottom = messageContainer.scrollHeight - messageContainer.clientHeight <= messageContainer.scrollTop + 1;
         if (!isScrolledToBottom) messageContainer.scrollTop = messageContainer.scrollHeight - messageContainer.clientHeight;
-    // if (document.querySelector('.container').scrollTop = document.querySelector('.container').scrollHeight){
-    //   CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
-    // }
     };
-// socket.onclose = function(event){
-//   console.log(event.code);
-//   console.log(event.reason);
-//   console.log('не было ни единого разрыва');
-//   const rws = new ReconnectingWebSocket(`ws://${url}${token}`);
-// }
 }
 socket.onclose = function(event) {
     console.log(event.code);
     console.log(event.reason);
     console.log('не было ни единого разрыва');
-    if (event.code === 1006) // const socket = new ReconnectingWebSocket(`ws://${url}${token}`);
-    connectOnServer();
+    if (event.code === 1006) connectOnServer();
 };
 function sendMessage() {
     const outputMessage = _chatWindowElements.CHAT_SCREEN_ELEMENTS.MESSAGE_INPUT.value;
@@ -3127,87 +2991,6 @@ function sendMessage() {
 }
 exports.default = socket;
 
-},{"./chat_window_elements":"3cxJW","date-fns/format":"lnm6V","js-cookie":"c8bBu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3cxJW":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "CHAT_SCREEN_ELEMENTS", ()=>CHAT_SCREEN_ELEMENTS
-);
-parcelHelpers.export(exports, "getMessageStory", ()=>getMessageStory
-);
-var _jsCookie = require("js-cookie");
-var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
-var _format = require("date-fns/format");
-var _formatDefault = parcelHelpers.interopDefault(_format);
-const CHAT_SCREEN_ELEMENTS = {
-    SETTING_BUTTON: document.querySelector('.managing-chat__button-settings'),
-    QUIT_BUTTON: document.querySelector('.managing-chat__button-quit'),
-    MESSAGE_INPUT: document.querySelector('.input-chat__input'),
-    SUBMIT_BUTTON: document.querySelector('.input-chat__submit-button'),
-    INPUT_FORM: document.querySelector('.input-chat__form'),
-    CHAT_SCREEN: document.querySelector('.chat-screen'),
-    MESSAGE_SCREEN: document.querySelector('.message-screen'),
-    OUTPUT_TEMPLATE: document.querySelector('#output-template'),
-    OUTPUT_MESSAGE_TEXT: document.querySelector('.output-message__text'),
-    INPUT_TEMPLATE: document.querySelector('#input-template'),
-    INPUT_MESSAGE_TEXT: document.querySelector('.input-message__text'),
-    MESSAGE_TIME: document.querySelector('.message__time'),
-    MESSAGE_CONTAINER: document.querySelector('.container')
-};
-let messageStory;
-async function getMessageStory() {
-    const storyURL = 'https://mighty-cove-31255.herokuapp.com/api/messages';
-    const token = _jsCookieDefault.default.get('token');
-    let response = await fetch(storyURL, {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    });
-    messageStory = await response.json();
-    showMessageStory(messageStory);
-    return messageStory;
-}
-function showMessageStory(messageStory1) {
-    let messageCount = messageStory1.messages.length - 20;
-    if (messageStory1.messages.length < 20) messageCount = 0;
-    for(let i = messageStory1.messages.length - 1; i > messageCount; i--)if (messageStory1.messages[i].user.email === 'abolshoff@yandex.ru') {
-        let message = CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
-        message.querySelector('.output-message__text').textContent = `Я: ${messageStory1.messages[i].text}`;
-        message.querySelector('.message__time').textContent = `${_formatDefault.default(new Date(messageStory1.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`;
-        CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(message);
-    } else {
-        let message = CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
-        message.querySelector('.input-message__text').textContent = `${messageStory1.messages[i].user.name}: ${messageStory1.messages[i].text}`;
-        message.querySelector('.message__time').textContent = `${_formatDefault.default(new Date(messageStory1.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`;
-        CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(message);
-    }
-    CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.scrollIntoView(false);
-    messageStory1.messages = messageStory1.messages.slice(0, messageStory1.messages.length - 20);
-}
-CHAT_SCREEN_ELEMENTS.MESSAGE_CONTAINER.addEventListener('scroll', scrollListener);
-function getLoadedMessagesHeight() {
-    const messageBlock = document.querySelectorAll('.message');
-    let messagesHeight = 0;
-    for(let i = messageBlock.length - 1; i > messageBlock.length - 20; i--)messagesHeight += messageBlock[i].clientHeight;
-    document.querySelector('.container').scrollTop = messagesHeight;
-}
-function showMessageAllHistoryLoad() {
-    const allHistoryLoadMessage = document.createElement('div');
-    allHistoryLoadMessage.classList.add('all-history-load-message');
-    allHistoryLoadMessage.innerText = 'Вся история загружена';
-    CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(allHistoryLoadMessage);
-}
-function scrollListener() {
-    if (messageStory.messages.length === 0 && document.querySelector('.container').scrollTop === 0) {
-        showMessageAllHistoryLoad();
-        document.querySelector('.container').removeEventListener('scroll', scrollListener);
-    }
-    if (document.querySelector('.container').scrollTop === 0) {
-        showMessageStory(messageStory);
-        getLoadedMessagesHeight();
-    }
-}
-
-},{"js-cookie":"c8bBu","date-fns/format":"lnm6V","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["dx8iv","HaqPS"], "HaqPS", "parcelRequire25d8")
+},{"./chat_window_elements":"3cxJW","date-fns/format":"lnm6V","js-cookie":"c8bBu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["dx8iv","HaqPS"], "HaqPS", "parcelRequire25d8")
 
 //# sourceMappingURL=index.b50aa2ba.js.map

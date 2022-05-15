@@ -55,14 +55,18 @@ function showMessageStory(messageStory) {
     for (let i = messageStory.messages.length - 1; i > messageCount; i--) {
         if (messageStory.messages[i].user.email === 'abolshoff@yandex.ru') {
             const message = exports.CHAT_SCREEN_ELEMENTS.OUTPUT_TEMPLATE.content.cloneNode(true);
-            message.querySelector('.output-message__text').textContent = `Я: ${messageStory.messages[i].text}`;
-            message.querySelector('.message__time').textContent = `${(0, format_1.default)(new Date(messageStory.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`;
+            const outputMessage = document.querySelector('.output-message__text');
+            const messageTime = document.querySelector('.message__time');
+            outputMessage.textContent = `Я: ${messageStory.messages[i].text}`;
+            messageTime.textContent = `${(0, format_1.default)(new Date(messageStory.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`;
             exports.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(message);
         }
         else {
             const message = exports.CHAT_SCREEN_ELEMENTS.INPUT_TEMPLATE.content.cloneNode(true);
-            message.querySelector('.input-message__text').textContent = `${messageStory.messages[i].user.name}: ${messageStory.messages[i].text}`;
-            message.querySelector('.message__time').textContent = `${(0, format_1.default)(new Date(messageStory.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`;
+            const inputMessage = document.querySelector('.input-message__text');
+            const messageTime = document.querySelector('.message__time');
+            inputMessage.textContent = `${messageStory.messages[i].user.name}: ${messageStory.messages[i].text}`;
+            messageTime.textContent = `${(0, format_1.default)(new Date(messageStory.messages[i].createdAt), "yyyy-MM-dd'-'HH:mm")}`;
             exports.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(message);
         }
     }
@@ -72,11 +76,12 @@ function showMessageStory(messageStory) {
 exports.CHAT_SCREEN_ELEMENTS.MESSAGE_CONTAINER.addEventListener('scroll', scrollListener);
 function getLoadedMessagesHeight() {
     const messageBlock = document.querySelectorAll('.message');
+    const container = document.querySelector('.container');
     let messagesHeight = 0;
     for (let i = messageBlock.length - 1; i > messageBlock.length - 20; i--) {
         messagesHeight += messageBlock[i].clientHeight;
     }
-    document.querySelector('.container').scrollTop = messagesHeight;
+    container.scrollTop = messagesHeight;
 }
 function showMessageAllHistoryLoad() {
     const allHistoryLoadMessage = document.createElement('div');
@@ -85,11 +90,12 @@ function showMessageAllHistoryLoad() {
     exports.CHAT_SCREEN_ELEMENTS.MESSAGE_SCREEN.prepend(allHistoryLoadMessage);
 }
 function scrollListener() {
-    if (messageStory.messages.length === 0 && document.querySelector('.container').scrollTop === 0) {
+    const container = document.querySelector('.container');
+    if (messageStory.messages.length === 0 && container.scrollTop === 0) {
         showMessageAllHistoryLoad();
-        document.querySelector('.container').removeEventListener('scroll', scrollListener);
+        container.removeEventListener('scroll', scrollListener);
     }
-    if (document.querySelector('.container').scrollTop === 0) {
+    if (container.scrollTop === 0) {
         showMessageStory(messageStory);
         getLoadedMessagesHeight();
     }
